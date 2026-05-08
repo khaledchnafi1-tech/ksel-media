@@ -4,33 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSEL MEDIA | منصة التميز الإعلامي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>KSEL MEDIA | كسال ميديا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #b08d57;
-            --dark: #0f0f0f;
-            --light: #ffffff;
-            --glass: rgba(255, 255, 255, 0.95);
+            --primary: #b08d57; /* اللون الذهبي من الشعار */
+            --dark: #1a1a1a;
+            --light: #fdfaf5;
+            --text-dark: #2c2c2c;
         }
 
         body {
             font-family: 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.8;
+            background-color: var(--light);
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
 
         /* الهيدر */
         header {
-            background: var(--light);
+            background: rgba(255, 255, 255, 0.95);
             padding: 10px 5%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -41,102 +41,108 @@
             transition: 0.3s;
         }
 
-        /* قسم الترحيب */
+        /* القسم الرئيسي */
         .hero {
-            background: linear-gradient(135deg, rgba(15,15,15,0.9), rgba(176,141,87,0.7)), url('https://i.ibb.co/LdxYVq9h/1000075789.jpg');
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(176, 141, 87, 0.6)), 
+                        url('https://i.ibb.co/LdxYVq9h/1000075789.jpg');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
-            padding: 100px 20px;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            padding: 120px 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
 
-        .hero h1 { font-weight: 900; font-size: 3rem; margin: 0; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; }
+        .hero h1 { font-size: 3.5rem; margin: 0; font-weight: 900; letter-spacing: 1px; }
+        .hero p { font-size: 1.3rem; opacity: 0.9; margin-top: 10px; }
 
-        /* قسم التمهيد (عن المشروع) */
-        .about-section {
+        /* قسم النبذة */
+        .about-card {
             max-width: 900px;
-            margin: -60px auto 40px;
-            background: var(--glass);
+            margin: -80px auto 40px;
+            background: white;
             padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(176,141,87,0.2);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--primary);
+            position: relative;
+            z-index: 10;
         }
 
-        .about-section h2 {
-            color: var(--gold);
-            text-align: center;
-            border-bottom: 2px solid var(--gold);
-            display: inline-block;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .supervisor {
-            background: var(--gold);
+        .supervisor-tag {
+            background: var(--primary);
             color: white;
-            display: inline-block;
-            padding: 5px 20px;
+            padding: 8px 25px;
             border-radius: 50px;
+            display: inline-block;
             font-weight: bold;
             margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(176, 141, 87, 0.3);
         }
 
-        /* قسم الانضمام */
-        .join-section {
-            max-width: 700px;
-            margin: 40px auto;
+        .about-card h2 { color: var(--primary); font-size: 2rem; margin-bottom: 20px; }
+        .about-card p { line-height: 1.9; font-size: 1.1rem; color: #555; text-align: justify; }
+
+        /* قسم الاستمارة */
+        .form-section {
+            max-width: 750px;
+            margin: 60px auto;
             background: var(--dark);
+            padding: 50px;
+            border-radius: 40px;
             color: white;
-            padding: 40px;
-            border-radius: 25px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
         }
 
-        .join-section h2 { color: var(--gold); text-align: center; }
+        .form-section h2 { text-align: center; color: var(--primary); font-size: 2.2rem; margin-bottom: 40px; }
 
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: #ccc; }
-        .form-group input, .form-group select {
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; margin-bottom: 10px; color: #bbb; font-weight: 600; }
+        
+        .input-group input, .input-group select {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #333;
-            background: #222;
+            padding: 15px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 15px;
             color: white;
-            border-radius: 12px;
-            box-sizing: border-box;
             font-family: 'Cairo';
+            font-size: 1rem;
+            transition: 0.3s;
+            box-sizing: border-box;
         }
+
+        .input-group input:focus { border-color: var(--primary); outline: none; background: #333; }
 
         .submit-btn {
-            background: var(--gold);
-            color: white;
             width: 100%;
-            padding: 16px;
+            padding: 18px;
+            background: linear-gradient(90deg, var(--primary), #d4af37);
+            color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.4s;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
-        .submit-btn:hover { background: #d4af37; transform: scale(1.02); }
+        .submit-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(176, 141, 87, 0.4); }
 
         footer {
             text-align: center;
-            padding: 40px;
-            background: #f1f1f1;
-            font-size: 0.9rem;
+            padding: 50px 20px;
+            background: #eee;
+            margin-top: 100px;
         }
 
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
-            .about-section { margin: -40px 15px 20px; padding: 25px; }
+        footer p { margin: 5px 0; color: #777; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .about-card { margin: -50px 20px 20px; padding: 25px; }
+            .form-section { margin: 20px; padding: 30px; border-radius: 25px; }
         }
     </style>
 </head>
@@ -150,49 +156,46 @@
 
     <section class="hero">
         <h1>KSEL MEDIA</h1>
-        <p>مستقبل الإعلام الرقمي بين يديك</p>
+        <p>التميز في الإعلام الرقمي وصناعة المحتوى</p>
     </section>
 
-    <section class="about-section">
-        <center><div class="supervisor">بإشراف القائد: مسعدي فؤاد</div></center>
-        <h2>عن المشروع</h2>
+    <section class="about-card">
+        <center><div class="supervisor-tag">بإشراف القائد: مسعدي فؤاد</div></center>
+        <h2>عن مشروعنا</h2>
         <p>
-            مشروع <strong>KSEL MEDIA</strong> هو فضاء إعلامي شبابي حديث، صُمم ليجمع بين الاحترافية والإبداع في عالم الإنتاج السمعي البصري. نحن لا نصنع المحتوى فحسب، بل نسعى لمواكبة الثورة التكنولوجية والذكاء الاصطناعي لإيصال صوت الشباب الجزائري بطريقة عصرية.
+            مشروع <strong>KSEL MEDIA</strong> هو مشروع إعلامي شبابي حديث يهدف إلى تقديم محتوى إعلامي احترافي وإبداعي يجمع بين الإعلام الرقمي، الإنتاج السمعي البصري، وصناعة المحتوى الهادف. يسعى المشروع إلى مواكبة التطور التكنولوجي في مجال الإعلام من خلال إنتاج برامج متنوعة تشمل البودكاست، التقارير الميدانية، والبرامج الثقافية.
         </p>
         <p>
-            يرتكز مشروعنا على دعم الطاقات المبدعة في مجالات البودكاست، التقارير الميدانية، والتحرير الصحفي، مؤمنين بأن الجودة والابتكار هما مفتاح التأثير الإيجابي في المجتمع.
+            يرتكز المشروع على توظيف التقنيات الحديثة والذكاء الاصطناعي، مع توفير فضاء إبداعي للشباب الموهوبين في مجالات الصحافة، التعليق الصوتي، التصوير، والمونتاج، للمساهمة في إيصال صوت الشباب بطريقة عصرية واحترافية.
         </p>
     </section>
 
-    <section class="join-section">
-        <h2>كن جزءاً من فريقنا</h2>
-        <p style="text-align: center; opacity: 0.8;">هل تمتلك الموهبة؟ انضم الآن إلى بيئة إبداعية تطور مهاراتك.</p>
-        
-        <form action="https://formspree.io/f/khaledchnafi1@gmail.com" method="POST">
-            <div class="form-group">
-                <label>الاسم الكامل</label>
-                <input type="text" name="name" required placeholder="أدخل اسمك هنا">
+    <section class="form-section">
+        <h2>انضم إلى المبدعين</h2>
+        <form action="https://formspree.io/f/mgodnzlw" method="POST">
+            <div class="input-group">
+                <label>الاسم واللقب</label>
+                <input type="text" name="الاسم" required placeholder="أدخل اسمك الكامل">
             </div>
 
-            <div class="form-group">
-                <label>التخصص أو المستوى الدراسي</label>
-                <input type="text" name="education" required placeholder="مثال: طالب جامعي - إعلام واتصال">
+            <div class="input-group">
+                <label>المستوى الدراسي / التخصص</label>
+                <input type="text" name="التخصص" required placeholder="مثال: طالب جامعي - إعلام">
             </div>
 
-            <div class="form-group">
-                <label>موهبتك التي تريد تفجيرها معنا</label>
-                <select name="talent">
-                    <option value="تصوير">التصوير الفوتوغرافي والفيديو</option>
+            <div class="input-group">
+                <label>مجال اهتمامك</label>
+                <select name="الموهبة">
+                    <option value="تصوير">التصوير الفوتوغرافي والسينمائي</option>
                     <option value="مونتاج">المونتاج وتصميم الجرافيك</option>
                     <option value="تقديم">التقديم الإذاعي والبودكاست</option>
-                    <option value="تحرير">كتابة السيناريو والتحرير الصحفي</option>
-                    <option value="تكنولوجيا">الذكاء الاصطناعي والبرمجة</option>
+                    <option value="تحرير">كتابة المحتوى والتحرير الصحفي</option>
                 </select>
             </div>
 
-            <div class="form-group">
-                <label>رقم الهاتف / واتساب</label>
-                <input type="tel" name="phone" required placeholder="06XXXXXXXX">
+            <div class="input-group">
+                <label>رقم الهاتف</label>
+                <input type="tel" name="الهاتف" required placeholder="06XXXXXXXX">
             </div>
 
             <button type="submit" class="submit-btn">إرسال طلب الانضمام</button>
@@ -200,8 +203,11 @@
     </section>
 
     <footer>
-        <p>© 2026 KSEL MEDIA - جميع الحقوق محفوظة</p>
-        <p>تواصل معنا: <a href="mailto:khaledchnafi1@gmail.com" style="color: var(--gold);">khaledchnafi1@gmail.com</a></p>
+        <div style="margin-bottom: 20px;">
+            <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" style="height: 50px; opacity: 0.5;">
+        </div>
+        <p>© 2026 جميع الحقوق محفوظة لـ كسال ميديا</p>
+        <p>صوت الشباب.. ثبات الجبل</p>
     </footer>
 
 </body>
