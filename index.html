@@ -1,73 +1,152 @@
+
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KSEL MEDIA | كسال ميديا</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; margin: 0; background: #fdfaf5; color: #333; line-height: 1.6; text-align: center; }
-        header { background: white; padding: 20px; shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .logo { max-width: 150px; }
+        :root {
+            --gold: #b08d57;
+            --dark: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        body { font-family: 'Cairo', sans-serif; margin: 0; background: #fdfaf5; color: #333; line-height: 1.6; overflow-x: hidden; }
+
+        /* شريط الأخبار الجذاب */
+        .ticker-container {
+            background: var(--dark);
+            color: var(--white);
+            height: 45px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2000;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .ticker-title {
+            background: #d9534f;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            position: relative;
+            z-index: 10;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+        }
+
+        .ticker-text {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-text span {
+            display: inline-block;
+            padding-right: 100%;
+            animation: ticker-move 25s linear infinite;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        @keyframes ticker-move {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* الهيدر */
+        header { background: var(--white); padding: 60px 20px 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { max-width: 140px; transition: 0.4s; }
+
+        /* الهيرو */
         .hero { 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.ibb.co/LdxYVq9h/1000075789.jpg');
             background-size: cover; background-position: center; color: white; padding: 100px 20px; 
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
-        .container { max-width: 800px; margin: -50px auto 50px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #b08d57; }
-        .tag { background: #b08d57; color: white; padding: 5px 20px; border-radius: 50px; font-weight: bold; margin-bottom: 20px; display: inline-block; }
-        .form-box { background: #1a1a1a; color: white; padding: 40px; border-radius: 20px; margin-top: 30px; }
-        .input-group { margin-bottom: 20px; text-align: right; }
-        .input-group label { display: block; margin-bottom: 10px; color: #b08d57; }
-        input, select { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: #222; color: white; box-sizing: border-box; }
-        .btn { background: #b08d57; color: white; border: none; padding: 15px 40px; border-radius: 10px; font-size: 1.2rem; cursor: pointer; font-weight: bold; width: 100%; }
+        .hero h1 { font-size: 3rem; margin: 10px 0; font-weight: 900; color: var(--gold); }
+
+        /* الحاوية */
+        .container { max-width: 850px; margin: -50px auto 50px; background: white; padding: 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-top: 6px solid var(--gold); }
+        .supervisor { background: var(--gold); color: white; padding: 5px 25px; border-radius: 50px; font-weight: bold; margin-bottom: 25px; display: inline-block; }
+
+        /* الاستمارة */
+        .form-box { background: var(--dark); color: white; padding: 40px; border-radius: 25px; margin-top: 35px; text-align: right; }
+        .form-box h3 { color: var(--gold); text-align: center; font-size: 1.8rem; margin-top: 0; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; color: #ccc; }
+        input, select { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #333; background: #222; color: white; box-sizing: border-box; font-family: 'Cairo'; }
+        
+        .submit-btn { background: var(--gold); color: white; border: none; padding: 16px; border-radius: 10px; font-size: 1.2rem; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; margin-top: 10px; }
+        .submit-btn:hover { background: #8e7145; transform: translateY(-3px); }
+
+        footer { padding: 40px; color: #888; font-size: 0.9rem; }
     </style>
 </head>
 <body>
+
+    <div class="ticker-container">
+        <div class="ticker-title">🔥 حصرياً</div>
+        <div class="ticker-text">
+            <span>
+                كسال ميديا تفتح أبواب الإبداع.. هل أنت الموهبة القادمة التي نبحث عنها؟ 
+                &nbsp;&nbsp;&nbsp;&nbsp; ● &nbsp;&nbsp;&nbsp;&nbsp;
+                تحت إشراف القائد مسعدي فؤاد: انطلاق أكبر مشروع إعلامي شبابي يدمج بين الاحترافية والذكاء الاصطناعي 
+                &nbsp;&nbsp;&nbsp;&nbsp; ● &nbsp;&nbsp;&nbsp;&nbsp;
+                كن جزءاً من "ثبات الجبل".. انضم الآن لفريق كسال ميديا وارسم مستقبلك الإعلامي معنا!
+            </span>
+        </div>
+    </div>
 
     <header>
         <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" class="logo" alt="كسال ميديا">
     </header>
 
     <section class="hero">
+        <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" style="max-width: 180px; margin-bottom: 15px;">
         <h1>KSEL MEDIA</h1>
-        <p>صوت الشباب.. ثبات الجبل</p>
+        <p>ثبات الجبل.. إبداع الشباب.. رؤية العالم</p>
     </section>
 
-    <section class="container">
-        <div class="tag">بإشراف القائد: مسعدي فؤاد</div>
-        <h2>تمهيد عن المشروع</h2>
-        <p>مشروع KSEL MEDIA هو مشروع إعلامي شبابي حديث يهدف إلى تقديم محتوى احترافي يجمع بين الإعلام الرقمي والذكاء الاصطناعي، ليوفر فضاءً إبداعياً للمواهب في الجزائر.</p>
+    <div class="container">
+        <div class="supervisor">بإشراف القائد: مسعدي فؤاد</div>
+        <h2>اكتشف عالم كسال ميديا</h2>
+        <p>نحن لا نصنع المحتوى فقط، نحن نصنع التأثير. كسال ميديا هي بوابتك لاحتراف الإعلام الحديث وصناعة البودكاست والتغطيات الميدانية بأحدث التقنيات.</p>
         
         <div class="form-box">
-            <h3>استمارة الانضمام للفريق</h3>
+            <h3>استمارة صناعة المبدعين</h3>
             <form action="https://formspree.io/f/mgodnzlw" method="POST">
                 <div class="input-group">
-                    <label>الاسم واللقب</label>
+                    <label>الاسم واللقب الكامل</label>
                     <input type="text" name="الاسم" required>
                 </div>
                 <div class="input-group">
-                    <label>المستوى الدراسي</label>
-                    <input type="text" name="المستوى" required>
-                </div>
-                <div class="input-group">
-                    <label>مجال الموهبة</label>
-                    <select name="المجال">
-                        <option>تصوير ومونتاج</option>
-                        <option>تقديم وبودكاست</option>
-                        <option>تحرير صحفي</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>رقم الهاتف</label>
+                    <label>رقم الهاتف (واتساب)</label>
                     <input type="tel" name="الهاتف" required>
                 </div>
-                <button type="submit" class="btn">إرسال الطلب الآن</button>
+                <div class="input-group">
+                    <label>موهبتك الأساسية</label>
+                    <select name="الموهبة">
+                        <option>التصوير والمونتاج</option>
+                        <option>التقديم والبودكاست</option>
+                        <option>كتابة المحتوى والسيناريو</option>
+                        <option>الإدارة والتنظيم</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">أرسل بياناتك وانضم للقمة</button>
             </form>
         </div>
-    </section>
+    </div>
 
     <footer>
-        <p>© 2026 كسال ميديا - جميع الحقوق محفوظة</p>
+        <p>© 2026 كسال ميديا - صوت الشباب الحر</p>
     </footer>
 
 </body>
