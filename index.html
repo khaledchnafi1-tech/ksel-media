@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSEL MEDIA | كسال ميديا</title>
+    <title>KSEL MEDIA | كسال ميديا - ثبات الجبل</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ksel-gold: #c5a059; /* لون شعار كسال */
-            --electric-blue: rgba(0, 150, 255, 0.4); /* أزرق شفاف شبابي */
+            --ksel-gold: #c5a059;
+            --electric-blue: rgba(0, 150, 255, 0.35);
             --dark-bg: #050505;
             --white: #ffffff;
         }
@@ -17,85 +17,83 @@
         body { 
             font-family: 'Cairo', sans-serif; 
             margin: 0; background: var(--dark-bg); color: var(--white); 
-            line-height: 1.8; overflow-x: hidden;
+            line-height: 1.8; overflow-x: hidden; padding-bottom: 80px;
         }
 
-        /* الترحيب المتحرك */
+        /* 1. الترحيب المتحرك */
         .scrolling-ticker {
             background: var(--ksel-gold); color: #000; padding: 10px 0;
             position: fixed; top: 0; width: 100%; z-index: 1000;
             font-weight: 900; overflow: hidden; white-space: nowrap;
         }
-        .ticker-content { display: inline-block; animation: ticker 20s linear infinite; }
+        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* البداية: عنوان القناة وشعار ثبات الجبل */
+        /* 2. تأثير البارالاكس (ثبات الجبل) */
         .hero { 
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
-                        url('https://r.jina.ai/i/66840003b5f74577b3112a9e3328e3b2');
-            background-size: cover; background-position: center;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), 
+                            url('https://r.jina.ai/i/66840003b5f74577b3112a9e3328e3b2');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            border-bottom: 5px solid var(--electric-blue);
         }
-        .hero h1 { font-size: clamp(3.5rem, 12vw, 7rem); color: var(--ksel-gold); margin: 0; font-weight: 900; filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.5)); }
-        .hero .slogan { font-size: clamp(1.5rem, 5vw, 2.5rem); color: #fff; font-weight: 700; background: var(--electric-blue); padding: 5px 30px; border-radius: 50px; backdrop-filter: blur(10px); }
+        .hero h1 { font-size: clamp(3.5rem, 12vw, 7rem); color: var(--ksel-gold); margin: 0; font-weight: 900; }
+        .hero .slogan { font-size: clamp(1.5rem, 5vw, 2.5rem); color: #fff; font-weight: 700; background: var(--electric-blue); padding: 5px 35px; border-radius: 50px; backdrop-filter: blur(10px); margin-top: 10px; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* الأقسام - أزرق شفاف */
+        /* الأقسام الشفافة */
         .glass-section { 
-            background: var(--electric-blue); padding: 50px; border-radius: 40px;
+            background: var(--electric-blue); padding: 40px; border-radius: 40px;
             backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);
             margin: 60px 0; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         h2 { color: var(--ksel-gold); font-size: 2.2rem; margin-bottom: 25px; border-right: 5px solid var(--ksel-gold); padding-right: 15px; }
 
-        /* لماذا كسال والأهداف */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .info-card { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); }
+        /* 3. وجوه من البيض */
+        .museum-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; align-items: center; }
+        .countdown { background: #000; padding: 15px; border-radius: 15px; display: inline-block; border: 1px solid var(--ksel-gold); color: var(--ksel-gold); font-weight: 900; }
 
-        /* سؤال التحدي والتحفيز */
-        .challenge-zone { 
-            text-align: center; background: linear-gradient(45deg, #000, #111); 
-            padding: 80px 20px; border-radius: 40px; border: 2px dashed var(--ksel-gold); margin: 80px 0;
-        }
-        .challenge-zone h3 { font-size: 2.5rem; color: #ff4d4d; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        /* 4. خريطة التغطيات (بلديات البيض) */
+        .map-section { text-align: center; margin: 60px 0; }
+        .map-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+        .muni-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--electric-blue); color: #fff; padding: 10px 20px; border-radius: 15px; cursor: pointer; transition: 0.3s; font-family: 'Cairo'; }
+        .muni-btn:hover { background: var(--ksel-gold); color: #000; border-color: var(--ksel-gold); }
 
-        /* الاستمارة */
-        .form-area { background: #0a0a0a; padding: clamp(30px, 5vw, 60px); border-radius: 50px; border: 1px solid #222; }
+        /* 5. مقال خالد */
+        .khaled-article { background: #fff; color: #000; padding: 40px; border-radius: 40px; font-family: 'Amiri', serif; line-height: 1.8; margin: 80px 0; }
+        .khaled-article h2, .khaled-article h3 { color: #000; border-right-color: #000; }
+        .khaled-article p { font-size: 1.35rem; text-align: justify; }
+
+        /* 6. الاستمارة والبطاقة */
+        .form-area { background: #0a0a0a; padding: 40px; border-radius: 50px; border: 1px solid #222; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        input, select, textarea { width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #333; background: #000; color: white; font-family: 'Cairo'; }
+        input, select, textarea { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #333; background: #000; color: white; font-family: 'Cairo'; }
         .full { grid-column: span 2; }
-        .submit-btn { background: var(--ksel-gold); color: #000; border: none; padding: 22px; border-radius: 15px; font-size: 1.6rem; font-weight: 900; width: 100%; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px var(--ksel-gold); }
+        
+        .card-download-zone { text-align: center; margin-top: 30px; display: none; padding: 20px; background: var(--electric-blue); border-radius: 20px; }
+        .id-card { background: linear-gradient(45deg, #111, #222); width: 300px; height: 180px; margin: 20px auto; border-radius: 15px; border: 1px solid var(--ksel-gold); position: relative; padding: 20px; text-align: right; }
+        
+        .submit-btn { background: var(--ksel-gold); color: #000; border: none; padding: 20px; border-radius: 15px; font-size: 1.4rem; font-weight: 900; width: 100%; cursor: pointer; transition: 0.3s; }
+        .submit-btn:hover { box-shadow: 0 0 30px var(--ksel-gold); }
 
-        /* مقال خالد عن ولاية البيض */
-        .khaled-article { background: #fff; color: #000; padding: 60px; border-radius: 40px; font-family: 'Amiri', serif; line-height: 2; margin: 80px 0; }
-        .khaled-article h2 { color: #000; border-right-color: #000; }
-        .khaled-article p { font-size: 1.3rem; text-align: justify; }
+        /* 7. راديو كسال ليف */
+        .radio-footer { position: fixed; bottom: 0; width: 100%; background: rgba(0, 15, 35, 0.95); border-top: 2px solid var(--ksel-gold); padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; z-index: 10000; backdrop-filter: blur(15px); }
+        .live-dot { width: 12px; height: 12px; background: #ff0000; border-radius: 50%; box-shadow: 0 0 10px #ff0000; animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
 
-        /* فريق كسال */
-        .team-section { text-align: center; margin-bottom: 80px; }
-        .team-badge { display: inline-block; padding: 15px 40px; background: var(--electric-blue); border-radius: 50px; font-weight: 900; margin: 10px; }
+        footer { padding: 60px 20px 120px; text-align: center; opacity: 0.5; font-size: 0.9rem; }
 
-        /* التواصل */
-        .contact-footer { text-align: center; padding: 60px; background: #111; border-radius: 40px; margin-bottom: 50px; }
-        .whatsapp-link { color: #25d366; font-size: 2rem; text-decoration: none; font-weight: 900; display: block; margin-top: 20px; }
-
-        footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.9rem; }
-
-        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3.5rem; } }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3rem; } }
     </style>
 </head>
 <body>
 
     <div class="scrolling-ticker">
-        <div class="ticker-content">
-            مرحبا بكم يارائعين ياجميليين في رحاب كسال ميديا 🎙️ ثبات الجبل.. طموح الشباب.. وإبداع لا ينتهي 🎥 انضموا إلينا الآن لنصنع المستقبل معاً 🚀
-        </div>
+        <div class="ticker-content">مرحبا بكم يارائعين ياجميليين في رحاب كسال ميديا 🎙️ ثبات الجبل.. طموح الشباب.. وإبداع لا ينتهي 🎥 انضموا إلينا الآن لنصنع المستقبل معاً 🚀</div>
     </div>
 
     <section class="hero">
@@ -107,264 +105,110 @@
         
         <div class="glass-section">
             <h2>النبذة عن القناة</h2>
-            <p style="font-size: 1.3rem;">KSEL MEDIA هي منصة إعلامية رقمية رائدة، تنطلق من قلب ولاية البيض لتخاطب العالم بأسره. نحن لسنا مجرد قناة، بل نحن فضاء يجمع بين الفن، التقنية، والقيم الأصيلة، نسعى لتمكين الشباب وتقديم محتوى إعلامي يليق بذكاء وتطلعات الجيل الجديد.</p>
+            <p>KSEL MEDIA هي منصة إعلامية رقمية رائدة، تنطلق من قلب ولاية البيض. نحن فضاء يجمع بين الفن والتقنية والقيم، نسعى لتمكين الشباب وتقديم محتوى يليق بذكاء الجيل الجديد تحت إشراف القائد مسعدي فؤاد.</p>
         </div>
 
-        <div class="info-grid">
-            <div class="info-card">
-                <h2>لماذا "كسال"؟</h2>
-                <p>اخترنا هذا الاسم تيمناً بـ <strong>جبل كسال</strong> الشامخ في ولاية البيض. جبل كسال ليس مجرد تضريس جغرافي، بل هو رمز للصمود الأبدي، الثبات في وجه العواصف، والشموخ الذي لا ينحني. هكذا هي "كسال ميديا".. ثابتة كالجبل في مبادئها، وعالية في طموحاتها.</p>
-            </div>
-            <div class="info-card">
-                <h2>أهدافنا</h2>
-                <ul>
-                    <li>إبراز الطاقات الشبابية في ولاية البيض والجزائر.</li>
-                    <li>تقديم محتوى إعلامي احترافي يعتمد على الذكاء الاصطناعي.</li>
-                    <li>تثمين الموروث الثقافي والتاريخي للمنطقة برؤية عصرية.</li>
-                    <li>تكوين جيل جديد من صناع المحتوى الهادف.</li>
-                </ul>
+        <div class="glass-section" style="background: rgba(197, 160, 89, 0.05); border: 1px solid rgba(197, 160, 89, 0.3);">
+            <div class="museum-grid">
+                <div>
+                    <h2>👤 وجوه من البيض</h2>
+                    <h3>شخصية الشهر: المجاهد بلفرح محمد</h3>
+                    <p>بطل من طينة الكبار، جسد معنى "ثبات الجبل" في ميادين الثورة والجهاد. انتظروا تقريرنا الخاص عنه قريباً.</p>
+                    <div class="countdown">الشخصية القادمة خلال: 14 يوم</div>
+                </div>
+                <div style="text-align: center;">
+                     <div style="width: 180px; height: 230px; background: #111; margin: auto; border-radius: 20px; border: 2px solid var(--ksel-gold); display: flex; align-items: center; justify-content: center; font-weight: 900; color: var(--ksel-gold);">صورة البطل</div>
+                </div>
             </div>
         </div>
 
-        <div class="challenge-zone">
-            <h3>سؤال: هل تملك ثبات الجبل؟</h3>
-            <p style="font-size: 1.4rem; margin: 20px 0;">إذا كنت تملك الشغف، التحدي، والإرادة التي لا تكسرها الصعاب، فمكانك بيننا! كسال ميديا لا تبحث عن الهواة، بل تبحث عن "الجبال" القادرة على العطاء والإبداع.</p>
-            <p style="color: var(--ksel-gold); font-weight: 900; font-size: 1.6rem;">هيا.. كن جزءاً من الأسطورة القادمة!</p>
-        </div>
+        <section class="map-section">
+            <h2>🗺️ خريطة تغطيات كسال ميديا</h2>
+            <p>اضغط على بلديتك لمشاهدة آخر التقارير الميدانية</p>
+            <div class="map-grid">
+                <button class="muni-btn">البيض</button><button class="muni-btn">الرقاصة</button>
+                <button class="muni-btn">بوقطب</button><button class="muni-btn">بريزينة</button>
+                <button class="muni-btn">الأبيض سيدي الشيخ</button><button class="muni-btn">الشقيق</button>
+                <button class="muni-btn">الغاسول</button><button class="muni-btn">بوسمغون</button>
+                <button class="muni-btn">استيتن</button><button class="muni-btn">بوعلام</button>
+            </div>
+        </section>
 
         <div class="khaled-article">
             <h2>بقلم: شنافي خالد | كسال ميديا: فجر إعلامي جديد</h2>
-            <p>من رحم ولاية البيض، أرض الأبطال والعلماء، يولد اليوم مشروع "كسال ميديا" ليضع حداً للإعلام التقليدي الرتيب. لقد كانت ولايتنا دائماً منبعاً للمواهب، ولكنها كانت تفتقر للمنصة التي تحتضن هذا البركان الإبداعي. بفضل رؤية الفريق وإشراف القائد مسعدي فؤاد، نعلن اليوم عن انطلاق هذه القناة التي ستكون المرآة العاكسة لطموحاتنا. إننا نعدكم بصناعة إعلامية تليق بعظمة جبل كسال، وتواكب تسارع العالم الرقمي، لأننا نؤمن أن الشباب هم وقود التغيير الحقيقي.</p>
-            <hr>
-            <h3>نبذة عن ولاية البيض</h3>
-            <p>ولاية البيض، جوهرة الجنوب الغربي، هي مهد الحضارة والرجولة. من قصورها العتيقة إلى جبالها الشامخة، تروي كل حبة رمل فيها قصة صمود وتحدي. هي أرض الكرم، وأرض الثورة، واليوم هي أرض الإبداع الإعلامي مع كسال ميديا.</p>
+            <p>من رحم ولاية البيض، أرض الأبطال، يولد اليوم مشروع "كسال ميديا" ليضع حداً للإعلام التقليدي. بفضل رؤية الفريق وإشراف القائد مسعدي فؤاد، نعلن عن انطلاق هذه القناة التي ستكون المرآة العاكسة لطموحاتنا. إننا نعدكم بصناعة إعلامية تليق بعظمة جبل كسال، لأننا نؤمن أن الشباب هم وقود التغيير الحقيقي.</p>
         </div>
 
         <div class="form-area" id="join">
-            <h2>استمارة الالتحاق بالقناة</h2>
-            <form action="https://formspree.io/f/mgodnzlw" method="POST">
+            <h2 style="text-align: center;">التحق بجيش المبدعين</h2>
+            <form id="kselForm" action="https://formspree.io/f/mgodnzlw" method="POST">
                 <div class="form-grid">
-                    <div class="input-item"><label>الاسم الكامل</label><input type="text" name="name" required></div>
+                    <div class="input-item"><label>الاسم الكامل</label><input type="text" id="userName" name="name" required></div>
                     <div class="input-item"><label>رقم الهاتف</label><input type="tel" name="phone" required></div>
                     <div class="input-item">
-                        <label>بلدية الإقامة (ولاية البيض)</label>
+                        <label>بلدية الإقامة</label>
                         <select name="municipality">
-                            <option>البيض</option><option>الرقاصة</option><option>الشقيق</option><option>بوقطب</option>
-                            <option>الأبيض سيدي الشيخ</option><option>بريزينة</option><option>الغاسول</option><option>بوسمغون</option>
-                            <option>شلالة</option><option>المحرة</option><option>توسمولين</option><option>سيدي عمر</option>
-                            <option>استيتن</option><option>سيدي طيفور</option><option>سيدي سليمان</option><option>الكاف لحمر</option>
-                            <option>بوعلام</option><option>خيرة</option><option>عرباوة</option><option>كراكدة</option>
+                            <option>البيض</option><option>الرقاصة</option><option>بوقطب</option><option>بريزينة</option>
                         </select>
                     </div>
                     <div class="input-item">
-                        <label>المجال المطلوب</label>
+                        <label>المجال</label>
                         <select name="role">
-                            <option>تقديم وإعداد برامج</option><option>تصوير ومونتاج</option>
-                            <option>تعليق صوتي</option><option>إدارة صفحات وتصميم</option>
+                            <option>تصوير ومونتاج</option><option>تعليق صوتي</option><option>كتابة مقال</option>
                         </select>
                     </div>
-                    <div class="input-item full"><label>لماذا تريد الانضمام إلينا؟</label><textarea name="why" rows="4"></textarea></div>
+                    <div class="input-item full"><label>اكتب مقالك أو رسالتك هنا</label><textarea name="content" rows="4" placeholder="اكتب ما يجول في خاطرك لننشره في قسم منبر الشباب..."></textarea></div>
                 </div>
-                <button type="submit" class="submit-btn">وقع ميثاق الثبات وانطلق!</button>
+                <button type="submit" class="submit-btn">إرسال وتوليد بطاقتي</button>
             </form>
+
+            <div id="downloadZone" class="card-download-zone">
+                <h3 style="color: #fff;">تم استلام بياناتك بنجاح! 🎉</h3>
+                <p>إليك بطاقة عضويتك المؤقتة، التقط لها صورة (Screenshot) وشاركها معنا:</p>
+                <div class="id-card" id="idCard">
+                    <div style="color: var(--ksel-gold); font-size: 0.7rem;">KSEL MEDIA MEMBER</div>
+                    <div style="margin-top: 20px; font-weight: 900; font-size: 1.4rem;" id="cardNameDisplay">الاسم</div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">عضو في ثبات الجبل</div>
+                    <div style="position: absolute; bottom: 15px; left: 15px; font-size: 0.6rem; border: 1px solid #444; padding: 5px;">2026 EDITION</div>
+                </div>
+            </div>
         </div>
 
-        <div style="text-align: center; padding: 80px 0;">
-            <h2 style="border: none;">💡 حكمة</h2>
-            <p style="font-size: 2.2rem; font-style: italic; color: #eee; font-family: 'Amiri';">"ليس الجبل من يحتاج للقمة، بل القمة هي من تحتاج لثبات الجبل لكي تستمر."</p>
-        </div>
-
-        <section class="team-section">
+        <section style="text-align: center; margin: 60px 0;">
             <h2>فريق كسال ميديا</h2>
-            <div class="team-badge">القائد: مسعدي فؤاد</div>
-            <div class="team-badge">المصمم والمحرر: شنافي خالد</div>
-            <div class="team-badge">المصورة: ريما</div>
-            <div class="team-badge">ونخبة من المبدعين الشباب</div>
-        </section>
-
-        <div class="contact-footer">
-            <h2>تواصل معنا مباشرة</h2>
-            <p>نحن متاحون للرد على استفساراتكم عبر الواتساب:</p>
-            <a href="https://wa.me/213797761701" class="whatsapp-link">📲 0797761701</a>
-        </div>
-
-    </div>
-
-    <footer>
-        <p>© 2026 KSEL MEDIA | جميع الحقوق محفوظة لولاية البيض</p>
-    </footer>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSEL MEDIA | إمبراطورية ثبات الجبل</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ksel-gold: #c5a059;
-            --electric-blue: rgba(0, 150, 255, 0.3);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --dark-bg: #050505;
-        }
-
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { 
-            font-family: 'Cairo', sans-serif; 
-            margin: 0; background: var(--dark-bg); color: #fff; 
-            line-height: 1.6; overflow-x: hidden;
-        }
-
-        /* 1. تأثير البارالاكس في الهيرو */
-        .parallax-hero {
-            height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://r.jina.ai/i/66840003b5f74577b3112a9e3328e3b2');
-            background-attachment: fixed; /* سر الحركة */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-        }
-
-        .hero-title { font-size: clamp(3rem, 10vw, 6rem); color: var(--ksel-gold); font-weight: 900; text-shadow: 0 10px 30px rgba(0,0,0,0.8); margin: 0; }
-        .hero-sub { font-size: 1.8rem; background: var(--electric-blue); padding: 5px 30px; border-radius: 50px; backdrop-filter: blur(10px); }
-
-        /* 2. راديو كسال ليف (مشغل ثابت) */
-        .radio-footer {
-            position: fixed; bottom: 0; width: 100%; background: rgba(0, 10, 30, 0.9);
-            border-top: 2px solid var(--ksel-gold); padding: 10px 20px;
-            display: flex; justify-content: space-between; align-items: center; z-index: 10000; backdrop-filter: blur(15px);
-        }
-        .radio-info { display: flex; align-items: center; gap: 15px; }
-        .live-dot { width: 12px; height: 12px; background: red; border-radius: 50%; animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-
-        /* 3. وجوه من البيض (المتحف الرقمي) */
-        .museum-section {
-            background: var(--glass-bg); border-radius: 40px; padding: 40px;
-            border: 1px solid rgba(197, 160, 89, 0.3); margin: 60px 0;
-        }
-        .museum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .countdown { font-size: 1.5rem; color: var(--ksel-gold); font-weight: 900; background: #000; padding: 10px; border-radius: 10px; display: inline-block; margin-top: 20px; }
-
-        /* 4. مساحة المقال الحر للشباب */
-        .freedom-press {
-            background: var(--electric-blue); padding: 50px; border-radius: 40px;
-            text-align: center; border: 1px dashed var(--ksel-gold);
-        }
-
-        /* الاستمارة وبطاقة العضوية */
-        .form-area { background: #0a0a0a; padding: 50px; border-radius: 40px; border: 1px solid #222; }
-        .id-preview {
-            background: linear-gradient(45deg, #111, #222); width: 320px; height: 200px;
-            margin: 20px auto; border-radius: 15px; border: 1px solid var(--ksel-gold);
-            display: flex; flex-direction: column; justify-content: center; padding: 20px; position: relative;
-        }
-        .id-preview::before { content: "KSEL MEMBER"; position: absolute; top: 10px; right: 10px; font-size: 0.7rem; color: var(--ksel-gold); }
-
-        /* الترحيب المتحرك */
-        .ticker { background: var(--ksel-gold); color: #000; padding: 8px 0; font-weight: 900; overflow: hidden; white-space: nowrap; }
-        .ticker-wrap { display: inline-block; animation: move 30s linear infinite; }
-        @keyframes move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        input, select, textarea { width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px; margin-bottom: 15px; font-family: 'Cairo'; }
-        .btn { background: var(--ksel-gold); border: none; padding: 20px; width: 100%; font-weight: 900; font-size: 1.2rem; cursor: pointer; border-radius: 10px; transition: 0.3s; }
-        .btn:hover { box-shadow: 0 0 20px var(--ksel-gold); transform: scale(1.02); }
-
-        @media (max-width: 768px) { .museum-grid { grid-template-columns: 1fr; } }
-    </style>
-</head>
-<body>
-
-    <div class="ticker">
-        <div class="ticker-wrap">مرحبا بكم في كسال ميديا 🎙️ ثبات الجبل.. إبداع الشباب.. ورؤية تتجاوز الحدود 🚀 تابعوا راديو كسال ليف الآن!</div>
-    </div>
-
-    <section class="parallax-hero">
-        <h1 class="hero-title">KSEL MEDIA</h1>
-        <div class="hero-sub">شعارنا: ثبات الجبل</div>
-    </section>
-
-    <div class="container">
-        
-        <section class="museum-section">
-            <div class="museum-grid">
-                <div>
-                    <h2>👤 وجوه من البيض (المتحف الرقمي)</h2>
-                    <h3>شخصية الشهر: المجاهد بلفرح محمد</h3>
-                    <p>بطل من أبطال ولاية البيض، رمز للصمود والتضحية. ولد سنة 1918 وكرّس حياته لخدمة الوطن والثورة التحريرية، جسّد فعلياً "ثبات الجبل" في ميادين الشرف.</p>
-                    <div class="countdown">انتظروا الشخصية القادمة بعد: 21 يوم : 12 ساعة</div>
-                </div>
-                <div style="text-align: center;">
-                    <img src="https://via.placeholder.com/300x400/c5a059/000?text=Hero+Photo" style="border-radius: 20px; width: 80%; border: 3px solid var(--ksel-gold);">
-                </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                <span style="background: var(--electric-blue); padding: 10px 25px; border-radius: 50px;">إشراف: مسعدي فؤاد</span>
+                <span style="background: var(--electric-blue); padding: 10px 25px; border-radius: 50px;">تصميم وتحرير: شنافي خالد</span>
             </div>
         </section>
-
-        <section class="glass-section" style="text-align: center; background: var(--electric-blue); border-radius: 40px; padding: 40px;">
-            <h2>🗺️ خريطة الإبداع التفاعلية</h2>
-            <p>اختر بلديتك وشاهد تقاريرنا هناك</p>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-                <button class="btn" style="width: auto; padding: 10px 20px;">الرقاصة</button>
-                <button class="btn" style="width: auto; padding: 10px 20px;">بوقطب</button>
-                <button class="btn" style="width: auto; padding: 10px 20px;">بريزينة</button>
-                <button class="btn" style="width: auto; padding: 10px 20px;">الأبيض سيدي الشيخ</button>
-            </div>
-        </section>
-
-        <section class="freedom-press" style="margin: 60px 0;">
-            <h2>✍️ منبر الشباب (المقال الحر)</h2>
-            <p>هل تملك قلماً مبدعاً؟ أرسل مقالك الأدبي أو الصحفي وسيقوم القائد فؤاد وشنافي خالد بمراجعته ونشره فوراً على منصتنا!</p>
-            <button class="btn" style="width: 250px;">أرسل مقالك الآن</button>
-        </section>
-
-        <div class="form-area" id="join">
-            <h2 style="text-align: center;">انضم لثبات الجبل</h2>
-            <div class="id-preview">
-                <p style="margin: 0; font-weight: 900; color: var(--ksel-gold);">[اسمك هنا]</p>
-                <p style="font-size: 0.8rem; opacity: 0.7;">عضو رسمي في كسال ميديا</p>
-                <div style="margin-top: 20px; font-size: 0.6rem; border-top: 1px solid #444; padding-top: 10px;">
-                    ولاية البيض - ميثاق ثبات الجبل
-                </div>
-            </div>
-            <form action="https://formspree.io/f/mgodnzlw" method="POST">
-                <input type="text" name="name" placeholder="الاسم الكامل" required>
-                <input type="tel" name="phone" placeholder="رقم الهاتف" required>
-                <select name="municipality">
-                    <option>اختر البلدية</option><option>البيض</option><option>الرقاصة</option><option>بوقطب</option>
-                </select>
-                <textarea name="why" placeholder="لماذا تريد الانضمام لثبات الجبل؟" rows="3"></textarea>
-                <button type="submit" class="btn">توليد بطاقة العضوية والارسال</button>
-            </form>
-        </div>
-
-        <div style="text-align: center; padding: 100px 0;">
-            <p style="font-size: 2rem; font-style: italic; font-family: 'Amiri';">"القمة تحتاج لثبات الجبل لكي تستمر.."</p>
-        </div>
 
     </div>
 
     <div class="radio-footer">
-        <div class="radio-info">
+        <div style="display: flex; align-items: center; gap: 12px;">
             <div class="live-dot"></div>
             <div>
-                <strong style="color: var(--ksel-gold); display: block;">راديو كسال ليف 📻</strong>
-                <small>بث مباشر: نبض ولاية البيض</small>
+                <strong style="color: var(--ksel-gold); display: block; font-size: 0.9rem;">راديو كسال ليف 📻</strong>
+                <small style="color: #fff; opacity: 0.8; font-size: 0.75rem;">بث مباشر: نبض ولاية البيض</small>
             </div>
         </div>
-        <div class="radio-player">
-            <button style="background: var(--ksel-gold); border: none; padding: 8px 20px; border-radius: 20px; font-weight: 900; cursor: pointer;">استماع الآن</button>
-        </div>
+        <button style="background: var(--ksel-gold); border: none; padding: 8px 18px; border-radius: 20px; font-weight: 900; cursor: pointer; font-family: 'Cairo';">استماع</button>
     </div>
 
-    <footer style="padding: 100px 20px 120px; text-align: center; opacity: 0.5;">
-        <p>© 2026 KSEL MEDIA | تصميم وتطوير شريكك الملهم: شنافي خالد</p>
-        <p>واتساب: 0797761701</p>
+    <footer>
+        <p>© 2026 KSEL MEDIA | جميع الحقوق محفوظة لولاية البيض</p>
+        <p>تواصل واتساب: 0797761701</p>
     </footer>
 
-</body>
-</html>
+    <script>
+        // كود لتوليد البطاقة للمسجل فوراً
+        const form = document.getElementById('kselForm');
+        form.onsubmit = function() {
+            const name = document.getElementById('userName').value;
+            document.getElementById('cardNameDisplay').innerText = name;
+            document.getElementById('downloadZone').style.display = 'block';
+            // نترك الفورم يرسل لـ Formspree بشكل طبيعي
+        };
+    </script>
 </body>
 </html>
