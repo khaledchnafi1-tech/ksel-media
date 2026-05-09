@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -10,10 +9,11 @@
     <style>
         :root {
             --gold: #c5a059;
-            --deep-dark: #020202;
-            --card-bg: #0a0a0a;
-            --text-gray: #b0b0b0;
-            --neon-gold: 0 0 20px rgba(197, 160, 89, 0.4);
+            --deep-dark: #010101; /* أسود أعمق */
+            --card-bg: #080808;
+            --text-gray: #a0a0a0;
+            --neon-gold: 0 0 25px rgba(197, 160, 89, 0.5);
+            --transition: all 0.4s ease-in-out;
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
@@ -23,189 +23,217 @@
             background-color: var(--deep-dark); 
             color: #fff; 
             overflow-x: hidden;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
-        /* شريط الأنباء - نبض الموقع */
+        /* شريط الأنباء النيون */
         .live-ticker {
-            background: linear-gradient(90deg, #111, #222);
-            border-bottom: 1px solid #333;
-            height: 40px;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            height: 45px;
             display: flex;
             align-items: center;
             position: fixed;
             top: 0; width: 100%; z-index: 5000;
+            backdrop-filter: blur(10px);
         }
         .ticker-label {
             background: var(--gold);
             color: #000;
-            padding: 0 15px;
+            padding: 0 20px;
             font-weight: 900;
             height: 100%;
             display: flex;
             align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            box-shadow: 5px 0 15px rgba(197,160,89,0.3);
         }
         .ticker-content { flex: 1; overflow: hidden; white-space: nowrap; }
         .ticker-content span {
             display: inline-block;
-            animation: ticker-slide 40s linear infinite;
+            animation: ticker-slide 45s linear infinite;
             padding-right: 100%;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
+            color: #eee;
         }
         @keyframes ticker-slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* الهيدر الأسطوري */
+        /* الهيدر الأسطوري - بدون صور */
         .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at center, rgba(197, 160, 89, 0.1) 0%, transparent 70%), url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: radial-gradient(circle at center, rgba(197, 160, 89, 0.1) 0%, transparent 75%);
             text-align: center;
             position: relative;
+            padding: 20px;
         }
-        .hero::after { content: ''; position: absolute; bottom: 0; width: 100%; height: 200px; background: linear-gradient(transparent, var(--deep-dark)); }
+        .hero::after { content: ''; position: absolute; bottom: 0; width: 100%; height: 250px; background: linear-gradient(transparent, var(--deep-dark)); }
 
-        .main-logo {
-            width: 200px;
+        /* الشعار النصي على شكل جبل - قم الإبداع */
+        .mountain-logo {
+            font-family: 'Cairo', sans-serif;
+            text-transform: uppercase;
+            font-weight: 900;
+            line-height: 0.85;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
             filter: drop-shadow(var(--neon-gold));
-            animation: float 4s ease-in-out infinite;
-            border-radius: 40px;
+            margin-bottom: 40px;
+            animation: text-pulse 2s infinite alternate;
         }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .logo-row-1 { font-size: clamp(1rem, 4vw, 2.5rem); letter-spacing: 1.5em; opacity: 0.3; }
+        .logo-row-2 { font-size: clamp(1.5rem, 6vw, 4rem); letter-spacing: 0.8em; opacity: 0.6; }
+        .logo-row-3 { font-size: clamp(2rem, 8vw, 5.5rem); letter-spacing: 0.3em; color: var(--gold); }
+        .logo-row-4 { font-size: clamp(2.5rem, 10vw, 7rem); letter-spacing: -0.05em; color: #fff; font-weight: 900; }
 
-        .hero h1 { 
-            font-size: clamp(3rem, 10vw, 6rem); 
-            font-weight: 900; 
-            margin: 20px 0; 
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom, #fff, var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        @keyframes text-pulse { 0% { opacity: 0.8; } 100% { opacity: 1; filter: drop-shadow(0 0 35px rgba(197, 160, 89, 0.7)); } }
+
+        .hero h1 { display: none; } /* حذف العنوان القديم */
+        .hero p { font-size: 1.6rem; max-width: 750px; margin: -20px auto 40px; opacity: 0.8; font-weight: 600; }
+        
+        .cta-btn {
+            text-decoration: none;
+            color: var(--gold);
+            font-weight: 900;
+            border: 2px solid var(--gold);
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            display: inline-block;
         }
+        .cta-btn:hover { background-color: var(--gold); color: #000; box-shadow: var(--neon-gold); transform: translateY(-5px); }
 
         /* قصة كسال - النبذة الرواية */
         .story-section {
-            padding: 100px 20px;
-            max-width: 900px;
+            padding: 120px 20px;
+            max-width: 950px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
         }
-        .section-tag { color: var(--gold); font-weight: 900; letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .story-section::before { content: 'KSEL MEDIA'; position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 8rem; color: rgba(255,255,255,0.02); font-weight: 900; z-index: -1; }
+
+        .section-tag { color: var(--gold); font-weight: 900; letter-spacing: 4px; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 25px; display: block; }
         .story-content {
             font-family: 'Amiri', serif;
-            font-size: 1.8rem;
-            color: #ececec;
-            line-height: 2.2;
+            font-size: 1.9rem;
+            color: #eee;
+            line-height: 2.3;
         }
-        .story-content strong { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        .story-content strong { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 3px; }
 
-        /* المجالات كأنها بطاقات هوية */
+        /* المجالات بأيقونات ذهبية */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 50px 20px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            padding: 80px 20px;
+            max-width: 1300px;
             margin: 0 auto;
         }
         .card-item {
             background: var(--card-bg);
-            padding: 50px 30px;
+            padding: 60px 40px;
             border-radius: 40px;
             border: 1px solid #1a1a1a;
-            transition: 0.5s;
+            transition: var(--transition);
             position: relative;
-            overflow: hidden;
+            text-align: center;
         }
-        .card-item:hover { border-color: var(--gold); transform: translateY(-15px); box-shadow: var(--neon-gold); }
-        .card-item span { font-size: 4rem; display: block; margin-bottom: 20px; opacity: 0.8; }
-        .card-item h3 { font-size: 1.8rem; margin: 10px 0; color: var(--gold); }
-        .card-item p { color: var(--text-gray); font-size: 1.1rem; }
+        .card-item:hover { border-color: var(--gold); transform: translateY(-20px); box-shadow: var(--neon-gold); }
+        .card-item .icon { font-size: 4.5rem; display: block; margin-bottom: 30px; color: var(--gold); filter: drop-shadow(0 0 10px rgba(197,160,89,0.3)); }
+        .card-item h3 { font-size: 2rem; margin: 15px 0; color: #fff; font-weight: 900; }
+        .card-item p { color: var(--text-gray); font-size: 1.15rem; line-height: 1.7; }
 
-        /* الاستمارة - ميثاق الانضمام */
+        /* الاستمارة - ميثاق الانضمام النيون */
         .form-container {
-            max-width: 1000px;
-            margin: 100px auto;
+            max-width: 1100px;
+            margin: 120px auto;
             background: #000;
             border-radius: 60px;
-            padding: 80px 40px;
+            padding: 90px 50px;
             position: relative;
             border: 1px solid #222;
         }
         .form-container::before {
-            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+            content: ''; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px;
             background: linear-gradient(45deg, transparent, var(--gold), transparent);
-            z-index: -1; border-radius: 62px;
+            z-index: -1; border-radius: 63px;
         }
 
-        .form-header h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 10px; }
-        .form-header p { color: var(--text-gray); margin-bottom: 50px; font-size: 1.2rem; }
+        .form-header h2 { font-size: 3.8rem; font-weight: 900; margin-bottom: 15px; color: #fff; }
+        .form-header h2 span { color: var(--gold); }
+        .form-header p { color: var(--text-gray); margin-bottom: 60px; font-size: 1.3rem; }
 
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .input-group { text-align: right; }
-        label { display: block; margin-bottom: 15px; font-weight: 700; color: var(--gold); font-size: 1.1rem; }
+        label { display: block; margin-bottom: 15px; font-weight: 700; color: var(--gold); font-size: 1.15rem; }
         input, select, textarea {
-            width: 100%; padding: 22px; border-radius: 20px; background: #080808;
-            border: 1px solid #1a1a1a; color: #fff; font-family: 'Cairo'; font-size: 1.1rem;
-            transition: 0.3s;
+            width: 100%; padding: 22px; border-radius: 20px; background: #0a0a0a;
+            border: 1px solid #1a1a1a; color: #fff; font-family: 'Cairo'; font-size: 1.15rem;
+            transition: var(--transition);
         }
-        input:focus { border-color: var(--gold); outline: none; background: #0c0c0c; }
+        input:focus, select:focus { border-color: var(--gold); outline: none; background: #111; box-shadow: 0 0 15px rgba(197,160,89,0.2); }
         .full-width { grid-column: span 2; }
 
         .smile-message {
-            margin: 40px 0;
-            font-size: 1.4rem;
+            margin: 50px 0;
+            font-size: 1.6rem;
             font-weight: 900;
             color: #fff;
-            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.2), transparent);
-            padding: 15px;
+            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.25), transparent);
+            padding: 20px;
+            border-radius: 50px;
         }
 
         .submit-btn {
             background: var(--gold);
             color: #000;
             width: 100%;
-            padding: 25px;
+            padding: 28px;
             border-radius: 20px;
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 900;
             border: none;
             cursor: pointer;
-            transition: 0.4s;
+            transition: var(--transition);
             box-shadow: 0 10px 40px rgba(197, 160, 89, 0.3);
         }
-        .submit-btn:hover { transform: scale(1.02); filter: brightness(1.1); box-shadow: var(--neon-gold); }
+        .submit-btn:hover { transform: scale(1.02); filter: brightness(1.15); box-shadow: var(--neon-gold); }
 
         /* حكمة خالد - ختام الرواية */
         .final-quote {
-            padding: 150px 20px;
-            background: linear-gradient(var(--deep-dark), #050505);
+            padding: 180px 20px;
+            background: linear-gradient(var(--deep-dark), #030303);
             text-align: center;
         }
         .quote-wrap {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
         }
-        .quote-wrap::before { content: '"'; position: absolute; top: -60px; right: -20px; font-size: 10rem; color: var(--gold); opacity: 0.2; font-family: serif; }
-        .quote-text { font-size: 2.5rem; font-weight: 700; font-style: italic; color: #fff; line-height: 1.5; }
-        .quote-author { display: block; margin-top: 30px; font-size: 1.5rem; color: var(--gold); font-weight: 900; }
+        .quote-wrap::before { content: '"'; position: absolute; top: -80px; right: -30px; font-size: 12rem; color: var(--gold); opacity: 0.15; font-family: serif; }
+        .quote-text { font-size: 2.8rem; font-weight: 700; font-style: italic; color: #fff; line-height: 1.6; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .quote-author { display: block; margin-top: 40px; font-size: 1.7rem; color: var(--gold); font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
 
-        footer { padding: 100px 20px; border-top: 1px solid #111; text-align: center; color: #444; font-weight: 600; }
+        footer { padding: 120px 20px; border-top: 1px solid #111; text-align: center; color: #555; font-weight: 600; background: #000; }
 
-        @media (max-width: 800px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3.5rem; }
-            .story-content { font-size: 1.4rem; }
-            .form-container { padding: 40px 20px; border-radius: 30px; }
-            .quote-text { font-size: 1.8rem; }
+        @media (max-width: 900px) {
+            .form-grid { grid-template-columns: 1fr; gap: 25px; }
+            .hero p { font-size: 1.3rem; }
+            .story-content { font-size: 1.5rem; }
+            .form-container { padding: 50px 25px; border-radius: 35px; }
+            .form-header h2 { font-size: 2.8rem; }
+            .quote-text { font-size: 1.9rem; }
+            .card-item { padding: 40px 25px; }
+            .mountain-logo { margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -215,17 +243,21 @@
         <div class="ticker-label">LIVE UPDATE</div>
         <div class="ticker-content">
             <span>
-                • كسال ميديا تفتح آفاق الإعلام الجديد بلمسة الذكاء الاصطناعي • تحت إشراف القائد مسعدي فؤاد: نعلن عن بدء رحلة البحث عن المبدعين الحقيقيين • ثبات الجبل.. رؤية الشباب.. ومستقبل الإعلام يبدأ من هنا •
+                • كسال ميديا تفتح آفاق الإعلام الجديد بلمسة الذكاء الاصطناعي • تحت إشراف القائد مسعدي فؤاد: نعلن عن بدء رحلة البحث عن المبدعين الحقيقيين في الجزائر • ثبات الجبل.. رؤية الشباب.. ومستقبل الإعلام يبدأ من هنا •
             </span>
         </div>
     </div>
 
     <section class="hero">
-        <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" class="main-logo" alt="KSEL MEDIA Logo">
-        <h1>KSEL MEDIA</h1>
-        <p>حيث يلتقي ثبات الجبل بجموح الخيال</p>
-        <div style="margin-top: 40px;">
-            <a href="#join" style="text-decoration: none; color: var(--gold); font-weight: 900; border: 2px solid var(--gold); padding: 15px 40px; border-radius: 50px; transition: 0.3s;">اكتشف القصة</a>
+        <div class="mountain-logo">
+            <span class="logo-row-1">K</span>
+            <span class="logo-row-2">KSEL</span>
+            <span class="logo-row-3">KSEL MEDIA</span>
+            <span class="logo-row-4">كسال ميديا</span>
+        </div>
+        <h1>KSEL MEDIA</h1> <p>حيث يلتقي ثبات الجبل بجموح الخيال</p>
+        <div style="margin-top: 50px;">
+            <a href="#join" class="cta-btn">ابدأ القصة</a>
         </div>
     </section>
 
@@ -240,19 +272,19 @@
 
     <section class="cards-grid">
         <div class="card-item">
-            <span>🎙️</span>
+            <span class="icon">🎙️</span>
             <h3>بودكاست</h3>
-            <p>خلف الميكروفون، تولد أعظم القصص. أسمع العالم صدى أفكارك بجودة تخترق القلوب.</p>
+            <p>خلف الميكروفون، تولد أعظم القصص. أسمع العالم صدى أفكارك بجودة تخترق القلوب وتصنع التأثير.</p>
         </div>
         <div class="card-item">
-            <span>🎥</span>
+            <span class="icon">🎥</span>
             <h3>الإنتاج المرئي</h3>
-            <p>العين التي لا تنام عن رصد الجمال والحدث، نوثق الميدان بعدسات احترافية تصنع الفرق.</p>
+            <p>العين التي لا تنام عن رصد الجمال والحدث. نوثق الميدان بعدسات احترافية تصنع الفرق وتروي التفاصيل.</p>
         </div>
         <div class="card-item">
-            <span>🦾</span>
+            <span class="icon">🦾</span>
             <h3>إعلام المستقبل</h3>
-            <p>ندمج قوة الذكاء الاصطناعي في المونتاج وكتابة المحتوى لنسابق الزمن ونبهر العالم.</p>
+            <p>ندمج قوة الذكاء الاصطناعي في المونتاج وكتابة المحتوى لنسابق الزمن ونبهر العالم باحترافية.</p>
         </div>
     </section>
 
@@ -285,9 +317,9 @@
                     <label>مجال شغفك الأكبر</label>
                     <select name="specialty">
                         <option>هندسة الصورة (التصوير والمونتاج)</option>
-                        <option>صوت الإبداع (التقديم والتعليق)</option>
-                        <option>مهندس الكلمات (السيناريو والمحتوى)</option>
-                        <option>تكنولوجيا المستقبل (الذكاء الاصطناعي)</option>
+                        <option>صوت الإبداع (التقديم والتعليق الإذاعي)</option>
+                        <option>مهندس الكلمات (السيناريو وكتابة المحتوى)</option>
+                        <option>تكنولوجيا المستقبل (الذكاء الاصطناعي والإعلام)</option>
                     </select>
                 </div>
             </div>
@@ -296,7 +328,7 @@
                 😊 "الإبداع يبدأ بابتسامة.. ابتسم وأنت ترسم مستقبلك الآن"
             </div>
 
-            <button type="submit" class="submit-btn">وقع ميثاق الانضمام</button>
+            <button type="submit" class="submit-btn">قع ميثاق الانضمام</button>
         </form>
     </section>
 
@@ -310,9 +342,9 @@
     </section>
 
     <footer>
-        <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" style="width: 80px; opacity: 0.1; filter: grayscale(100%); margin-bottom: 20px;">
-        <p>© 2026 KSEL MEDIA | بإشراف القائد مسعدي فؤاد</p>
-        <p>صنع بشغف لشباب الجزائر</p>
+        <div style="font-size: 2rem; color: var(--gold); font-weight: 900; margin-bottom: 20px;">KSEL MEDIA</div>
+        <p>© 2026 KSEL MEDIA - ثبات الجبل | بإشراف القائد مسعدي فؤاد</p>
+        <p>صنع بشغف لشباب الجزائر | ولاية البيض</p>
     </footer>
 
 </body>
