@@ -1,1 +1,243 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSEL MEDIA | كسال ميديا - المنصة الإعلامية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --ksel-gold: #d4af37;
+            --ai-blue: #00d2ff;
+            --ai-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            --dark-bg: #030712;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; outline: none; }
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            margin: 0; background: var(--dark-bg); color: #f3f4f6; 
+            line-height: 1.7; overflow-x: hidden;
+        }
+
+        /* شريط الترحيب */
+        .ai-ticker {
+            background: var(--ai-gradient);
+            color: #000; padding: 12px 0; font-weight: 900; overflow: hidden; white-space: nowrap; position: fixed; top: 0; width: 100%; z-index: 2000;
+        }
+        .ticker-wrap { display: inline-block; animation: move 25s linear infinite; }
+        @keyframes move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* الهيرو مع خلفية الأستوديو والميكروفون */
+        .hero { 
+            height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            background: linear-gradient(rgba(3, 7, 18, 0.8), rgba(3, 7, 18, 0.8)), 
+                        url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            margin-top: 45px;
+            border-bottom: 2px solid var(--ksel-gold);
+        }
+        .hero h1 { font-size: clamp(3rem, 15vw, 8rem); margin: 0; background: linear-gradient(to bottom, #fff, var(--ksel-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(212,175,55,0.5)); }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* ميثاق القناة */
+        .manifesto {
+            font-family: 'Amiri', serif; font-size: 1.5rem; text-align: center;
+            padding: 50px 30px; border-radius: 60px; background: var(--glass);
+            margin: 40px 0; border: 1px solid rgba(255,255,255,0.08); line-height: 2.2; backdrop-filter: blur(10px);
+        }
+
+        /* النبذة (التي اختفت سابقاً) */
+        .about-section {
+            background: rgba(212, 175, 55, 0.05); border: 1px solid var(--ksel-gold);
+            padding: 40px; border-radius: 40px; margin: 40px 0; text-align: center;
+        }
+        .about-section h2 { color: var(--ksel-gold); margin-top: 0; font-size: 2rem; }
+
+        /* المقال الصحفي الطويل */
+        .article-long {
+            background: #fff; color: #000; padding: 50px; border-radius: 50px; margin: 50px 0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .article-long h2 { font-weight: 900; border-right: 8px solid var(--ksel-gold); padding-right: 20px; margin-bottom: 30px; font-size: 2rem; }
+        .article-long p { font-family: 'Amiri', serif; font-size: 1.4rem; text-align: justify; margin-bottom: 20px; }
+
+        /* الاستمارة التفصيلية */
+        .form-section { background: rgba(255,255,255,0.02); padding: 50px; border-radius: 60px; border: 1px solid #222; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+        
+        input, select, textarea { 
+            width: 100%; padding: 18px 25px; border-radius: 100px; border: 1px solid #333; 
+            background: #000; color: #fff; margin-bottom: 10px; font-family: 'Cairo'; font-size: 1rem;
+        }
+        textarea { border-radius: 30px; min-height: 120px; resize: none; }
+        label { display: block; margin: 10px 20px 5px; font-size: 0.9rem; color: var(--ai-blue); }
+
+        .btn-generate { 
+            background: var(--ai-gradient); color: #000; 
+            border: none; padding: 20px; border-radius: 100px; font-weight: 900; width: 100%; cursor: pointer; font-size: 1.2rem; margin-top: 20px; transition: 0.3s;
+        }
+        .btn-generate:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,210,255,0.3); }
+
+        /* البطاقة */
+        .membership-card {
+            width: 350px; height: 200px; background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 25px; border: 2px solid var(--ksel-gold); margin: 30px auto;
+            padding: 25px; text-align: right; position: relative; display: none;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* التواصل */
+        .contact-footer { text-align: center; padding: 60px 0 100px; border-top: 1px solid #222; }
+        .contact-footer a { color: var(--ai-blue); text-decoration: none; font-size: 2.2rem; font-weight: 900; display: block; margin: 15px 0;}
+
+        /* راديو دوك */
+        .radio-dock { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.85); border: 1px solid var(--ai-blue); padding: 10px 20px; border-radius: 100px; display: flex; align-items: center; gap: 10px; z-index: 3000; }
+        .pulse { width: 10px; height: 10px; background: red; border-radius: 50%; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.3; } }
+    </style>
+</head>
+<body>
+
+    <div class="ai-ticker">
+        <div class="ticker-wrap">كسال ميديا.. صوت ولاية البيض الحر 🚀 بإشراف مسعدي فؤاد وتصميم شنافي خالد 🎥 انضم الآن لعائلتنا الإعلامية ✨</div>
+    </div>
+
+    <section class="hero">
+        <div style="background: rgba(212,175,55,0.2); padding: 10px 30px; border-radius: 100px; border: 1px solid var(--ksel-gold); font-size: 1rem; margin-bottom: 20px; backdrop-filter: blur(5px);">إشراف القائد: مسعدي فؤاد</div>
+        <h1>KSEL MEDIA</h1>
+        <p style="color: var(--ai-blue); letter-spacing: 5px; font-weight: 700;">ON AIR - البث المباشر</p>
+    </section>
+
+    <div class="container">
+
+        <div class="manifesto">
+            بإيمانٍ بدأ كفكرة، وبرؤيةٍ حملها <strong>القائد مسعدي فؤاد</strong>، نخطو اليوم أولى خطواتنا نحو صناعة مساحة تُشبه أحلام شباب ولاية البيض. 
+            هذه القناة ليست مجرد منصة، بل صوتٌ لجيلٍ يؤمن أن التغيير لا يُنتظر… بل يُصنع. 
+            اجتمعنا كعائلة صغيرة، نحمل شغفًا أكبر من الظروف، وإرادةً لا تعرف التراجع، لنكون صورةً تليق بعظمة جبل كسال. ✨
+        </div>
+
+        <div class="about-section">
+            <h2>💠 نبذة عن كسال ميديا</h2>
+            <p style="font-size: 1.3rem;">من قلب ولاية البيض، انطلقنا لنكون المنبر الإعلامي الأول الذي يجمع بين التكنولوجيا الحديثة والهوية المحلية. نحن لسنا مجرد ناقلين للخبر، بل نحن صناع للأمل وداعمون لكل قلم وكاميرا تسعى للإبداع، لنكون الصوت النابض الذي يصل إلى كل بيت.</p>
+        </div>
+
+        <div class="article-long">
+            <h2>الإعلام الجديد في ولاية البيض: آفاق وطموحات | بقلم شنافي خالد</h2>
+            <p>
+                في قلبِ الهضابِ العليا، وحيثُ تعانقُ قمةُ جبل كسال السماء، وُلدت "كسال ميديا" لتكونَ أكثرَ من مجردِ نافذةٍ رقمية؛ إنها صرخةُ جيلٍ أبى أن يظلَّ في الظل. إنَّ الإعلامَ في مفهومنا ليس مجردَ نقلٍ للمعلومة، بل هو أمانةٌ تقتضي منا أن نكونَ مرآةً صادقةً لطموحاتِ شبابِ ولاية البيض، وصوتاً قوياً يكسرُ جدارَ الصمتِ الذي طالَ أمده.
+            </p>
+            <p>
+                لقد كانت البدايةُ محفوفةً بالتحديات، ومن رصيد "الصفر" انطلقنا، متسلحينَ برؤيةِ القائد مسعدي فؤاد الذي آمن بأنَّ الموهبةَ لا تحدُّها الجغرافيا، وبأنَّ الشابَّ البيضيَّ يمتلكُ من الإبداعِ ما يؤهلُه لريادةِ المشهدِ الإعلامي الوطني والدولي. نحنُ اليومَ نضعُ القواعدَ لصحافةٍ استقصائيةٍ واجتماعيةٍ تلامسُ همومَ المواطنِ في مختلف البلديات، ونفتحُ أبوابنا لكلِ من يملكُ القلم، الكاميرا، أو الحنجرة الذهبية.
+            </p>
+            <p>
+                إنَّ رحلةَ الألفِ ميلٍ قد بدأت، وكسال ميديا هي المحركُ الذي سيقودُ قاطرةَ التغيير. ندعوكم لنكونَ يداً واحدة، نصنعُ محتوىً يحترمُ عقلَ المشاهد، ويليقُ بتاريخِ هذه الولايةِ العريقة. فالأحلامُ الصادقةُ لا تموت، بل تجدُ طريقها دائماً نحو القمة، وقمةُ كسال هي موعدنا.
+            </p>
+        </div>
+
+        <div class="form-section">
+            <h2 style="text-align: center; color: var(--ai-blue); margin-bottom: 30px;">🚀 استمارة الانضمام الرسمية</h2>
+            <form id="regForm">
+                <div class="form-grid">
+                    <div>
+                        <label>الاسم الكامل:</label>
+                        <input type="text" id="uName" placeholder="مثال: محمد الجزائري" required>
+                    </div>
+                    <div>
+                        <label>بلدية الإقامة (ولاية البيض):</label>
+                        <select id="uMuni">
+                            <option>البيض</option><option>الرقاصة</option><option>بوقطب</option><option>بريزينة</option>
+                            <option>الأبيض سيدي الشيخ</option><option>بوسمغون</option><option>استيتن</option><option>بوعلام</option>
+                            <option>الغاسول</option><option>الشقيق</option><option>كاف لحمر</option><option>الخيثر</option>
+                            <option>توسمولين</option><option>سيدي عمر</option><option>سيدي طيفور</option><option>سيدي سليمان</option>
+                            <option>تيرسين</option><option>المحرة</option><option>البنود</option><option>القرارية</option><option>شلالة</option><option>عين العراك</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>الموهبة (أو التخصص):</label>
+                        <input type="text" id="uTalent" placeholder="مصور، صحفي، معلق..." required>
+                    </div>
+                    <div>
+                        <label>المستوى (الدراسي أو المهني):</label>
+                        <input type="text" id="uLevel" placeholder="مثال: جامعي، محترف، هاوي..." required>
+                    </div>
+                </div>
+
+                <label>ماذا يمكنك أن تقدم لقناة كسال ميديا؟</label>
+                <textarea id="uOffer" placeholder="تحدث عن مهاراتك وكيف ستساهم في تطوير المحتوى..."></textarea>
+
+                <button type="button" class="btn-generate" onclick="generateID()">توليد بطاقة العضوية والارسال</button>
+            </form>
+
+            <div id="cardArea" style="text-align: center; margin-top: 30px;">
+                <div class="membership-card" id="finalCard">
+                    <span style="color: var(--ksel-gold); font-size: 0.7rem; font-weight: bold; letter-spacing: 1px;">KSEL MEDIA OFFICIAL</span>
+                    <h3 id="cName" style="font-size: 1.6rem; margin: 15px 0; color: #fff;">الاسم يظهر هنا</h3>
+                    <p id="cTalent" style="font-size: 0.9rem; color: var(--ai-blue); margin: 0; font-weight: bold;">التخصص</p>
+                    <p id="cID" style="font-family: monospace; opacity: 0.6; font-size: 0.8rem; margin-top: 10px;">ID: KSEL-0000</p>
+                    <div style="position: absolute; bottom: 15px; left: 15px; font-size: 0.6rem; border: 1px solid #555; padding: 4px; border-radius: 5px;">EDITION 2026</div>
+                </div>
+                <button id="dlBtn" class="btn-generate" style="background: var(--ksel-gold); display: none; width: auto; padding: 15px 40px; margin: 20px auto 0;" onclick="downloadCard()">⬇️ تحميل البطاقة كصورة (PNG)</button>
+            </div>
+        </div>
+
+        <div class="contact-footer">
+            <p style="font-size: 1.2rem;">للتواصل المباشر مع فريق الإدارة</p>
+            <a href="https://wa.me/213797761701">0797761701 📱</a>
+            <p style="font-weight: 900; color: var(--ksel-gold); font-size: 1.5rem;">فريق ميديا كسال</p>
+            <p style="opacity: 0.4; font-size: 0.9rem; margin-top: 20px;">إشراف: مسعدي فؤاد | تطوير: شنافي خالد © 2026</p>
+        </div>
+
+    </div>
+
+    <div class="radio-dock">
+        <div class="pulse"></div>
+        <span style="font-size: 0.8rem; font-weight: 900;">KSEL LIVE 🎙️</span>
+    </div>
+
+    <script>
+        // دالة توليد البطاقة وإظهارها
+        function generateID() {
+            const name = document.getElementById('uName').value;
+            const talent = document.getElementById('uTalent').value;
+            
+            if(!name || !talent) { 
+                alert('عذراً.. يرجى ملء حقل الاسم والموهبة على الأقل لتوليد البطاقة!'); 
+                return; 
+            }
+            
+            document.getElementById('cName').innerText = name;
+            document.getElementById('cTalent').innerText = talent;
+            document.getElementById('cID').innerText = 'ID: KSEL-' + Math.floor(1000 + Math.random() * 8999);
+            
+            document.getElementById('finalCard').style.display = 'block';
+            document.getElementById('dlBtn').style.display = 'inline-block';
+            
+            // النزول التلقائي نحو البطاقة
+            document.getElementById('cardArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // دالة تحميل البطاقة كصورة
+        function downloadCard() {
+            const card = document.getElementById('finalCard');
+            html2canvas(card, {
+                scale: 2, // لضمان جودة عالية للصورة
+                backgroundColor: null
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Ksel-Member-Card.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                alert("حدث خطأ أثناء تحميل الصورة. الرجاء المحاولة مرة أخرى.");
+            });
+        }
+    </script>
+</body>
+</html>
