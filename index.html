@@ -9,10 +9,10 @@
     <style>
         :root {
             --gold: #c5a059;
+            --blue-glass: rgba(10, 31, 59, 0.65); /* أزرق شفاف جداً */
             --dark: #050505;
             --white: #ffffff;
-            /* نمط الكوفية الفلسطينية كخلفية شفافة */
-            --kufiya-pattern: url('https://www.transparenttextures.com/patterns/black-felt.png'); 
+            --neon-gold: 0 0 20px rgba(197, 160, 89, 0.2);
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
@@ -22,7 +22,6 @@
             line-height: 1.8; overflow-x: hidden;
         }
 
-        /* الترحيب */
         .welcome-toast {
             background: var(--gold); color: #000; padding: 12px 30px;
             position: fixed; bottom: 25px; left: 25px; border-radius: 50px;
@@ -31,63 +30,52 @@
         }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
-        /* الهيرو - خلفية الجبل والكاميرا والميكروفون */
         .hero { 
-            height: 85vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://r.jina.ai/i/66840003b5f74577b3112a9e3328e3b2');
+            height: 65vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1559223607-a43c990c692c?q=80&w=2070&auto=format&fit=crop');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            border-bottom: 5px solid var(--gold);
         }
-        .hero h1 { font-size: clamp(3rem, 10vw, 5.5rem); color: var(--gold); margin: 0; font-weight: 900; text-shadow: 0 5px 15px rgba(0,0,0,0.8); }
-        .hero p { font-size: clamp(1.2rem, 4vw, 2rem); font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .hero h1 { font-size: clamp(3rem, 10vw, 4.5rem); color: var(--gold); margin: 0; font-weight: 900; }
 
-        .container { max-width: 1100px; margin: 40px auto 100px; padding: 0 20px; }
+        .container { max-width: 1100px; margin: -80px auto 100px; padding: 0 20px; }
 
-        /* لوحة الكوفية الفلسطينية (بدل الزرقاء) */
-        .kufiya-panel { 
-            background: #111; 
-            background-image: url('https://www.transparenttextures.com/patterns/diagonal-striped-brick.png'); /* نمط قريب لغرز الكوفية */
-            padding: clamp(25px, 5vw, 60px); border-radius: 40px;
-            border: 2px solid #333;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.7); margin-bottom: 60px;
-            position: relative; overflow: hidden;
+        /* نبذة المشروع - خلفية زرقاء شفافة (Glassmorphism) */
+        .glass-panel { 
+            background: var(--blue-glass); padding: clamp(25px, 5vw, 60px); border-radius: 40px;
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5); margin-bottom: 60px;
         }
-        /* لمسة علم فلسطين الصغير */
-        .kufiya-panel::before {
-            content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 5px;
-            background: linear-gradient(to left, #000 33%, #ff0000 33% 66%, #008000 66%);
-        }
-
         .leader-badge { 
-            background: var(--gold); color: #000; padding: 8px 25px; 
-            border-radius: 50px; font-weight: 900; display: inline-block; margin-bottom: 30px;
+            background: var(--gold); color: #000; padding: 6px 22px; 
+            border-radius: 50px; font-weight: 900; display: inline-block; margin-bottom: 25px;
         }
 
-        /* رموز ولاية البيض والتراث */
-        .heritage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .heritage-box { 
-            background: rgba(255,255,255,0.03); padding: 35px; border-radius: 30px; 
-            border-right: 4px solid var(--gold); border-left: 4px solid #ff0000; /* دمج ألوان الموقف */
+        .mystery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .mystery-box { 
+            background: rgba(255,255,255,0.05); padding: 35px; border-radius: 30px; 
+            border: 1px solid rgba(197, 160, 89, 0.3);
         }
-        .heritage-box h3 { color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; }
+        .mystery-box h3 { color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; }
 
         .khaled-wisdom {
             text-align: center; padding: 60px; background: rgba(255,255,255,0.02);
-            border-radius: 40px; margin: 80px 0; border: 1px dashed #444;
+            border-radius: 40px; margin: 80px 0; border: 1px solid #222;
         }
         .wisdom-text { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 700; color: #fff; font-style: italic; }
 
-        /* استمارة الانضمام */
-        .form-area { background: #080808; padding: clamp(25px, 5vw, 60px); border-radius: 50px; border: 1px solid #222; }
+        /* استمارة الانضمام - جدية ورسمية */
+        .form-area { background: #080808; padding: clamp(25px, 5vw, 60px); border-radius: 50px; border: 1px solid #1a1a1a; box-shadow: var(--neon-gold); }
         .form-area h2 { font-size: clamp(2rem, 6vw, 2.8rem); color: var(--gold); text-align: center; margin-bottom: 40px; }
         
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        label { display: block; margin-bottom: 10px; color: var(--gold); font-weight: 700; }
+        label { display: block; margin-bottom: 10px; color: var(--gold); font-weight: 700; font-size: 1rem; }
         input, select { 
-            width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #333; 
-            background: #0d0d0d; color: white; font-family: 'Cairo';
+            width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #222; 
+            background: #0d0d0d; color: white; font-family: 'Cairo'; font-size: 1rem;
         }
+        input:focus, select:focus { border-color: var(--gold); outline: none; }
         .full { grid-column: span 2; }
 
         .submit-btn { 
@@ -95,15 +83,18 @@
             border-radius: 15px; font-size: 1.5rem; font-weight: 900; width: 100%; 
             margin-top: 30px; cursor: pointer; transition: 0.3s;
         }
+        .submit-btn:hover { background: #e0b669; transform: translateY(-3px); }
 
         .darwish { 
             margin-top: 100px; padding: 60px; text-align: center; 
             font-family: 'Amiri', serif;
         }
         .darwish p { font-size: clamp(1.8rem, 5vw, 2.4rem); color: #eee; line-height: 1.6; }
-        .darwish span { color: var(--gold); font-size: 1.4rem; display: block; margin-top: 20px; }
+        .darwish span { color: var(--gold); font-size: 1.4rem; margin-top: 20px; display: block; }
 
-        footer { padding: 60px; text-align: center; border-top: 1px solid #222; margin-top: 50px; }
+        footer { padding: 60px; text-align: center; opacity: 0.4; font-size: 0.9rem; }
+
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -113,27 +104,30 @@
     </div>
 
     <section class="hero">
+        <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" style="width: 130px; border-radius: 25px; margin-bottom: 20px; filter: drop-shadow(var(--neon-gold));">
         <h1>KSEL MEDIA</h1>
-        <p>ثبات الجبل.. إبداع الشباب.. ووفاء القضية</p>
+        <p>ثبات الجبل.. إبداع الشباب.. ورؤية المستقبل</p>
     </section>
 
     <div class="container">
         
-        <div class="kufiya-panel">
+        <div class="glass-panel">
             <center><div class="leader-badge">بإشراف القائد: مسعدي فؤاد</div></center>
             <h2 style="color: var(--gold); text-align: center; font-size: 2.2rem; margin-bottom: 30px;">عن مشروعنا</h2>
             <p style="text-align: justify; font-size: 1.2rem; color: #f0f0f0;">
-                مشروع <strong>KSEL MEDIA</strong> هو مشروع إعلامي شبابي حديث يهدف إلى تقديم محتوى إعلامي احترافي وإبداعي يجمع بين الإعلام الرقمي، الإنتاج السمعي البصري، وصناعة المحتوى الهادف. يرتكز المشروع على توظيف التقنيات الحديثة والذكاء الاصطناعي في تطوير الإنتاج الإعلامي، مع توفير فضاء إبداعي للشباب الموهوبين في مجالات الصحافة، التعليق الصوتي، التصوير، المونتاج، والتنشيط الإعلامي. كما يعمل KSEL MEDIA على دعم المبادرات الثقافية والإنسانية، والمساهمة في إبراز الطاقات الجزائرية وإيصال صوت الشباب بطريقة عصرية واحترافية.
+                مشروع <strong>KSEL MEDIA</strong> هو مشروع إعلامي شبابي حديث يهدف إلى تقديم محتوى إعلامي احترافي وإبداعي يجمع بين الإعلام الرقمي، الإنتاج السمعي البصري، وصناعة المحتوى الهادف. يسعى المشروع إلى مواكبة التطور التكنولوجي في مجال الإعلام من خلال إنتاج برامج متنوعة تشمل البودكاست، التقارير الميدانية، التغطيات الإعلامية، البرامج الثقافية والشبابية، إضافة إلى المحتوى التوعوي والترفيهي.
+                <br><br>
+                يرتكز المشروع على توظيف التقنيات الحديثة والذكاء الاصطناعي في تطوير الإنتاج الإعلامي، مع توفير فضاء إبداعي للشباب الموهوبين في مجالات الصحافة، التعليق الصوتي، التصوير، المونتاج، والتنشيط الإعلامي. كما يعمل KSEL MEDIA على دعم المبادرات الثقافية والإنسانية، والمساهمة في إبراز الطاقات الجزائرية وإيصال صوت الشباب بطريقة عصرية واحترافية.
             </p>
             
-            <div class="heritage-grid">
-                <div class="heritage-box">
-                    <h3>🎙️ صوت الجبل</h3>
-                    <p>بودكاست يجمع أصالة ولاية البيض بتكنولوجيا المستقبل.. أسرارنا قيد الإنتاج!</p>
+            <div class="mystery-grid">
+                <div class="mystery-box">
+                    <h3>🎙️ البودكاست</h3>
+                    <p>أفكارنا الحالية تبقى ضمن أسرار الفريق.. قريباً سنكشف عن محتوى متميز وغير مسبوق!</p>
                 </div>
-                <div class="heritage-box">
-                    <h3>🎥 عين الحقيقة</h3>
-                    <p>إنتاج مرئي يوثق الميدان بروح سينمائية ولمسة وفاء للقضية والإنسان.</p>
+                <div class="mystery-box">
+                    <h3>🎥 الإنتاج المرئي</h3>
+                    <p>فيديوهاتنا القادمة تحمل مفاجآت بصرية وقصصاً لم تُروَ بعد.. ترقبوا "خارطة الإبداع" الخاصة بنا.</p>
                 </div>
             </div>
         </div>
@@ -157,6 +151,7 @@
                             <option>التصوير والمونتاج</option>
                             <option>التقديم والتعليق الصوتي</option>
                             <option>كتابة المحتوى والسيناريو</option>
+                            <option>التنشيط الإعلامي</option>
                         </select>
                     </div>
                 </div>
@@ -172,7 +167,7 @@
     </div>
 
     <footer>
-        <p>© 2026 KSEL MEDIA | ثبات كسال وعزة فلسطين | بإشراف القائد مسعدي فؤاد</p>
+        <p>© 2026 KSEL MEDIA | بإشراف القائد مسعدي فؤاد</p>
     </footer>
 
 </body>
