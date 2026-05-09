@@ -1,350 +1,164 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSEL MEDIA | كسال ميديا - ثبات الجبل</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>KSEL MEDIA | كسال ميديا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #c5a059;
-            --deep-dark: #010101; /* أسود أعمق */
-            --card-bg: #080808;
-            --text-gray: #a0a0a0;
-            --neon-gold: 0 0 25px rgba(197, 160, 89, 0.5);
-            --transition: all 0.4s ease-in-out;
+            --deep-blue: rgba(10, 25, 47, 0.9); /* أزرق شفاف عميق */
+            --dark: #050505;
+            --white: #ffffff;
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
         body { 
             font-family: 'Cairo', sans-serif; 
-            margin: 0; 
-            background-color: var(--deep-dark); 
-            color: #fff; 
-            overflow-x: hidden;
-            line-height: 1.8;
+            margin: 0; background: #000; color: var(--white); 
+            line-height: 1.7; overflow-x: hidden;
         }
 
-        /* شريط الأنباء النيون */
-        .live-ticker {
-            background: rgba(0,0,0,0.9);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            height: 45px;
-            display: flex;
-            align-items: center;
-            position: fixed;
-            top: 0; width: 100%; z-index: 5000;
-            backdrop-filter: blur(10px);
+        /* الهيدر والواجهة */
+        .hero { 
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-        .ticker-label {
-            background: var(--gold);
-            color: #000;
-            padding: 0 20px;
-            font-weight: 900;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            font-size: 0.95rem;
-            box-shadow: 5px 0 15px rgba(197,160,89,0.3);
-        }
-        .ticker-content { flex: 1; overflow: hidden; white-space: nowrap; }
-        .ticker-content span {
-            display: inline-block;
-            animation: ticker-slide 45s linear infinite;
-            padding-right: 100%;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #eee;
-        }
-        @keyframes ticker-slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .hero h1 { font-size: 4.5rem; color: var(--gold); margin: 0; font-weight: 900; }
+        .hero p { font-size: 1.5rem; opacity: 0.8; }
 
-        /* الهيدر الأسطوري - بدون صور */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center, rgba(197, 160, 89, 0.1) 0%, transparent 75%);
-            text-align: center;
-            position: relative;
-            padding: 20px;
-        }
-        .hero::after { content: ''; position: absolute; bottom: 0; width: 100%; height: 250px; background: linear-gradient(transparent, var(--deep-dark)); }
+        .container { max-width: 1100px; margin: -100px auto 100px; padding: 0 20px; }
 
-        /* الشعار النصي على شكل جبل - قم الإبداع */
-        .mountain-logo {
-            font-family: 'Cairo', sans-serif;
-            text-transform: uppercase;
-            font-weight: 900;
-            line-height: 0.85;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #fff;
-            filter: drop-shadow(var(--neon-gold));
-            margin-bottom: 40px;
-            animation: text-pulse 2s infinite alternate;
+        /* بطاقة المعلومات والأفكار الإبداعية */
+        .glass-panel { 
+            background: var(--deep-blue); padding: 60px; border-radius: 40px;
+            backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5); margin-bottom: 60px;
         }
-        .logo-row-1 { font-size: clamp(1rem, 4vw, 2.5rem); letter-spacing: 1.5em; opacity: 0.3; }
-        .logo-row-2 { font-size: clamp(1.5rem, 6vw, 4rem); letter-spacing: 0.8em; opacity: 0.6; }
-        .logo-row-3 { font-size: clamp(2rem, 8vw, 5.5rem); letter-spacing: 0.3em; color: var(--gold); }
-        .logo-row-4 { font-size: clamp(2.5rem, 10vw, 7rem); letter-spacing: -0.05em; color: #fff; font-weight: 900; }
+        .info-title { color: var(--gold); font-size: 2.5rem; margin-bottom: 30px; font-weight: 900; text-align: center; }
 
-        @keyframes text-pulse { 0% { opacity: 0.8; } 100% { opacity: 1; filter: drop-shadow(0 0 35px rgba(197, 160, 89, 0.7)); } }
+        /* خانات البودكاست والفيديو مع الأفكار */
+        .creative-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .creative-box { background: rgba(255,255,255,0.03); padding: 35px; border-radius: 25px; border-right: 5px solid var(--gold); }
+        .creative-box h3 { color: var(--gold); font-size: 1.8rem; margin-bottom: 15px; }
+        .creative-box ul { padding-right: 20px; color: #ccc; font-size: 1.05rem; }
+        .creative-box ul li { margin-bottom: 10px; }
 
-        .hero h1 { display: none; } /* حذف العنوان القديم */
-        .hero p { font-size: 1.6rem; max-width: 750px; margin: -20px auto 40px; opacity: 0.8; font-weight: 600; }
-        
-        .cta-btn {
-            text-decoration: none;
-            color: var(--gold);
-            font-weight: 900;
-            border: 2px solid var(--gold);
-            padding: 18px 50px;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            display: inline-block;
-        }
-        .cta-btn:hover { background-color: var(--gold); color: #000; box-shadow: var(--neon-gold); transform: translateY(-5px); }
+        /* الاستمارة الأدبية */
+        .form-area { background: #080808; padding: 60px; border-radius: 50px; border: 1px solid #222; }
+        .form-area h2 { font-size: 2.8rem; color: var(--gold); text-align: center; margin-bottom: 10px; }
+        .form-area p.sub-text { text-align: center; color: #888; margin-bottom: 50px; font-style: italic; }
 
-        /* قصة كسال - النبذة الرواية */
-        .story-section {
-            padding: 120px 20px;
-            max-width: 950px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        label { display: block; margin-bottom: 10px; color: var(--gold); font-weight: 600; }
+        input, select { 
+            width: 100%; padding: 20px; border-radius: 15px; border: 1px solid #333; 
+            background: #111; color: white; font-family: 'Cairo'; font-size: 1.1rem;
         }
-        .story-section::before { content: 'KSEL MEDIA'; position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 8rem; color: rgba(255,255,255,0.02); font-weight: 900; z-index: -1; }
+        .full { grid-column: span 2; }
+        .submit-btn { 
+            background: var(--gold); color: #000; border: none; padding: 22px; 
+            border-radius: 20px; font-size: 1.7rem; font-weight: 900; width: 100%; 
+            margin-top: 40px; cursor: pointer; transition: 0.3s;
+        }
+        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
 
-        .section-tag { color: var(--gold); font-weight: 900; letter-spacing: 4px; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 25px; display: block; }
-        .story-content {
-            font-family: 'Amiri', serif;
-            font-size: 1.9rem;
-            color: #eee;
-            line-height: 2.3;
-        }
-        .story-content strong { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 3px; }
+        /* قسم الأهداف وقول محمود درويش */
+        .goals-section { margin-top: 80px; text-align: center; padding: 60px; background: rgba(197, 160, 89, 0.05); border-radius: 40px; }
+        .goals-section h3 { color: var(--gold); font-size: 2.2rem; margin-bottom: 30px; }
+        .goals-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: right; }
+        .goal-item { padding: 20px; border-bottom: 1px solid #333; }
+        .goal-item b { color: var(--gold); display: block; margin-bottom: 10px; font-size: 1.2rem; }
 
-        /* المجالات بأيقونات ذهبية */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            padding: 80px 20px;
-            max-width: 1300px;
-            margin: 0 auto;
+        /* ختام درويش */
+        .darwish-quote { 
+            margin-top: 100px; padding: 60px; text-align: center; 
+            font-family: 'Amiri', serif; border-top: 1px double #333;
         }
-        .card-item {
-            background: var(--card-bg);
-            padding: 60px 40px;
-            border-radius: 40px;
-            border: 1px solid #1a1a1a;
-            transition: var(--transition);
-            position: relative;
-            text-align: center;
-        }
-        .card-item:hover { border-color: var(--gold); transform: translateY(-20px); box-shadow: var(--neon-gold); }
-        .card-item .icon { font-size: 4.5rem; display: block; margin-bottom: 30px; color: var(--gold); filter: drop-shadow(0 0 10px rgba(197,160,89,0.3)); }
-        .card-item h3 { font-size: 2rem; margin: 15px 0; color: #fff; font-weight: 900; }
-        .card-item p { color: var(--text-gray); font-size: 1.15rem; line-height: 1.7; }
+        .darwish-quote p { font-size: 2.2rem; font-style: italic; color: #eee; line-height: 1.6; }
+        .darwish-quote span { color: var(--gold); font-size: 1.3rem; margin-top: 20px; display: block; }
 
-        /* الاستمارة - ميثاق الانضمام النيون */
-        .form-container {
-            max-width: 1100px;
-            margin: 120px auto;
-            background: #000;
-            border-radius: 60px;
-            padding: 90px 50px;
-            position: relative;
-            border: 1px solid #222;
-        }
-        .form-container::before {
-            content: ''; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px;
-            background: linear-gradient(45deg, transparent, var(--gold), transparent);
-            z-index: -1; border-radius: 63px;
-        }
+        footer { padding: 80px; text-align: center; opacity: 0.3; font-size: 0.9rem; }
 
-        .form-header h2 { font-size: 3.8rem; font-weight: 900; margin-bottom: 15px; color: #fff; }
-        .form-header h2 span { color: var(--gold); }
-        .form-header p { color: var(--text-gray); margin-bottom: 60px; font-size: 1.3rem; }
-
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .input-group { text-align: right; }
-        label { display: block; margin-bottom: 15px; font-weight: 700; color: var(--gold); font-size: 1.15rem; }
-        input, select, textarea {
-            width: 100%; padding: 22px; border-radius: 20px; background: #0a0a0a;
-            border: 1px solid #1a1a1a; color: #fff; font-family: 'Cairo'; font-size: 1.15rem;
-            transition: var(--transition);
-        }
-        input:focus, select:focus { border-color: var(--gold); outline: none; background: #111; box-shadow: 0 0 15px rgba(197,160,89,0.2); }
-        .full-width { grid-column: span 2; }
-
-        .smile-message {
-            margin: 50px 0;
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #fff;
-            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.25), transparent);
-            padding: 20px;
-            border-radius: 50px;
-        }
-
-        .submit-btn {
-            background: var(--gold);
-            color: #000;
-            width: 100%;
-            padding: 28px;
-            border-radius: 20px;
-            font-size: 1.9rem;
-            font-weight: 900;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 10px 40px rgba(197, 160, 89, 0.3);
-        }
-        .submit-btn:hover { transform: scale(1.02); filter: brightness(1.15); box-shadow: var(--neon-gold); }
-
-        /* حكمة خالد - ختام الرواية */
-        .final-quote {
-            padding: 180px 20px;
-            background: linear-gradient(var(--deep-dark), #030303);
-            text-align: center;
-        }
-        .quote-wrap {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .quote-wrap::before { content: '"'; position: absolute; top: -80px; right: -30px; font-size: 12rem; color: var(--gold); opacity: 0.15; font-family: serif; }
-        .quote-text { font-size: 2.8rem; font-weight: 700; font-style: italic; color: #fff; line-height: 1.6; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .quote-author { display: block; margin-top: 40px; font-size: 1.7rem; color: var(--gold); font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
-
-        footer { padding: 120px 20px; border-top: 1px solid #111; text-align: center; color: #555; font-weight: 600; background: #000; }
-
-        @media (max-width: 900px) {
-            .form-grid { grid-template-columns: 1fr; gap: 25px; }
-            .hero p { font-size: 1.3rem; }
-            .story-content { font-size: 1.5rem; }
-            .form-container { padding: 50px 25px; border-radius: 35px; }
-            .form-header h2 { font-size: 2.8rem; }
-            .quote-text { font-size: 1.9rem; }
-            .card-item { padding: 40px 25px; }
-            .mountain-logo { margin-bottom: 30px; }
-        }
+        @media (max-width: 768px) { .form-grid, .creative-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3rem; } }
     </style>
 </head>
 <body>
 
-    <div class="live-ticker">
-        <div class="ticker-label">LIVE UPDATE</div>
-        <div class="ticker-content">
-            <span>
-                • كسال ميديا تفتح آفاق الإعلام الجديد بلمسة الذكاء الاصطناعي • تحت إشراف القائد مسعدي فؤاد: نعلن عن بدء رحلة البحث عن المبدعين الحقيقيين في الجزائر • ثبات الجبل.. رؤية الشباب.. ومستقبل الإعلام يبدأ من هنا •
-            </span>
+    <section class="hero">
+        <h1>KSEL MEDIA</h1>
+        <p>ثبات الجبل.. رؤية الشباب.. ومستقبل الإعلام</p>
+    </section>
+
+    <div class="container">
+        
+        <div class="glass-panel">
+            <div class="info-title">فضاء الإبداع المفتوح</div>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 50px;">في كسال ميديا، لا نصنع محتوى عابراً، بل نضع بصمة تدوم. إليك لمحة عن عوالمنا:</p>
+            
+            <div class="creative-grid">
+                <div class="creative-box">
+                    <h3>🎙️ عالم البودكاست</h3>
+                    <ul>
+                        <li><b>فكرة "صدى الجبل":</b> بودكاست حواري يستضيف المبدعين المغمورين في ولاية البيض.</li>
+                        <li><b>فكرة "إلهام":</b> حلقات قصيرة تركز على قصص النجاح في ريادة الأعمال للشباب.</li>
+                        <li><b>فكرة "ميكروفون الشارع":</b> نبض الناس وأحلامهم في حلقات ميدانية عفوية.</li>
+                    </ul>
+                </div>
+                <div class="creative-box">
+                    <h3>🎥 عالم الإنتاج المرئي</h3>
+                    <ul>
+                        <li><b>فكرة "بصمة مكان":</b> فيديوهات وثائقية قصيرة تبرز جماليات وتاريخ المنطقة.</li>
+                        <li><b>فكرة "خلف الكواليس":</b> كواليس صناعة المحتوى لتشجيع الشباب على البدء.</li>
+                        <li><b>فكرة "عين الميدان":</b> تغطيات حية ومونتاج سريع للفعاليات الشبابية.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
+        <div class="form-area" id="join">
+            <h2>ميثاق المبدعين</h2>
+            <p class="sub-text">أيها المبدع.. من أي أرض جئت، وبأي حلمٍ أتيت؟</p>
+            <form action="https://formspree.io/f/mgodnzlw" method="POST">
+                <div class="form-grid">
+                    <div class="input-item"><label>الاسم واللقب الكريم</label><input type="text" name="name" required placeholder="خالد محمد"></div>
+                    <div class="input-item"><label>رقم التواصل (واتساب)</label><input type="tel" name="phone" required placeholder="06XXXXXXXX"></div>
+                    <div class="input-item"><label>مستواك العلمي</label><input type="text" name="level" required></div>
+                    <div class="input-item"><label>أرضك (الولاية والمدينة)</label><input type="text" name="state" required placeholder="ولاية البيض - بلدية ..."></div>
+                    <div class="input-item full">
+                        <label>مجال شغفك الأساسي</label>
+                        <select name="field">
+                            <option>هندسة الصورة (التصوير والمونتاج)</option>
+                            <option>صوت الإبداع (التقديم والتعليق)</option>
+                            <option>كتابة المحتوى والسيناريو</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">وقع ميثاق الانضمام</button>
+            </form>
+
+            <div class="goals-section">
+                <h3>أهداف كسال ميديا</h3>
+                <div class="goals-list">
+                    <div class="goal-item"><b>التكوين المستمر:</b> تطوير مهارات الشباب في الإعلام والتقنيات الحديثة.</div>
+                    <div class="goal-item"><b>صناعة التأثير:</b> تقديم محتوى هادف يخدم المجتمع ويرتقي بالوعي.</div>
+                    <div class="goal-item"><b>الابتكار الرقمي:</b> دمج الذكاء الاصطناعي في العمل الإعلامي الشبابي.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="darwish-quote">
+            <p>"نحن باقون، وللحلم بقية.. كأن نصحو من النوم معافين من الخيبة، لا نحلم بأشياء عصية، نحن أحياء وباقون، وللحلم بقية."</p>
+            <span>— محمود درويش</span>
+        </div>
+
     </div>
 
-    <section class="hero">
-        <div class="mountain-logo">
-            <span class="logo-row-1">K</span>
-            <span class="logo-row-2">KSEL</span>
-            <span class="logo-row-3">KSEL MEDIA</span>
-            <span class="logo-row-4">كسال ميديا</span>
-        </div>
-        <h1>KSEL MEDIA</h1> <p>حيث يلتقي ثبات الجبل بجموح الخيال</p>
-        <div style="margin-top: 50px;">
-            <a href="#join" class="cta-btn">ابدأ القصة</a>
-        </div>
-    </section>
-
-    <section class="story-section">
-        <span class="section-tag">الفصل الأول: هويتنا</span>
-        <div class="story-content">
-            مشروع <strong>KSEL MEDIA</strong> ليس مجرد منصة، بل هو نبضٌ شبابي حديث ولد ليُعيد تعريف <strong>الإعلام الرقمي</strong>. نحن ننسج خيوط الاحترافية بالإبداع، ونجمع بين سحر الإنتاج السمعي البصري وذكاء التكنولوجيا المعاصرة. 
-            <br><br>
-            هنا، في فضاء <strong>كسال</strong>، نؤمن أن لكل شاب صوتاً يستحق أن يُسمع، ولكل موهبة زاوية ضوء. نحن نُسخر <strong>الذكاء الاصطناعي</strong> لنصنع محتوى لا يكتفي بالمشاهدة، بل يترك أثراً يبقى ثابتاً كما الجبال.
-        </div>
-    </section>
-
-    <section class="cards-grid">
-        <div class="card-item">
-            <span class="icon">🎙️</span>
-            <h3>بودكاست</h3>
-            <p>خلف الميكروفون، تولد أعظم القصص. أسمع العالم صدى أفكارك بجودة تخترق القلوب وتصنع التأثير.</p>
-        </div>
-        <div class="card-item">
-            <span class="icon">🎥</span>
-            <h3>الإنتاج المرئي</h3>
-            <p>العين التي لا تنام عن رصد الجمال والحدث. نوثق الميدان بعدسات احترافية تصنع الفرق وتروي التفاصيل.</p>
-        </div>
-        <div class="card-item">
-            <span class="icon">🦾</span>
-            <h3>إعلام المستقبل</h3>
-            <p>ندمج قوة الذكاء الاصطناعي في المونتاج وكتابة المحتوى لنسابق الزمن ونبهر العالم باحترافية.</p>
-        </div>
-    </section>
-
-    <section class="form-container" id="join">
-        <div class="form-header">
-            <span class="section-tag">الفصل الثاني: الميثاق</span>
-            <h2>اكتب اسمك في <span>القمة</span></h2>
-            <p>هل تمتلك الشجاعة لتكون جزءاً من ثبات الجبل؟ املأ بياناتك لتبدأ رحلتك.</p>
-        </div>
-        
-        <form action="https://formspree.io/f/mgodnzlw" method="POST">
-            <div class="form-grid">
-                <div class="input-group">
-                    <label>الاسم واللقب بالكامل</label>
-                    <input type="text" name="name" required placeholder="المبدع: خالد ...">
-                </div>
-                <div class="input-group">
-                    <label>رقم الهاتف (الواتساب)</label>
-                    <input type="tel" name="phone" required placeholder="06 / 07 / 05">
-                </div>
-                <div class="input-group">
-                    <label>المستوى الدراسي</label>
-                    <input type="text" name="level" required placeholder="طموحك العلمي هنا">
-                </div>
-                <div class="input-group">
-                    <label>الولاية / الانتماء</label>
-                    <input type="text" name="state" required placeholder="من أي أرض جئت؟">
-                </div>
-                <div class="input-group full-width">
-                    <label>مجال شغفك الأكبر</label>
-                    <select name="specialty">
-                        <option>هندسة الصورة (التصوير والمونتاج)</option>
-                        <option>صوت الإبداع (التقديم والتعليق الإذاعي)</option>
-                        <option>مهندس الكلمات (السيناريو وكتابة المحتوى)</option>
-                        <option>تكنولوجيا المستقبل (الذكاء الاصطناعي والإعلام)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="smile-message">
-                😊 "الإبداع يبدأ بابتسامة.. ابتسم وأنت ترسم مستقبلك الآن"
-            </div>
-
-            <button type="submit" class="submit-btn">قع ميثاق الانضمام</button>
-        </form>
-    </section>
-
-    <section class="final-quote">
-        <div class="quote-wrap">
-            <div class="quote-text">
-                "الإبداع لا حدود له، وبخطوة واحدة شجاعة تبدأ رحلتك نحو القمة.. كن أنت التغيير الذي تريد رؤيته في العالم."
-            </div>
-            <span class="quote-author">— حكمة من خالد</span>
-        </div>
-    </section>
-
     <footer>
-        <div style="font-size: 2rem; color: var(--gold); font-weight: 900; margin-bottom: 20px;">KSEL MEDIA</div>
-        <p>© 2026 KSEL MEDIA - ثبات الجبل | بإشراف القائد مسعدي فؤاد</p>
-        <p>صنع بشغف لشباب الجزائر | ولاية البيض</p>
+        <p>© 2026 كسال ميديا - ثبات الجبل</p>
     </footer>
 
 </body>
