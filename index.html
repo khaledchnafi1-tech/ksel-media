@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSEL MEDIA | كسال ميديا - المنصة المتكاملة</title>
+    <title>KSEL MEDIA | كسال ميديا - البوابة الإعلامية الشاملة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -13,189 +13,134 @@
             --ai-blue: #00d2ff;
             --ai-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
             --dark-bg: #030712;
-            --glass: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; outline: none; }
         body { 
             font-family: 'Cairo', sans-serif; 
             margin: 0; background: var(--dark-bg); color: #f3f4f6; 
-            line-height: 1.7; overflow-x: hidden;
+            line-height: 1.8; overflow-x: hidden;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-
-        /* شريط الترحيب العلوي */
+        /* شريط الترحيب */
         .ai-ticker {
             background: var(--ai-gradient);
-            color: #000; padding: 12px 0; font-weight: 900; overflow: hidden; white-space: nowrap; position: fixed; top: 0; width: 100%; z-index: 2000; box-shadow: 0 4px 15px rgba(0,210,255,0.3);
+            color: #000; padding: 12px 0; font-weight: 900; overflow: hidden; white-space: nowrap; position: fixed; top: 0; width: 100%; z-index: 2000;
         }
-        .ticker-wrap { display: inline-block; animation: move 25s linear infinite; }
+        .ticker-wrap { display: inline-block; animation: move 30s linear infinite; }
         @keyframes move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* الهيرو */
+        /* الهيرو مع خلفية الأستوديو */
         .hero { 
-            height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            background: radial-gradient(circle at center, rgba(0,210,255,0.1) 0%, transparent 70%);
-            margin-top: 50px;
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            background: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.85)), 
+                        url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            margin-top: 45px; border-bottom: 3px solid var(--ksel-gold);
         }
-        .hero h1 { font-size: clamp(3rem, 15vw, 8rem); margin: 0; background: linear-gradient(to bottom, #fff, var(--ksel-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(212,175,55,0.3)); }
+        .hero h1 { font-size: clamp(3.5rem, 15vw, 9rem); margin: 0; background: linear-gradient(to bottom, #fff, var(--ksel-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 25px rgba(212,175,55,0.4)); }
+        .hero p.tagline { font-family: 'Amiri', serif; font-size: 1.8rem; color: #fff; max-width: 800px; margin-top: 20px; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* الميثاق والرؤية */
+        .manifesto-section {
+            padding: 60px 40px; border-radius: 40px; background: var(--glass);
+            margin: 60px 0; border: 1px solid var(--glass-border); backdrop-filter: blur(10px);
+        }
+        .manifesto-section h2 { color: var(--ksel-gold); text-align: center; font-size: 2.5rem; margin-bottom: 30px; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px; }
+        .manifesto-text { font-family: 'Amiri', serif; font-size: 1.6rem; text-align: justify; line-height: 2.4; }
+
+        /* أقسام القناة */
+        .departments { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 60px 0; }
+        .dept-card { background: rgba(0,0,0,0.5); border: 1px solid var(--ai-blue); padding: 30px; border-radius: 20px; text-align: center; transition: 0.3s; }
+        .dept-card:hover { transform: translateY(-10px); background: rgba(0, 210, 255, 0.1); box-shadow: 0 10px 30px rgba(0,210,255,0.2); }
+        .dept-card h3 { color: var(--ksel-gold); font-size: 1.4rem; }
+
+        /* المقال الصحفي الطويل جداً */
+        .article-long {
+            background: #fff; color: #000; padding: 60px; border-radius: 40px; margin: 80px 0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5); position: relative;
+        }
+        .article-long::before { content: '📰'; font-size: 4rem; position: absolute; top: -30px; right: 40px; background: #fff; border-radius: 50%; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .article-long h2 { font-weight: 900; border-right: 8px solid var(--ksel-gold); padding-right: 20px; margin-bottom: 30px; font-size: 2.2rem; line-height: 1.4; }
+        .article-long p { font-family: 'Amiri', serif; font-size: 1.5rem; text-align: justify; margin-bottom: 25px; line-height: 2.2; text-indent: 30px; }
+
+        /* الاستمارة الشاملة */
+        .form-section { background: rgba(255,255,255,0.02); padding: 60px; border-radius: 40px; border: 1px solid #222; margin-bottom: 80px; }
+        .form-section h2 { text-align: center; color: var(--ai-blue); font-size: 2.5rem; margin-bottom: 40px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
         
-        /* ميثاق القناة - النص الوجداني */
-        .manifesto {
-            font-family: 'Amiri', serif; font-size: clamp(1.3rem, 4vw, 1.7rem); text-align: center;
-            padding: 50px 30px; border-radius: 60px; background: var(--glass);
-            margin: 40px 0; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px);
-            line-height: 2.2; position: relative;
-        }
-        .manifesto::before { content: "✨"; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 2rem; }
-
-        /* النبذة */
-        .curved-box { border-radius: 50px; background: var(--glass); border: 1px solid rgba(255,255,255,0.1); padding: 40px; margin: 40px 0; transition: 0.4s; }
-        .curved-box h2 { color: var(--ksel-gold); margin-top: 0; }
-
-        /* مقال خالد الصحفي */
-        .article-short {
-            background: #fff; color: #000; padding: 40px; border-radius: 45px; margin: 50px 0;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-        }
-        .article-short h2 { font-weight: 900; border-right: 6px solid #000; padding-right: 15px; margin-bottom: 20px; }
-        .article-short p { font-family: 'Amiri', serif; font-size: 1.5rem; text-align: justify; margin: 0; }
-
-        /* الاستمارة */
-        .form-section { background: rgba(255,255,255,0.02); padding: 50px; border-radius: 60px; border: 1px solid #222; position: relative; }
         input, select, textarea { 
-            width: 100%; padding: 18px 30px; border-radius: 100px; border: 1px solid #333; 
-            background: #000; color: #fff; margin-bottom: 20px; font-family: 'Cairo'; font-size: 1rem;
+            width: 100%; padding: 18px 25px; border-radius: 20px; border: 1px solid #333; 
+            background: rgba(0,0,0,0.7); color: #fff; margin-bottom: 15px; font-family: 'Cairo'; font-size: 1.1rem; transition: 0.3s;
         }
-        textarea { border-radius: 30px; min-height: 150px; resize: none; }
+        input:focus, select:focus, textarea:focus { border-color: var(--ai-blue); box-shadow: 0 0 15px rgba(0,210,255,0.2); }
+        textarea { min-height: 150px; resize: vertical; }
+        label { display: block; margin: 10px 10px 8px; font-size: 1rem; color: var(--ksel-gold); font-weight: 700; }
+
         .btn-generate { 
             background: var(--ai-gradient); color: #000; 
-            border: none; padding: 20px; border-radius: 100px; font-weight: 900; width: 100%; cursor: pointer; font-size: 1.2rem; transition: 0.3s;
+            border: none; padding: 22px; border-radius: 50px; font-weight: 900; width: 100%; cursor: pointer; font-size: 1.3rem; margin-top: 30px; transition: 0.3s;
         }
-        .btn-generate:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0,210,255,0.4); }
+        .btn-generate:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,210,255,0.4); }
 
         /* البطاقة */
         .membership-card {
-            width: 350px; height: 200px; background: linear-gradient(135deg, #0f172a, #1e293b);
-            border-radius: 25px; border: 2px solid var(--ksel-gold); margin: 30px auto;
-            padding: 25px; text-align: right; position: relative; display: none;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: 400px; height: 230px; background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 25px; border: 2px solid var(--ksel-gold); margin: 40px auto;
+            padding: 30px; text-align: right; position: relative; display: none;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); overflow: hidden;
         }
-        .card-label { color: var(--ksel-gold); font-size: 0.7rem; letter-spacing: 2px; }
-        .card-name { font-size: 1.6rem; font-weight: 900; margin: 15px 0; color: #fff; }
+        .membership-card::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(transparent, rgba(255,255,255,0.05), transparent); transform: rotate(45deg); pointer-events: none; }
+        .card-name { font-size: 1.8rem; font-weight: 900; margin: 15px 0; color: #fff; }
 
-        /* معلومات الاتصال */
-        .contact-footer {
-            text-align: center; padding: 60px 0 120px; border-top: 1px solid #222;
-        }
-        .contact-footer a { color: var(--ai-blue); text-decoration: none; font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 900; display: block; margin: 15px 0; }
-        .team-sig { font-weight: 700; color: var(--ksel-gold); font-size: 1.2rem; }
+        /* الفوتر الضخم */
+        .mega-footer { background: #010409; padding: 80px 20px 40px; border-top: 2px solid #222; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto; }
+        .footer-col h3 { color: var(--ksel-gold); border-bottom: 2px solid var(--ai-blue); padding-bottom: 15px; display: inline-block; }
+        .footer-col p, .footer-col ul { opacity: 0.8; font-size: 1.1rem; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li::before { content: '▪ '; color: var(--ai-blue); }
+        .copyright { text-align: center; padding-top: 50px; margin-top: 50px; border-top: 1px solid #222; opacity: 0.5; font-size: 0.9rem; }
 
-        /* الراديو السحابي */
-        .radio-dock { position: fixed; bottom: 25px; right: 25px; background: rgba(0,0,0,0.9); border: 1px solid var(--ai-blue); padding: 12px 25px; border-radius: 100px; display: flex; align-items: center; gap: 12px; z-index: 3000; backdrop-filter: blur(10px); }
-        .pulse-red { width: 10px; height: 10px; background: #ff4757; border-radius: 50%; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); } }
+        .radio-dock { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.85); border: 1px solid var(--ai-blue); padding: 10px 20px; border-radius: 100px; display: flex; align-items: center; gap: 10px; z-index: 3000; backdrop-filter: blur(5px); }
+        .pulse-live { width: 12px; height: 12px; background: red; border-radius: 50%; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
 
     <div class="ai-ticker">
-        <div class="ticker-wrap">كسال ميديا.. ثبات الجبل.. إرادة الشباب.. ورؤية تتجاوز الحدود 🚀 انضم الآن واحصل على بطاقتك الفورية 🎥 نبض ولاية البيض ⛰️</div>
+        <div class="ticker-wrap">كسال ميديا.. صوت ولاية البيض الحر 🚀 بإشراف مسعدي فؤاد وتصميم شنافي خالد 🎥 المنصة الإعلامية الأولى للشباب المبدع ✨ انضم الآن وكن جزءاً من صناعة الحدث ⛰️</div>
     </div>
 
     <section class="hero">
-        <div style="background: var(--glass); padding: 10px 30px; border-radius: 100px; border: 1px solid var(--ksel-gold); font-size: 0.9rem; margin-bottom: 20px;">بإشراف القائد: مسعدي فؤاد</div>
+        <div style="background: rgba(212,175,55,0.2); padding: 12px 35px; border-radius: 100px; border: 1px solid var(--ksel-gold); font-size: 1.1rem; margin-bottom: 20px; backdrop-filter: blur(8px);">بقيادة ورؤية القائد: مسعدي فؤاد</div>
         <h1>KSEL MEDIA</h1>
-        <p style="color: var(--ai-blue); letter-spacing: 5px;">SMART MEDIA HUB</p>
+        <p class="tagline">نحن لا ننقل الحدث فحسب.. بل نصنعه، ونوثق تاريخاً جديداً يُكتب بأيدي شباب البيض.</p>
+        <p style="color: var(--ai-blue); letter-spacing: 6px; font-weight: 900; margin-top: 20px;">STUDIO & BROADCASTING</p>
     </section>
 
     <div class="container">
 
-        <div class="manifesto">
-            بإيمانٍ بدأ كفكرة، وبرؤيةٍ حملها <strong>القائد مسعدي فؤاد</strong>، نخطو اليوم أولى خطواتنا نحو صناعة مساحة تُشبه أحلام شباب ولاية البيض. 
-            هذه القناة ليست مجرد منصة، بل صوتٌ لجيلٍ يؤمن أن التغيير لا يُنتظر… بل يُصنع. 
-            اجتمعنا كعائلة صغيرة، نحمل شغفًا أكبر من الظروف، وإرادةً لا تعرف التراجع، لنكون صورةً تليق بعظمة جبل كسال، وروحًا تعكس طموحات شباب يؤمنون أن المستحيل مجرد بداية. 
-            رحلتنا بدأت من الصفر، لكننا نعلم أن الأحلام الصادقة دائمًا تجد طريقها نحو القمة. ✨
-        </div>
-
-        <div class="curved-box">
-            <h2>💠 نبذة عن المنصة</h2>
-            <p>من قلب ولاية البيض، انطلقنا لنكون المنبر الإعلامي الأول الذي يجمع بين التكنولوجيا الحديثة والهوية المحلية. نحن لسنا مجرد ناقلين للخبر، بل نحن صناع للأمل وداعمون لكل قلم وكاميرا تسعى للإبداع في ربوع ولايتنا.</p>
-        </div>
-
-        <div class="article-short">
-            <h2>مقال صحفي بقلم: شنافي خالد</h2>
-            <p>
-                "في زمنِ الصخبِ الرقمي، وُلدت كسال ميديا لتكونَ السكونَ الذي يسبقُ العاصفة، والكلمةَ التي لا تقبلُ التزييف. إن إيماننا الراسخ بقدراتِ شبابنا هو الوقود الذي يدفعنا لنكونَ المنبرَ الإعلامي الأول الذي يجمعُ بين الحداثةِ والأصالة. رحلتنا بدأت، والقمةُ هي وجهتنا الوحيدة."
-            </p>
-        </div>
-
-        <div class="form-section">
-            <h2 style="text-align: center; color: var(--ai-blue); margin-bottom: 30px;">🚀 انضم لعائلة ميديا كسال</h2>
-            <form id="regForm">
-                <input type="text" id="uName" placeholder="الاسم الكامل" required>
-                
-                <label style="margin: 0 20px 10px; display: block; font-size: 0.9rem; opacity: 0.8;">اختر بلدية الإقامة (ولاية البيض):</label>
-                <select id="uMuni">
-                    <option>البيض</option><option>الرقاصة</option><option>بوقطب</option>
-                    <option>بريزينة</option><option>الأبيض سيدي الشيخ</option><option>بوسمغون</option>
-                    <option>استيتن</option><option>بوعلام</option><option>الغاسول</option>
-                    <option>الشقيق</option><option>كاف لحمر</option><option>الخيثر</option>
-                    <option>توسمولين</option><option>سيدي عمر</option><option>سيدي طيفور</option>
-                    <option>سيدي سليمان</option><option>تيرسين</option><option>المحرة</option>
-                    <option>البنود</option><option>بوقطب</option><option>القرارية</option><option>بني ونيف (تغطية خاصة)</option>
-                </select>
-
-                <textarea id="uArticle" placeholder="اكتب مقالك هنا ليتم مراجعته ونشره باسمك... قلمك هو صوتك."></textarea>
-                
-                <button type="button" class="btn-generate" onclick="makeID()">توليد بطاقة العضوية الذكية</button>
-            </form>
-
-            <div id="resultArea" style="text-align: center;">
-                <div class="membership-card" id="cardCanvas">
-                    <span class="card-label">OFFICIAL MEMBER | KSEL MEDIA</span>
-                    <h3 class="card-name" id="cName">الاسم الكامل</h3>
-                    <p id="cID" style="font-family: monospace; opacity: 0.7;">ID: KSEL-XXXX</p>
-                    <div style="position: absolute; bottom: 20px; left: 20px; font-size: 0.5rem; opacity: 0.5; border: 1px solid #444; padding: 4px;">VERIFIED 2026</div>
-                </div>
-                <button id="dlBtn" class="btn-generate" style="background: var(--ksel-gold); display: none; margin-top: 15px;" onclick="saveCard()">⬇️ تحميل البطاقة (PNG)</button>
+        <div class="manifesto-section">
+            <h2>💠 ميثاق كسال ميديا</h2>
+            <div class="manifesto-text">
+                <p>بإيمانٍ بدأ كفكرة، وبرؤيةٍ حملها <strong>القائد مسعدي فؤاد</strong>، نخطو اليوم أولى خطواتنا نحو صناعة مساحة تُشبه أحلام شباب ولاية البيض. هذه القناة ليست مجرد منصة رقمية عابرة، بل هي ملاذٌ لكل روح مبدعة، وصوتٌ لجيلٍ يؤمن أن التغيير لا يُنتظر… بل يُصنع بالجهد والعرق والتفكير العميق.</p>
+                <p>لقد اجتمعنا كعائلة صغيرة، نحمل شغفًا أكبر من الظروف المحيطة بنا، وإرادةً فولاذية لا تعرف التراجع. نغوص في أعماق الكلمة والصورة، لنستخرج منها معاني تعكس أصالة هذه الأرض الطيبة. هدفنا أن نكون صورةً تليق بعظمة وشموخ جبل كسال، وروحًا تعكس طموحات شباب يؤمنون أن المستحيل مجرد بداية لقصة نجاح عظيمة.</p>
             </div>
         </div>
 
-        <div class="contact-footer">
-            <p>للتواصل المباشر مع الإدارة</p>
-            <a href="https://wa.me/213797761701">0797761701 📱</a>
-            <p class="team-sig">فريق ميديا كسال</p>
-            <p style="opacity: 0.4; font-size: 0.8rem; margin-top: 30px;">إشراف: مسعدي فؤاد | تصميم وتطوير: شنافي خالد © 2026</p>
-        </div>
-
-    </div>
-
-    <div class="radio-dock">
-        <div class="pulse-red"></div>
-        <span style="font-size: 0.8rem; font-weight: 900;">KSEL LIVE 📻</span>
-    </div>
-
-    <script>
-        function makeID() {
-            const name = document.getElementById('uName').value;
-            if(!name) { alert('يرجى إدخال اسمك أولاً'); return; }
-            document.getElementById('cName').innerText = name;
-            document.getElementById('cID').innerText = 'ID: KSEL-' + Math.floor(1000 + Math.random() * 8999);
-            document.getElementById('cardCanvas').style.display = 'block';
-            document.getElementById('dlBtn').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
-        }
-
-        function saveCard() {
-            html2canvas(document.getElementById('cardCanvas')).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'Ksel-Member-Card.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        }
-    </script>
-</body>
-</html>
+        <h2 style="text-align: center; color: var(--ksel-gold); font-size: 2.2rem; margin-top: 80px;">الدوائر المتخصصة في القناة</h2>
+        <div class="departments">
+            <div class="dept-card">
+                <h3>✍️ التحرير وصناعة المحتوى</h3>
+                <p>خلية الأقلام الذهبية، حيث تُصاغ الأخبار، وتُكتب السيناريوهات والتقارير الصحفية بعمق وموضوعية.</p>
+            </div>
+            <div class="dept-card">
+                <h3>🎥 الإخراج والتصوير</h3>
