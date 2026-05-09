@@ -8,10 +8,10 @@
     <style>
         :root {
             --gold: #c5a059;
-            --deep-blue: rgba(10, 31, 59, 0.88); 
+            --blue-glass: rgba(10, 31, 59, 0.65); /* أزرق شفاف جداً */
             --dark: #050505;
             --white: #ffffff;
-            --neon-gold: 0 0 20px rgba(197, 160, 89, 0.3);
+            --neon-gold: 0 0 20px rgba(197, 160, 89, 0.2);
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
@@ -21,66 +21,68 @@
             line-height: 1.8; overflow-x: hidden;
         }
 
-        /* الترحيب المصحح */
         .welcome-toast {
             background: var(--gold); color: #000; padding: 12px 30px;
             position: fixed; bottom: 25px; left: 25px; border-radius: 50px;
             font-weight: 900; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            animation: bounce 2s infinite; font-size: 1.1rem;
+            animation: bounce 2s infinite; font-size: 1rem;
         }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
         .hero { 
-            height: 70vh;
+            height: 65vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1559223607-a43c990c692c?q=80&w=2070&auto=format&fit=crop');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-        .hero h1 { font-size: clamp(3rem, 10vw, 5rem); color: var(--gold); margin: 0; font-weight: 900; letter-spacing: -2px; }
-        .hero p { font-size: clamp(1.2rem, 4vw, 1.8rem); opacity: 0.9; font-weight: 600; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 4.5rem); color: var(--gold); margin: 0; font-weight: 900; }
 
         .container { max-width: 1100px; margin: -80px auto 100px; padding: 0 20px; }
 
+        /* نبذة المشروع - خلفية زرقاء شفافة (Glassmorphism) */
         .glass-panel { 
-            background: var(--deep-blue); padding: clamp(20px, 5vw, 50px); border-radius: 40px;
-            backdrop-filter: blur(20px); border: 1px solid rgba(197, 160, 89, 0.2);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6); margin-bottom: 60px;
+            background: var(--blue-glass); padding: clamp(25px, 5vw, 60px); border-radius: 40px;
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5); margin-bottom: 60px;
         }
         .leader-badge { 
-            background: var(--gold); color: #000; padding: 8px 25px; 
-            border-radius: 50px; font-weight: 900; display: inline-block; margin-bottom: 20px;
+            background: var(--gold); color: #000; padding: 6px 22px; 
+            border-radius: 50px; font-weight: 900; display: inline-block; margin-bottom: 25px;
         }
 
-        .mystery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .mystery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .mystery-box { 
-            background: rgba(255,255,255,0.03); padding: 40px; border-radius: 30px; 
-            border: 1px dashed var(--gold); position: relative;
+            background: rgba(255,255,255,0.05); padding: 35px; border-radius: 30px; 
+            border: 1px solid rgba(197, 160, 89, 0.3);
         }
-        .mystery-box h3 { color: var(--gold); font-size: 1.8rem; margin-bottom: 10px; }
-        .mystery-box::after { content: '🔒 أسرار الفريق'; position: absolute; bottom: 10px; left: 15px; font-size: 0.7rem; opacity: 0.4; letter-spacing: 1px; }
+        .mystery-box h3 { color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; }
 
         .khaled-wisdom {
             text-align: center; padding: 60px; background: rgba(255,255,255,0.02);
             border-radius: 40px; margin: 80px 0; border: 1px solid #222;
         }
-        .wisdom-text { font-size: clamp(1.5rem, 5vw, 2.3rem); font-weight: 700; color: #fff; font-style: italic; line-height: 1.5; }
+        .wisdom-text { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 700; color: #fff; font-style: italic; }
 
-        .form-area { background: #080808; padding: clamp(20px, 5vw, 60px); border-radius: 50px; border: 2px solid #1a1a1a; box-shadow: var(--neon-gold); }
-        .form-area h2 { font-size: clamp(2rem, 6vw, 3rem); color: var(--gold); text-align: center; margin-bottom: 10px; }
+        /* استمارة الانضمام - جدية ورسمية */
+        .form-area { background: #080808; padding: clamp(25px, 5vw, 60px); border-radius: 50px; border: 1px solid #1a1a1a; box-shadow: var(--neon-gold); }
+        .form-area h2 { font-size: clamp(2rem, 6vw, 2.8rem); color: var(--gold); text-align: center; margin-bottom: 40px; }
         
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-        label { display: block; margin-bottom: 12px; color: var(--gold); font-weight: 600; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        label { display: block; margin-bottom: 10px; color: var(--gold); font-weight: 700; font-size: 1rem; }
         input, select { 
-            width: 100%; padding: 20px; border-radius: 18px; border: 1px solid #333; 
-            background: #0d0d0d; color: white; font-family: 'Cairo'; font-size: 1.1rem;
+            width: 100%; padding: 18px; border-radius: 12px; border: 1px solid #222; 
+            background: #0d0d0d; color: white; font-family: 'Cairo'; font-size: 1rem;
         }
+        input:focus, select:focus { border-color: var(--gold); outline: none; }
         .full { grid-column: span 2; }
+
         .submit-btn { 
-            background: var(--gold); color: #000; border: none; padding: 25px; 
-            border-radius: 20px; font-size: 1.8rem; font-weight: 900; width: 100%; 
-            margin-top: 40px; cursor: pointer; transition: 0.4s;
+            background: var(--gold); color: #000; border: none; padding: 22px; 
+            border-radius: 15px; font-size: 1.5rem; font-weight: 900; width: 100%; 
+            margin-top: 30px; cursor: pointer; transition: 0.3s;
         }
-        .submit-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(197, 160, 89, 0.4); }
+        .submit-btn:hover { background: #e0b669; transform: translateY(-3px); }
 
         .darwish { 
             margin-top: 100px; padding: 60px; text-align: center; 
@@ -89,9 +91,9 @@
         .darwish p { font-size: clamp(1.8rem, 5vw, 2.4rem); color: #eee; line-height: 1.6; }
         .darwish span { color: var(--gold); font-size: 1.4rem; margin-top: 20px; display: block; }
 
-        footer { padding: 80px; text-align: center; opacity: 0.3; }
+        footer { padding: 60px; text-align: center; opacity: 0.4; font-size: 0.9rem; }
 
-        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } .hero { height: 60vh; } }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -101,7 +103,7 @@
     </div>
 
     <section class="hero">
-        <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" style="width: 150px; border-radius: 30px; margin-bottom: 20px; filter: drop-shadow(var(--neon-gold));">
+        <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" style="width: 130px; border-radius: 25px; margin-bottom: 20px; filter: drop-shadow(var(--neon-gold));">
         <h1>KSEL MEDIA</h1>
         <p>ثبات الجبل.. إبداع الشباب.. ورؤية المستقبل</p>
     </section>
@@ -111,17 +113,16 @@
         <div class="glass-panel">
             <center><div class="leader-badge">بإشراف القائد: مسعدي فؤاد</div></center>
             <h2 style="color: var(--gold); text-align: center; font-size: 2.2rem; margin-bottom: 30px;">عن مشروعنا</h2>
-            <p style="text-align: justify; font-size: 1.25rem; color: #f0f0f0;">
+            <p style="text-align: justify; font-size: 1.2rem; color: #f0f0f0;">
                 مشروع <strong>KSEL MEDIA</strong> هو مشروع إعلامي شبابي حديث يهدف إلى تقديم محتوى إعلامي احترافي وإبداعي يجمع بين الإعلام الرقمي، الإنتاج السمعي البصري، وصناعة المحتوى الهادف. يسعى المشروع إلى مواكبة التطور التكنولوجي في مجال الإعلام من خلال إنتاج برامج متنوعة تشمل البودكاست، التقارير الميدانية، التغطيات الإعلامية، البرامج الثقافية والشبابية، إضافة إلى المحتوى التوعوي والترفيهي.
                 <br><br>
                 يرتكز المشروع على توظيف التقنيات الحديثة والذكاء الاصطناعي في تطوير الإنتاج الإعلامي، مع توفير فضاء إبداعي للشباب الموهوبين في مجالات الصحافة، التعليق الصوتي، التصوير، المونتاج، والتنشيط الإعلامي. كما يعمل KSEL MEDIA على دعم المبادرات الثقافية والإنسانية، والمساهمة في إبراز الطاقات الجزائرية وإيصال صوت الشباب بطريقة عصرية واحترافية.
-                ويطمح المشروع إلى أن يكون منصة إعلامية رائدة تجمع بين الجودة، الابتكار، والتأثير الإيجابي داخل المجتمع.
             </p>
             
             <div class="mystery-grid">
                 <div class="mystery-box">
                     <h3>🎙️ البودكاست</h3>
-                    <p>أفكارنا الحالية؟ دعها تبقى أسرار الفريق المذهلة.. قريباً ستسمعون ما لم تسمعوه من قبل!</p>
+                    <p>أفكارنا الحالية تبقى ضمن أسرار الفريق.. قريباً سنكشف عن محتوى متميز وغير مسبوق!</p>
                 </div>
                 <div class="mystery-box">
                     <h3>🎥 الإنتاج المرئي</h3>
@@ -136,25 +137,24 @@
         </div>
 
         <div class="form-area" id="join">
-            <h2>ميثاق المبدعين</h2>
-            <center><p style="color: #666; font-style: italic;">أيها المبدع.. من أي أرضٍ جئت، وبأي حلمٍ أتيت؟</p></center>
+            <h2>استمارة الانضمام</h2>
             <form action="https://formspree.io/f/mgodnzlw" method="POST">
                 <div class="form-grid">
-                    <div class="input-item"><label>الاسم واللقب الكريم</label><input type="text" name="name" required placeholder="خالد محمد"></div>
-                    <div class="input-item"><label>رقم التواصل (واتساب)</label><input type="tel" name="phone" required placeholder="06XXXXXXXX"></div>
-                    <div class="input-item"><label>مستواك العلمي</label><input type="text" name="level" required placeholder="جامعي / ثانوي / موهوب"></div>
-                    <div class="input-item"><label>أرضك (الولاية والمدينة)</label><input type="text" name="state" required placeholder="ولاية البيض - بلدية ..."></div>
+                    <div class="input-item"><label>الاسم الكامل</label><input type="text" name="name" required placeholder="الاسم واللقب"></div>
+                    <div class="input-item"><label>رقم الهاتف</label><input type="tel" name="phone" required placeholder="06XXXXXXXX"></div>
+                    <div class="input-item"><label>المستوى الدراسي</label><input type="text" name="level" required></div>
+                    <div class="input-item"><label>الولاية</label><input type="text" name="state" required placeholder="ولاية البيض"></div>
                     <div class="input-item full">
-                        <label>مجال شغفك الأساسي</label>
+                        <label>التخصص المطلوب</label>
                         <select name="field">
-                            <option>هندسة الصورة (التصوير والمونتاج)</option>
-                            <option>صوت الإبداع (التقديم والتعليق)</option>
+                            <option>التصوير والمونتاج</option>
+                            <option>التقديم والتعليق الصوتي</option>
                             <option>كتابة المحتوى والسيناريو</option>
-                            <option>التنشيط الإعلامي والميداني</option>
+                            <option>التنشيط الإعلامي</option>
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="submit-btn">وقع ميثاق الانضمام.. وانطلق!</button>
+                <button type="submit" class="submit-btn">إرسال طلب الانضمام</button>
             </form>
         </div>
 
@@ -166,7 +166,7 @@
     </div>
 
     <footer>
-        <p>© 2026 KSEL MEDIA | ثبات الجبل | بإشراف القائد مسعدي فؤاد</p>
+        <p>© 2026 KSEL MEDIA | بإشراف القائد مسعدي فؤاد</p>
     </footer>
 
 </body>
