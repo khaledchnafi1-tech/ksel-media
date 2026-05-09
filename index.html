@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSEL MEDIA | كسال ميديا - المنصة المتكاملة</title>
+    <title>KSEL MEDIA | كسال ميديا - المنصة الإعلامية المتكاملة</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -20,8 +20,6 @@
         * { box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--dark-bg); color: #f3f4f6; line-height: 1.7; overflow-x: hidden; }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-
         /* شريط الترحيب */
         .ai-ticker {
             background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
@@ -35,9 +33,11 @@
             height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             background: linear-gradient(rgba(3, 7, 18, 0.8), rgba(3, 7, 18, 0.8)), 
                         url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover; background-position: center; border-bottom: 2px solid var(--ksel-gold); margin-top: 45px;
+            background-size: cover; background-position: center; border-bottom: 3px solid var(--ksel-gold); margin-top: 45px;
         }
-        .hero h1 { font-size: clamp(3rem, 15vw, 7rem); margin: 0; background: linear-gradient(to bottom, #fff, var(--ksel-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h1 { font-size: clamp(3rem, 15vw, 7rem); margin: 0; background: linear-gradient(to bottom, #fff, var(--ksel-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(212,175,55,0.5)); }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
         /* ميثاق القناة */
         .manifesto {
@@ -51,16 +51,17 @@
             background: rgba(212, 175, 55, 0.05); border: 1px solid var(--ksel-gold);
             padding: 40px; border-radius: 40px; margin: 40px 0; text-align: center;
         }
+        .about-section h2 { color: var(--ksel-gold); margin-top: 0; font-size: 2rem; }
 
-        /* المقال الصحفي */
+        /* المقال الصحفي الطويل (تمت استعادته كاملاً) */
         .article-long {
             background: #fff; color: #000; padding: 50px; border-radius: 50px; margin: 50px 0;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-        .article-long h2 { font-weight: 900; border-right: 8px solid var(--ksel-gold); padding-right: 20px; font-size: 2rem; }
-        .article-long p { font-family: 'Amiri', serif; font-size: 1.4rem; text-align: justify; }
+        .article-long h2 { font-weight: 900; border-right: 8px solid var(--ksel-gold); padding-right: 20px; margin-bottom: 30px; font-size: 2rem; }
+        .article-long p { font-family: 'Amiri', serif; font-size: 1.4rem; text-align: justify; margin-bottom: 20px; }
 
-        /* الاستمارة المطورة */
+        /* الاستمارة */
         .form-section { background: rgba(255,255,255,0.02); padding: 50px; border-radius: 60px; border: 1px solid #222; margin-bottom: 50px; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
@@ -69,15 +70,15 @@
             width: 100%; padding: 18px 25px; border-radius: 100px; border: 1px solid #333; 
             background: #000; color: #fff; margin-bottom: 10px; font-family: 'Cairo';
         }
-        textarea { border-radius: 30px; min-height: 120px; }
+        textarea { border-radius: 30px; min-height: 120px; resize: none; }
         label { display: block; margin: 10px 20px 5px; font-size: 0.9rem; color: var(--ai-blue); }
 
         .btn-submit { 
             background: var(--ksel-gold); color: #000; border: none; padding: 20px; 
-            border-radius: 100px; font-weight: 900; width: 100%; cursor: pointer; font-size: 1.2rem; margin-top: 10px;
+            border-radius: 100px; font-weight: 900; width: 100%; cursor: pointer; font-size: 1.2rem; margin: 10px 0;
         }
 
-        /* البطاقة التي تدور (كارت فيزيت) */
+        /* الكارت الفيزيت الدوار */
         .card-container { perspective: 1000px; margin: 50px auto; width: 350px; height: 210px; display: none; }
         .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; cursor: pointer; }
         .card-container:hover .card-inner { transform: rotateY(180deg); }
@@ -88,9 +89,10 @@
         .card-front::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 12px; background: linear-gradient(to right, #000 33%, #fff 33%, #fff 66%, var(--pal-green) 66%); border-top: 3px solid var(--pal-red); }
         
         .card-back { background: #000; color: #fff; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .watermark-logo { position: absolute; opacity: 0.1; font-size: 4rem; font-weight: 900; z-index: 0; }
+        .watermark-logo { position: absolute; opacity: 0.1; font-size: 4rem; font-weight: 900; z-index: 0; pointer-events: none; }
 
-        .footer { text-align: center; padding: 60px 0; border-top: 1px solid #222; opacity: 0.5; font-size: 0.8rem; }
+        .contact-footer { text-align: center; padding: 60px 0; border-top: 1px solid #222; }
+        .contact-footer a { color: var(--ai-blue); text-decoration: none; font-size: 2.2rem; font-weight: 900; display: block; margin: 15px 0; }
     </style>
 </head>
 <body>
@@ -108,38 +110,40 @@
 
         <div class="manifesto">
             بإيمانٍ بدأ كفكرة، وبرؤيةٍ حملها <strong>القائد مسعدي فؤاد</strong>، نخطو اليوم أولى خطواتنا نحو صناعة مساحة تُشبه أحلام شباب ولاية البيض. 
+            هذه القناة ليست مجرد منصة، بل صوتٌ لجيلٍ يؤمن أن التغيير لا يُنتظر… بل يُصنع. 
         </div>
 
         <div class="about-section">
             <h2>💠 نبذة عن كسال ميديا</h2>
-            <p>من قلب ولاية البيض، انطلقنا لنكون المنبر الإعلامي الأول الذي يجمع بين التكنولوجيا الحديثة والهوية المحلية.</p>
+            <p style="font-size: 1.3rem;">من قلب ولاية البيض، انطلقنا لنكون المنبر الإعلامي الأول الذي يجمع بين التكنولوجيا الحديثة والهوية المحلية. نحن لسنا مجرد ناقلين للخبر، بل نحن صناع للأمل وداعمون لكل قلم وكاميرا تسعى للإبداع.</p>
         </div>
 
         <div class="article-long">
-            <h2>الإعلام الجديد في ولاية البيض | بقلم شنافي خالد</h2>
-            <p>في قلبِ الهضابِ العليا، وحيثُ تعانقُ قمةُ جبل كسال السماء، وُلدت "كسال ميديا" لتكونَ أكثرَ من مجردِ نافذةٍ رقمية؛ إنها صرخةُ جيلٍ أبى أن يظلَّ في الظل...</p>
-            <p>نحنُ اليومَ نضعُ القواعدَ لصحافةٍ استقصائيةٍ واجتماعيةٍ تلامسُ همومَ المواطنِ في "بريزينة" و"بوقطب" و"شلالة" و"الأبيض سيدي الشيخ"... قمةُ كسال هي موعدنا.</p>
+            <h2>الإعلام الجديد في ولاية البيض: آفاق وطموحات | بقلم شنافي خالد</h2>
+            <p>في قلبِ الهضابِ العليا، وحيثُ تعانقُ قمةُ جبل كسال السماء، وُلدت "كسال ميديا" لتكونَ أكثرَ من مجردِ نافذةٍ رقمية؛ إنها صرخةُ جيلٍ أبى أن يظلَّ في الظل. إنَّ الإعلامَ في مفهومنا ليس مجردَ نقلٍ للمعلومة، بل هو أمانةٌ تقتضي منا أن نكونَ مرآةً صادقةً لطموحاتِ شبابِ ولاية البيض، وصوتاً قوياً يكسرُ جدارَ الصمتِ الذي طالَ أمده.</p>
+            <p>لقد كانت البدايةُ محفوفةً بالتحديات، ومن رصيد "الصفر" انطلقنا، متسلحينَ برؤيةِ القائد مسعدي فؤاد الذي آمن بأنَّ الموهبةَ لا تحدُّها الجغرافيا، وبأنَّ الشابَّ البيضيَّ يمتلكُ من الإبداعِ ما يؤهلُه لريادةِ المشهدِ الإعلامي الوطني والدولي. نحنُ اليومَ نضعُ القواعدَ لصحافةٍ استقصائيةٍ واجتماعيةٍ تلامسُ همومَ المواطنِ في "بريزينة" و"بوقطب" و"شلالة" و"الأبيض سيدي الشيخ"، ونفتحُ أبوابنا لكلِ من يملكُ القلم، الكاميرا، أو الحنجرة الذهبية.</p>
+            <p>إنَّ رحلةَ الألفِ ميلٍ قد بدأت، وكسال ميديا هي المحركُ الذي سيقودُ قاطرةَ التغيير. ندعوكم لنكونَ يداً واحدة، نصنعُ محتوىً يحترمُ عقلَ المشاهد، ويليقُ بتاريخِ هذه الولايةِ العريقة. فالأحلامُ الصادقةُ لا تموت، بل تجدُ طريقها دائماً نحو القمة، وقمةُ كسال هي موعدنا.</p>
         </div>
 
         <div class="form-section">
             <h2 style="text-align: center; color: var(--ai-blue);">🚀 استمارة الانضمام الرسمية</h2>
-            <form action="https://formspree.io/f/YOUR_EMAIL" method="POST" id="regForm">
+            <form action="https://formspree.io/f/mgodnzlw" method="POST" id="regForm">
                 <div class="form-grid">
                     <div>
                         <label>الاسم واللقب 👤:</label>
-                        <input type="text" name="الاسم" id="uName" required>
+                        <input type="text" name="الاسم واللقب" id="uName" required>
                     </div>
                     <div>
                         <label>تاريخ الميلاد 📅:</label>
-                        <input type="date" name="تاريخ_الميلاد" id="uBirth" required>
+                        <input type="date" name="تاريخ الميلاد" id="uBirth" required>
                     </div>
                     <div>
                         <label>رقم واتساب 😊:</label>
-                        <input type="tel" name="واتساب" id="uPhone" placeholder="0XXXXXXXXX" required>
+                        <input type="tel" name="واتساب" id="uPhone" placeholder="0797761701" required>
                     </div>
                     <div>
                         <label>المستوى الدراسي 🎓:</label>
-                        <select name="المستوى" id="uLevel">
+                        <select name="المستوى الدراسي" id="uLevel">
                             <option>متوسط</option><option>ثانوي</option><option>جامعي</option><option>محترف</option>
                         </select>
                     </div>
@@ -148,14 +152,13 @@
                         <input type="text" name="الموهبة" id="uTalent" placeholder="مصور، صحفي، تقني..." required>
                     </div>
                     <div>
-                        <label>البلدية 📍:</label>
+                        <label>البلدية (ولاية البيض) 📍:</label>
                         <select name="البلدية">
-                            <option>البيض</option><option>الرقاصة</option><option>بوقطب</option><option>بريزينة</option>
-                            <option>الأبيض سيدي الشيخ</option><option>شلالة</option><option>الغاسول</option>
+                            <option>البيض</option><option>الرقاصة</option><option>بوقطب</option><option>بريزينة</option><option>الأبيض سيدي الشيخ</option>
                         </select>
                     </div>
                 </div>
-                <label>واش تقدر تقدم للقناة؟ 💡</label>
+                <label>واش تقدر تقدم لقناة كسال ميديا؟ 💡</label>
                 <textarea name="المساهمة"></textarea>
 
                 <button type="submit" class="btn-submit">إرسال البيانات إلى الإدارة 📧</button>
@@ -166,35 +169,44 @@
                 <div class="card-inner" id="finalCard">
                     <div class="card-face card-front">
                         <div style="font-size: 0.6rem; color: var(--ksel-gold); font-weight: bold;">KSEL MEDIA OFFICIAL</div>
-                        <h3 id="cName" style="margin: 15px 0; font-size: 1.4rem;">الاسم هنا</h3>
+                        <h3 id="cName" style="margin: 15px 0; font-size: 1.4rem; color: #fff;">الاسم يظهر هنا</h3>
                         <p id="cBirth" style="font-size: 0.8rem; margin: 0;">00/00/0000</p>
-                        <p id="cTalent" style="font-size: 0.8rem; color: var(--ai-blue); font-weight: bold;">عضو في فريق ميديا كسال</p>
+                        <p style="font-size: 0.9rem; color: var(--ai-blue); font-weight: bold; margin-top: 10px;">عضو في فريق ميديا كسال</p>
                     </div>
                     <div class="card-face card-back">
                         <div class="watermark-logo">KSEL</div>
                         <p style="font-size: 0.7rem;">تاريخ انتهاء الصلاحية</p>
                         <h2 style="color: var(--pal-red); margin: 5px 0;">01-01-2027</h2>
-                        <p style="font-size: 0.5rem; opacity: 0.6;">إشراف: مسعدي فؤاد</p>
+                        <p style="font-size: 0.6rem; opacity: 0.7;">إشراف: مسعدي فؤاد</p>
                     </div>
                 </div>
-                <button class="btn-submit" style="background:#fff; color:#000; margin-top:20px;" onclick="downloadCard()">حفظ البطاقة كصورة ⬇️</button>
+                <button class="btn-submit" style="background:#fff; color:#000; margin-top:20px; width: auto; padding: 10px 40px;" onclick="downloadCard()">حفظ البطاقة كصورة ⬇️</button>
             </div>
         </div>
 
-        <div class="footer">إشراف: مسعدي فؤاد | تطوير: شنافي خالد © 2026</div>
+        <div class="contact-footer">
+            <p>للتواصل المباشر مع فريق ميديا كسال 😊</p>
+            <a href="https://wa.me/213797761701">0797761701 📱</a>
+            <p style="font-weight: 900; color: var(--ksel-gold); font-size: 1.2rem;">فريق ميديا كسال | نبض ولاية البيض</p>
+            <p style="opacity: 0.4; font-size: 0.8rem;">إشراف: مسعدي فؤاد | تطوير: شنافي خالد © 2026</p>
+        </div>
     </div>
 
     <script>
         function generateID() {
-            document.getElementById('cName').innerText = document.getElementById('uName').value;
-            document.getElementById('cBirth').innerText = "تاريخ الميلاد: " + document.getElementById('uBirth').value;
+            const name = document.getElementById('uName').value;
+            const birth = document.getElementById('uBirth').value;
+            if(!name || !birth) { alert("يرجى ملء الاسم وتاريخ الميلاد"); return; }
+            
+            document.getElementById('cName').innerText = name;
+            document.getElementById('cBirth').innerText = "تاريخ الميلاد: " + birth;
             document.getElementById('cardArea').style.display = 'block';
             document.getElementById('cardArea').scrollIntoView({ behavior: 'smooth' });
         }
         function downloadCard() {
             html2canvas(document.querySelector(".card-front")).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'Ksel-Card.png';
+                link.download = 'Ksel-Card-2026.png';
                 link.href = canvas.toDataURL();
                 link.click();
             });
