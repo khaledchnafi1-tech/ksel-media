@@ -1,160 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kessal Media | كسال ميديا - ثبات الجبل</title>
+    <title>منصة كسال ميديا | العضوية الرسمية</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Changa:wght@500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;900&family=Changa:wght@500;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        :root {
-            --navy: #0a192f;
-            --gold: #c5a059;
-            --slate: #f8fafc;
-            --white: #ffffff;
-        }
-
+        :root { --navy: #0a192f; --gold: #c5a059; --ink: #1a1a1a; --white: #ffffff; --gray: #f1f5f9; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--white); color: var(--navy); line-height: 1.7; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--gray); color: var(--navy); line-height: 1.8; }
 
-        /* شريط علوي ذكي */
-        .smart-bar { background: var(--navy); color: #fff; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; border-bottom: 2px solid var(--gold); }
+        /* Header */
+        header { padding: 20px 5%; background: var(--white); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        .logo-area h1 { font-family: 'Changa'; font-size: 1.8rem; color: var(--navy); }
 
-        header {
-            padding: 15px 5%; background: rgba(255, 255, 255, 0.98); display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
+        /* Hero Section */
+        .hero { height: 40vh; background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url('kessal.jpg'); background-size: cover; background-position: bottom; display: flex; align-items: center; justify-content: center; color: white; text-align: center; border-bottom: 5px solid var(--gold); }
+
+        /* النبذة التاريخية الكاملة (دون نقصان) */
+        .history-section { padding: 60px 10%; background: white; }
+        .history-card { max-width: 1000px; margin: 0 auto; background: #fffdf7; padding: 45px; border-radius: 15px; border: 1px solid #e5e7eb; box-shadow: 0 5px 20px rgba(0,0,0,0.02); }
+        .history-card h2 { font-family: 'Changa'; color: var(--navy); font-size: 2.2rem; margin-bottom: 30px; text-align: center; border-bottom: 3px solid var(--gold); display: block; padding-bottom: 10px; }
+        .history-card p { font-family: 'Amiri', serif; font-size: 1.35rem; text-align: justify; margin-bottom: 20px; color: #374151; line-height: 2.1; }
+
+        /* الاستمارة الإدارية المنظمة */
+        .registration-section { padding: 70px 5%; background: var(--navy); }
+        .form-container { max-width: 850px; margin: 0 auto; background: white; padding: 45px; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
+        .form-container h3 { text-align: center; margin-bottom: 35px; font-family: 'Changa'; font-size: 1.8rem; color: var(--navy); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.9rem; color: #64748b; }
+        .form-control { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: 'Cairo'; font-size: 1rem; transition: 0.3s; }
+        .form-control:focus { border-color: var(--gold); outline: none; background: #fffdfa; }
+        .full-width { grid-column: span 2; }
+        .btn-submit { width: 100%; background: var(--gold); color: var(--navy); padding: 20px; border: none; border-radius: 15px; font-weight: 900; font-size: 1.3rem; cursor: pointer; transition: 0.4s; margin-top: 10px; }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3); }
+
+        /* البطاقة الفنية (نفس التصميم المتفق عليه) */
+        .preview-section { padding: 80px 5%; background: #f8fafc; display: none; text-align: center; }
+        .id-card-artistic {
+            width: 400px; height: 620px; background: white; margin: 0 auto 35px;
+            border-radius: 12px; position: relative; padding: 40px; color: var(--ink);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.25); border: 1px solid #d1b894;
+            background-image: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.85)), url('kessal.jpg');
+            background-size: cover; background-position: 50% 85%; /* تركيز على الجبل */
+            font-family: 'Amiri', serif; overflow: hidden;
         }
-        .logo-box { display: flex; align-items: center; gap: 12px; }
-        .logo-img { width: 55px; height: 55px; object-fit: contain; }
-        .logo-text h1 { font-family: 'Changa', sans-serif; font-size: 1.7rem; color: var(--navy); line-height: 1; }
-        .logo-text p { color: var(--gold); font-weight: bold; font-size: 0.9rem; }
 
-        /* واجهة الجبل */
-        .hero {
-            height: 60vh; background: linear-gradient(rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.6)), url('kessal.jpg');
-            background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-        }
-        .hero-content h2 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 900; text-shadow: 3px 3px 15px rgba(0,0,0,0.7); font-family: 'Changa'; }
+        .card-header-art { border-bottom: 2px solid var(--gold); padding-bottom: 12px; margin-bottom: 25px; font-family: 'Aref Ruqaa'; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .member-name { font-family: 'Aref Ruqaa', serif; font-size: 2.5rem; margin: 15px 0 0; color: var(--navy); line-height: 1.2; }
+        .member-role { font-family: 'Aref Ruqaa', serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 35px; }
+        .details-list { text-align: right; border-right: 4px solid var(--gold); padding-right: 18px; margin-top: 30px; }
+        .details-list p { margin: 15px 0; font-size: 1.15rem; }
+        .details-list p strong { font-family: 'Cairo'; font-size: 0.75rem; color: #777; display: block; margin-bottom: 2px; }
+        .signature { margin-top: 45px; text-align: left; font-family: 'Aref Ruqaa'; font-size: 1.3rem; color: var(--gold); transform: rotate(-5deg); }
+        .download-btn { background: #10b981; color: white; padding: 18px 50px; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1.1rem; }
 
-        /* عرض الملحمة التاريخية */
-        .history-section { padding: 80px 5%; background: var(--white); }
-        .history-card { 
-            max-width: 1000px; margin: 0 auto; background: var(--slate); padding: 45px; 
-            border-right: 8px solid var(--gold); border-radius: 20px 0 0 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .history-card h2 { font-family: 'Changa', sans-serif; margin-bottom: 25px; color: var(--navy); font-size: 2.3rem; border-bottom: 3px solid var(--gold); display: inline-block; padding-bottom: 10px; }
-        .history-card p { font-size: 1.15rem; text-align: justify; color: #334155; margin-bottom: 20px; }
-        .highlight-text { color: var(--navy); font-weight: 700; border-bottom: 1px dashed var(--gold); }
-
-        /* قسم الاستمارة */
-        .membership-section { padding: 80px 5%; background: var(--navy); color: white; text-align: center; }
-        .register-box { max-width: 700px; margin: 40px auto; background: white; padding: 45px; border-radius: 35px; color: var(--navy); box-shadow: 0 25px 60px rgba(0,0,0,0.4); }
-        .input-style { width: 100%; padding: 15px; margin-bottom: 15px; border: 1.5px solid #eee; border-radius: 12px; font-family: 'Cairo'; font-size: 1rem; }
-        .input-style:focus { border-color: var(--gold); outline: none; background: #fffdf9; }
-        
-        /* تصميم البطاقة النهائية */
-        .id-card {
-            width: 360px; height: 560px; background: white; margin: 30px auto; border-radius: 35px; border: 10px solid var(--gold); 
-            position: relative; padding: 35px; color: var(--navy); background-image: linear-gradient(rgba(255,255,255,0.96), rgba(255,255,255,0.96)), url('kessal.jpg'); background-size: cover;
-        }
-        .user-avatar { margin: 10px auto 25px; width: 115px; height: 115px; border: 4px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #fff; }
-
-        footer { background: #050c18; color: #94a3b8; padding: 60px 5%; text-align: center; }
-        .social-icons a { color: var(--gold); font-size: 2.8rem; margin: 0 15px; transition: 0.4s; }
-        .social-icons a:hover { color: white; transform: scale(1.2) rotate(5deg); }
+        /* Footer */
+        footer { background: #020617; color: #94a3b8; padding: 60px 5%; text-align: center; }
+        .social-icons { margin-bottom: 25px; }
+        .social-icons a { color: var(--gold); font-size: 2.8rem; margin: 0 20px; transition: 0.3s; display: inline-block; }
+        .social-icons a:hover { transform: scale(1.2) rotate(5deg); color: white; }
     </style>
 </head>
 <body>
 
-    <div class="smart-bar">
-        <div><i class="fas fa-history"></i> معركة جبل كسال | أمانة الأجداد لجيل الأحفاد</div>
-        <div style="color: var(--gold); font-weight: 900;"><i class="fas fa-mountain"></i> كسال ميديا.. ثبات الجبل</div>
-    </div>
-
     <header>
-        <div class="logo-box">
-            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/60?text=Kessal'">
-            <div class="logo-text"><h1>كسال ميديا</h1><p>ثبات الجبل</p></div>
+        <div class="logo-area">
+            <img src="logo.png" width="55" onerror="this.style.display='none'">
+            <h1>كسال ميديا</h1>
         </div>
-        <nav>
-            <ul style="display: flex; list-style: none; gap: 25px;">
-                <li><a href="#" style="text-decoration: none; color: var(--navy); font-weight: 800;">الرئيسية</a></li>
-                <li><a href="#history" style="text-decoration: none; color: var(--navy); font-weight: 800;">التاريخ</a></li>
-                <li><a href="#join" style="text-decoration: none; color: var(--navy); font-weight: 800;">العضوية</a></li>
-            </ul>
-        </nav>
+        <div style="font-family: 'Aref Ruqaa'; color: var(--gold); font-size: 1.3rem;">ثبات الجبل.. أمانة التاريخ</div>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h2>ثبات الجبل.. أمانة التاريخ</h2>
-        </div>
+        <h2 style="font-family: 'Changa'; font-size: 2.8rem; text-shadow: 0 4px 15px rgba(0,0,0,0.5);">معركة جبل كسال الكبرى</h2>
     </section>
 
-    <section class="history-section" id="history">
+    <section class="history-section">
         <div class="history-card">
-            <h2>معركة جبل كسال الكبرى</h2>
-            <p>
-                تحركت كتيبتان لجيش التحرير يقودهما الأبطال <span class="highlight-text">ديداني أحمد (لزرق)</span> و <span class="highlight-text">قطاف أحمد</span> من منطقة "الخنيقات" شرق بلدية الغاسول، ليتمركزوا في جبل كسال الشامخ. 
-            </p>
-            <p>
-                في مساء 17 أفريل 1958، نُفذت عملية فدائية بقرية استيتن أربكت العدو، لتبدأ صبيحة <span class="highlight-text">18 أفريل 1958</span> واحدة من أضخم المعارك التاريخية. حاصر العدو الجبل بمعدات هائلة وطائرات مقنبلة، لكن أبطالنا في <span class="highlight-text">"كاف زعطوط"</span> واجهوا المدافع برشاشاتهم وبإيمان لا يتزعزع.
-            </p>
-            <p>
-                هذا الصمود هو الوقود الذي يحرك <b>"كسال ميديا"</b> اليوم لنكون صوتاً ثابتاً لولاية البيض.
-            </p>
+            <h2>لماذا وقعت معركة كسال؟</h2>
+            <p>تحركت كتيبتان لجيش التحرير يقودهما ديداني أحمد المدعو لزرق وقطاف أحمد من "الخنيقات" شرق بلــدية الغاسول نحـــو منطقة العين الجديدة قرب الطريق الرابط بين البيض وبوعلام حيث يتواجد جيش بلونيس المعادي للثورة ولما وصل جيش التحرير إلى المكان المسمى العين الجديدة كان جيش بلونيس قد انسحب شرقا إلى ضواحي أفلو فتنقلت الكتيبتان إلى جبل أكسال للتمركز فيه بضعة أيام في انتظار أوامر لاحقة.</p>
+            <p>وكانت قرية استيتن قد أخلاها الفرنسيون من سكانها في جويلية 1957 بهدف منع جيش التحرير من الاتصال بالسكان وحرمــانه من قـــواعده الشعبيـــة في التمــوين والتزود ببعض الاحتياجات الأخرى وظل الجيش الفرنسي يراقب القرية ظانا أن جيش التحـــرير يستخدمـــها ليلا للــــراحة أو المبيت وفي مساء يوم 17 أفريل 1958 نزل بعض المسبلين من الجبل في مهمة فرأوا قافلة من جيش العدو قد عسكرت في القرية فعادوا مسرعين إلى حيث تتمركز الكتيبتان وأبلغوا قيادة المجاهدين بالأمر.</p>
+            <p>تحركت الكتيبة التي يقودها قطاف أحمد بسرعة فائقة وحاصــــرت العســاكر الفرنسية التي كانت ملتفة حول بعضها تحضر عشاءها في ساحة القرية وباغتتهم بإطلاق النار وأسفر الهجوم عن عدد من القتلى والجرحى في صفوف القوات الفرنسية التي فر ما تبقى من جنودها بعتادهم وأخذت تقصف بالدبابات من بعيد مكان تواجد عناصر الكتيبة المهاجمة , وإثر هذا الهجوم عادت الكتيبة مع حلول الليل إلى الجبل.</p>
+            <p>فاجتمعت قيادة المجاهدين لدراسة الموقف وتم الاتفاق على البقاء في الجبل والاستعداد لأي معركة قد يفرضها العدو وعينوا مكانا يتوسط الجبل يعرف بكاف زعطوط ليتمركز فيه جيش التحرير تأهبا لمعركة الغد لأنهم تأكدوا أن القوات الفرنسية سوف تأتي غدا إلى الجبل بكل قواتها للقتال انتقاما لقتلاها في قرية استيتن والقضاء على المجاهدين وكانت قوات جيش التحرير عشية المعركة تتألف من كتيبتين مسلح أفرادها برشاشات ثقيلة من نوع أ م ج ي 42/44 وبنادق حربية أخرى , أما الفرنسيون فقد حشدوا إلى ساحة المعركة أعدادا هائلة من الجنود والمعدات خلال الليل وحتى الصـــباح وشرعوا في محـــاصرة الجبل في ساعة مبكرة.</p>
+            <p>وحوالي الساعة السادسة صباحا بدأوا يقصفون مواقع تواجد جيش التحرير بمدافع الهاون التي نصبوها في قرية الحوض , كما تدخلت الطائرات المقنبلة لترمي بحممها وحمولتها من القنابل.</p>
         </div>
     </section>
 
-    <section class="membership-section" id="join">
-        <h2 style="font-family: 'Changa'; font-size: 2.3rem; margin-bottom: 15px;">بوابة العضوية الرقمية</h2>
-        <div class="register-box">
-            <form action="https://formspree.io/f/mgodnzlw" method="POST" id="mainForm">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <input type="text" name="الاسم" id="inName" class="input-style" placeholder="الاسم واللقب" required>
-                    <input type="text" name="التخصص" id="inRole" class="input-style" placeholder="التخصص الإبداعي" required>
+    <section class="registration-section">
+        <div class="form-container">
+            <h3>استمارة العضوية الرسمية</h3>
+            <form id="idForm">
+                <div class="form-grid">
+                    <div class="input-group full-width">
+                        <label>الاسم واللقب الكامل</label>
+                        <input type="text" id="inName" class="form-control" placeholder="اكتب اسمك هنا" required>
+                    </div>
+                    <div class="input-group">
+                        <label>التخصص الإبداعي</label>
+                        <input type="text" id="inRole" class="form-control" placeholder="مثلاً: كاتب، مصور..." required>
+                    </div>
+                    <div class="input-group">
+                        <label>المستوى الدراسي</label>
+                        <input type="text" id="inLevel" class="form-control" placeholder="مثلاً: جامعي، ثانوي..." required>
+                    </div>
+                    <div class="input-group">
+                        <label>رقم الهاتف</label>
+                        <input type="tel" id="inPhone" class="form-control" placeholder="07xxxxxxxx" required>
+                    </div>
+                    <div class="input-group">
+                        <label>بلدية الإقامة (ولاية البيض)</label>
+                        <select id="inMun" class="form-control" required>
+                            <option value="" disabled selected>اختر بلديتك</option>
+                            <option>البيض</option><option>بوقطب</option><option>الأبيض سيدي الشيخ</option>
+                            <option>بريزينة</option><option>الغاسول</option><option>الرقاصة</option>
+                            <option>شلالة</option><option>بوسمغون</option><option>بوعلام</option>
+                            <option>استيتن</option><option>سيدي طيفور</option><option>سيدي عمر</option>
+                            <option>سيدي سليمان</option><option>ارباوات</option><option>تيرسين</option>
+                            <option>الخيثر</option><option>الكاف لحمر</option><option>المحرة</option>
+                            <option>عين العراك</option><option>الشقيق</option><option>تلعظم</option><option>المصيد</option>
+                        </select>
+                    </div>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <input type="tel" name="الهاتف" id="inPhone" class="input-style" placeholder="رقم الهاتف" required>
-                    <input type="text" name="المستوى" id="inLevel" class="input-style" placeholder="المستوى الدراسي" required>
-                </div>
-                <select name="البلدية" id="inMun" class="input-style" required>
-                    <option value="" disabled selected>اختر بلدية الإقامة (22 بلدية)</option>
-                    <option>البيض</option><option>بوقطب</option><option>الأبيض سيدي الشيخ</option>
-                    <option>بريزينة</option><option>الغاسول</option><option>الرقاصة</option>
-                    <option>شلالة</option><option>بوسمغون</option><option>بوعلام</option>
-                    <option>استيتن</option><option>سيدي طيفور</option><option>سيدي عمر</option>
-                    <option>سيدي سليمان</option><option>ارباوات</option><option>تيرسين</option>
-                    <option>الخيثر</option><option>الكاف لحمر</option><option>المحرة</option>
-                    <option>عين العراك</option><option>الشقيق</option><option>تلعظم</option><option>المصيد</option>
-                </select>
-                <button type="submit" style="width:100%; background:var(--gold); color:var(--navy); padding:18px; border:none; border-radius:15px; font-weight:900; cursor:pointer; font-size: 1.25rem;">تأكيد إرسال البيانات</button>
+                <button type="button" onclick="generate()" class="btn-submit">توليد بطاقة "ثبات الجبل"</button>
             </form>
-            <button onclick="preview()" style="margin-top:20px; background:none; border:1px solid #ccc; padding:12px; width:100%; cursor:pointer; border-radius:15px; font-weight: 800; color: #666;">معاينة البطاقة قبل التحميل</button>
         </div>
+    </section>
 
-        <div id="card-preview" style="display:none;">
-            <div class="id-card" id="myCard">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <img src="logo.png" style="height:45px;" onerror="this.style.display='none'">
-                    <span style="font-weight:900; color: var(--navy); font-size: 0.8rem;">KM MEMBER 2026</span>
-                </div>
-                <div class="user-avatar"><i class="fas fa-user-circle fa-5x" style="color:#eee;"></i></div>
-                <h2 id="outName" style="font-family:'Changa'; font-size: 1.8rem; margin-top: 5px;">خالد</h2>
-                <p id="outRole" style="color:var(--gold); font-weight:bold; font-size: 1.25rem;">التخصص</p>
-                <div style="margin-top:35px; text-align:right; border-top:1.5px solid #eee; padding-top:15px; font-size: 0.95rem; line-height: 1.8;">
-                    <p>📍 البلدية: <span id="outMun" style="font-weight:800;">...</span></p>
-                    <p>🎓 المستوى: <span id="outLevel" style="font-weight:800;">...</span></p>
-                    <p>📞 الهاتف: <span id="outPhone" style="font-weight:800;">...</span></p>
-                </div>
-                <div style="position: absolute; bottom: 30px; left: 30px; opacity: 0.15;"><i class="fas fa-mountain fa-3x"></i></div>
+    <section class="preview-section" id="previewArea">
+        <div class="id-card-artistic" id="myCard">
+            <div class="card-header-art">
+                <span><i class="fas fa-mountain"></i> وثيقة عضوية</span>
+                <span style="font-size: 0.8rem;">KM 2026</span>
             </div>
-            <button onclick="download()" style="background:var(--navy); color:white; padding:18px 50px; border:2px solid var(--gold); border-radius:50px; font-weight:900; cursor:pointer; box-shadow: 0 10px 25px rgba(10, 25, 47, 0.4);">تحميل هويتك الرقمية PNG</button>
+            <h2 id="outName" class="member-name">خالد محمد</h2>
+            <p id="outRole" class="member-role">مبدع كسال</p>
+            <div class="details-list">
+                <p><strong>📍 بلدية الإقامة:</strong> <span id="outMun">...</span></p>
+                <p><strong>🎓 المستوى الدراسي:</strong> <span id="outLevel">...</span></p>
+                <p><strong>📞 هاتف التواصل:</strong> <span id="outPhone">...</span></p>
+            </div>
+            <div class="signature">بخط اليد.. <br> منصة كسال ميديا</div>
         </div>
+        <button onclick="download()" class="download-btn">تحميل البطاقة الفنية (PNG)</button>
     </section>
 
     <footer>
@@ -162,25 +156,31 @@
             <a href="https://www.facebook.com/share/18akdvumfQ/" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://wa.me/213797761701" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="font-weight: 800; color: white; margin-bottom: 5px;">كسال ميديا.. ثبات الجبل</p>
-        <p>جميع الحقوق محفوظة - ولاية البيض © 2026</p>
-        <p style="font-size:0.85rem; opacity:0.6; margin-top:15px;">إشراف: مسعدي فؤاد</p>
+        <h4 style="color:white; margin-bottom:10px;">كسال ميديا.. ثبات الجبل وأمانة التاريخ</h4>
+        <p>تحت إشراف: الأستاذ مسعدي فؤاد</p>
+        <p style="margin-top:20px; font-size:0.8rem; opacity:0.6;">جميع الحقوق محفوظة لولاية البيض © 2026</p>
     </footer>
 
     <script>
-        function preview() {
-            document.getElementById('outName').innerText = document.getElementById('inName').value;
-            document.getElementById('outRole').innerText = document.getElementById('inRole').value;
+        function generate() {
+            const name = document.getElementById('inName').value;
+            const role = document.getElementById('inRole').value;
+            if(!name || !role) return alert("من فضلك أكمل الاستمارة الإدارية!");
+
+            document.getElementById('outName').innerText = name;
+            document.getElementById('outRole').innerText = role;
             document.getElementById('outPhone').innerText = document.getElementById('inPhone').value;
             document.getElementById('outLevel').innerText = document.getElementById('inLevel').value;
             document.getElementById('outMun').innerText = document.getElementById('inMun').value;
-            document.getElementById('card-preview').style.display = 'block';
-            window.scrollTo({top: document.getElementById('card-preview').offsetTop - 50, behavior:'smooth'});
+
+            document.getElementById('previewArea').style.display = 'block';
+            window.scrollTo({top: document.getElementById('previewArea').offsetTop - 30, behavior:'smooth'});
         }
+
         function download() {
-            html2canvas(document.querySelector("#myCard"), {scale:3}).then(canvas => {
+            html2canvas(document.querySelector("#myCard"), { scale: 3 }).then(canvas => {
                 let link = document.createElement('a');
-                link.download = 'Kessal_Media_Card.png';
+                link.download = 'Kessal_Media_Official_Card.png';
                 link.href = canvas.toDataURL();
                 link.click();
             });
