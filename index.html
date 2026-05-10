@@ -3,299 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KESSAL MEDIA | القمة الإعلامية 2026</title>
+    <title>KESSAL MEDIA | المستقبل يبدأ الآن</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
-        /* --- المتغيرات والتأسيس --- */
         :root {
-            --neon: #00f2ff;
-            --deep-space: #020617;
-            --gold: #ffcf4b;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(0, 242, 255, 0.15);
-            --glow: 0 0 20px rgba(0, 242, 255, 0.4);
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc13fe;
+            --neon-gold: #ffcf4b;
+            --bg-dark: #020b1a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(0, 242, 255, 0.2);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
         
         body { 
-            background: var(--deep-space); 
-            color: #f1f5f9; font-family: 'Cairo', sans-serif; 
-            overflow-x: hidden; line-height: 1.6;
+            background: var(--bg-dark); 
+            background-image: radial-gradient(circle at 50% 50%, #0a192f 0%, #020b1a 100%);
+            color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; 
         }
 
-        /* --- تأثير الخلفية المتحركة --- */
-        #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        /* حاوية الخلفية المتحركة */
+        #bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.5; }
 
-        /* --- الهيدر (رأس الموقع) --- */
-        header {
-            padding: 30px 5%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid var(--border);
+        .app-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        /* الهيدر (الشعار) */
+        header { text-align: right; margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
+        .main-logo { 
+            width: 80px; height: 80px; border-radius: 15px; 
+            border: 2px solid var(--neon-blue); box-shadow: 0 0 20px var(--neon-blue);
+            object-fit: cover;
         }
-        .logo-wrap { display: flex; align-items: center; gap: 15px; cursor: pointer; }
-        .logo-wrap img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--neon); box-shadow: var(--glow); transition: 0.5s; }
-        .logo-wrap:hover img { transform: rotate(360deg) scale(1.1); }
-        .logo-text { font-weight: 900; font-size: 1.8rem; letter-spacing: 2px; color: #fff; }
+        .header-info h1 { font-size: 2rem; color: var(--neon-blue); font-weight: 900; }
 
-        .container { max-width: 1300px; margin: 0 auto; padding: 50px 20px; }
+        /* قسم الرؤية (القائد مسعدي فؤاد) */
+        .vision-section {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 30px; border-radius: 30px; backdrop-filter: blur(15px);
+            margin-bottom: 40px; position: relative; overflow: hidden;
+        }
+        .vision-section::before {
+            content: ''; position: absolute; top: 10px; right: 10px; width: 50px; height: 50px;
+            border-top: 3px solid var(--neon-gold); border-right: 3px solid var(--neon-gold); border-radius: 0 20px 0 0;
+        }
+        .leader-intro { display: flex; align-items: center; gap: 20px; margin-bottom: 15px; }
+        .leader-avatar { font-size: 3rem; color: var(--neon-gold); }
 
-        /* --- تصميم التقسيم المزدوج (كما في الصورة) --- */
-        .main-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: start; }
-        @media (max-width: 1024px) { .main-grid { grid-template-columns: 1fr; } }
-
-        /* --- قسم نبض القلم (خالد كامل) --- */
+        /* قسم المقال (نبض القلم - خالد كامل) */
         .article-section {
-            background: #ffffff; color: #0f172a; border-radius: 40px; padding: 60px;
-            position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            border-right: 20px solid var(--neon); animation: slideRight 1s ease-out;
+            background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 40px; border-radius: 30px; margin-bottom: 40px; line-height: 1.8;
+            box-shadow: inset 0 0 30px rgba(0, 242, 255, 0.05);
         }
-        @keyframes slideRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        .article-section h2 { color: var(--neon-blue); margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+        .article-content { text-align: justify; font-size: 1.2rem; opacity: 0.9; }
 
-        .article-section h2 { font-size: 3rem; font-weight: 900; margin-bottom: 30px; line-height: 1.2; }
-        .article-content { font-family: 'Amiri', serif; font-size: 2.1rem; line-height: 2.4; text-align: justify; }
-        .article-content p { margin-bottom: 25px; }
-        .author-box { 
-            margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee; 
-            display: flex; justify-content: space-between; align-items: center;
+        /* الاستمارة الذكية (الضيقة كما في الصورة) */
+        .form-container {
+            max-width: 500px; margin: 0 auto 50px; background: var(--glass);
+            border: 2px solid var(--neon-blue); padding: 40px; border-radius: 40px;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
         }
-        .author-name { font-weight: 900; font-size: 1.5rem; color: var(--deep-space); }
-
-        /* --- قسم الانضمام والذكاء الاصطناعي --- */
-        .ai-section { display: flex; flex-direction: column; gap: 30px; }
-
-        .form-card {
-            background: var(--glass); border: 2px solid var(--border); border-radius: 40px;
-            padding: 40px; backdrop-filter: blur(20px); position: relative;
-            overflow: hidden; box-shadow: var(--glow); transition: 0.3s;
+        .form-container h3 { text-align: center; color: var(--neon-blue); margin-bottom: 30px; font-weight: 900; }
+        
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; margin-bottom: 8px; color: var(--neon-blue); font-size: 0.9rem; }
+        .custom-input {
+            width: 100%; padding: 15px; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border);
+            border-radius: 12px; color: #fff; font-family: 'Cairo'; transition: 0.3s;
         }
-        .form-card:hover { border-color: var(--neon); }
-        .form-card::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, var(--neon));
-            animation: rotateGlow 6s linear infinite; z-index: -1;
+        .custom-input:focus { border-color: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); outline: none; }
+
+        .btn-submit {
+            width: 100%; padding: 18px; background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border: none; border-radius: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;
+            cursor: pointer; box-shadow: 0 0 20px var(--neon-blue); transition: 0.4s;
         }
-        @keyframes rotateGlow { to { transform: rotate(360deg); } }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 0 40px var(--neon-blue); }
 
-        .form-title { font-size: 2rem; font-weight: 900; text-align: center; margin-bottom: 30px; color: var(--neon); }
-
-        .input-group { margin-bottom: 20px; position: relative; }
-        .input-group label { display: block; margin-bottom: 10px; color: #94a3b8; font-weight: bold; font-size: 0.9rem; }
-        .input-ctrl {
-            width: 100%; padding: 18px; background: rgba(0,0,0,0.4); border: 1px solid var(--border);
-            border-radius: 15px; color: #fff; font-family: 'Cairo'; font-size: 1.1rem; transition: 0.3s;
+        /* البطاقة الرقمية (ID Card) */
+        #card-preview { display: none; margin-top: 50px; text-align: center; }
+        .id-card {
+            width: 320px; height: 500px; background: #000; border: 4px solid var(--neon-gold);
+            border-radius: 30px; margin: 0 auto; position: relative; overflow: hidden;
+            box-shadow: 0 0 60px rgba(255, 207, 75, 0.3);
         }
-        .input-ctrl:focus { border-color: var(--neon); box-shadow: 0 0 15px rgba(0,242,255,0.2); outline: none; }
+        .id-header { background: var(--neon-gold); color: #000; padding: 10px; font-weight: 900; }
+        .id-photo-frame { width: 140px; height: 160px; border: 2px solid var(--neon-gold); margin: 30px auto; border-radius: 15px; display: flex; align-items: center; justify-content: center; }
+        .id-info h4 { font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
+        .id-info p { color: #aaa; margin: 5px 0; }
+        .id-qr { margin-top: 20px; font-size: 3rem; color: #fff; opacity: 0.8; }
+        .id-footer { position: absolute; bottom: 0; width: 100%; padding: 15px; background: rgba(255,207,75,0.1); border-top: 1px solid var(--neon-gold); }
 
-        .submit-btn {
-            width: 100%; padding: 22px; background: linear-gradient(45deg, var(--neon), #00d2ff);
-            border: none; border-radius: 18px; color: #020617; font-weight: 900; font-size: 1.4rem;
-            cursor: pointer; position: relative; transition: 0.4s; overflow: hidden;
+        /* معلومات الاتصال */
+        .contact-section { display: flex; justify-content: center; gap: 20px; margin-top: 40px; }
+        .contact-btn {
+            padding: 15px 30px; border-radius: 12px; text-decoration: none; color: #fff;
+            display: flex; align-items: center; gap: 10px; font-weight: bold; border: 1px solid var(--glass-border);
+            transition: 0.3s;
         }
-        .submit-btn:hover { transform: scale(1.02); box-shadow: 0 0 40px var(--neon); }
-        .submit-btn::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: 0.5s; }
-        .submit-btn:hover::after { left: 100%; }
+        .fb { background: #1877f244; }
+        .wa { background: #25d36644; }
+        .contact-btn:hover { border-color: #fff; transform: scale(1.05); }
 
-        /* --- بطاقة الهوية (التحفة الفنية) --- */
-        #id-display { display: none; perspective: 1000px; margin-top: 30px; }
-        .pass-card {
-            width: 380px; height: 560px; background: #000; border: 4px solid var(--neon);
-            border-radius: 40px; margin: 0 auto; position: relative; overflow: hidden;
-            box-shadow: 0 0 60px rgba(0, 242, 255, 0.4); transform: rotateY(0deg);
-        }
-        .pass-header { background: var(--neon); color: #000; padding: 20px; font-weight: 900; font-size: 1.4rem; text-align: center; }
-        .pass-photo-area { width: 160px; height: 180px; border: 2px solid var(--neon); margin: 30px auto; border-radius: 25px; display: flex; align-items: center; justify-content: center; position: relative; }
-        .pass-photo-area i { font-size: 5rem; opacity: 0.2; color: var(--neon); }
-        .pass-info { padding: 0 35px; text-align: right; }
-        .pass-info h4 { font-size: 1.9rem; color: #fff; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-        .pass-info p { margin: 10px 0; font-size: 1rem; color: #94a3b8; }
-        .pass-info span { color: var(--neon); font-weight: 900; }
-        .pass-footer { position: absolute; bottom: 0; width: 100%; padding: 20px; background: rgba(0,242,255,0.05); display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .pass-footer img { width: 50px; height: 50px; border-radius: 50%; border: 1px solid var(--neon); }
-
-        /* --- التذييل --- */
-        footer { margin-top: 100px; padding: 60px; text-align: center; border-top: 1px solid var(--border); background: rgba(0,0,0,0.4); }
-        .social-link { color: #fff; font-size: 2.5rem; margin: 0 25px; transition: 0.4s; }
-        .social-link:hover { color: var(--neon); text-shadow: var(--glow); transform: translateY(-5px); }
     </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
+    <canvas id="bg-glow"></canvas>
 
-    <header>
-        <div class="logo-wrap">
-            <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg" alt="Logo">
-            <span class="logo-text">KESSAL MEDIA</span>
-        </div>
-        <div style="font-weight: bold; color: var(--neon); border: 1px solid var(--neon); padding: 5px 15px; border-radius: 20px;">
-            AI CONNECTED 2026
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="main-grid">
-            
-            <section class="article-section">
-                <h2>نبض الكلمة: انبعاثٌ من عُمق الإيمان</h2>
-                <div class="article-content">
-                    <p>بإيمانٍ بدأ كفكرة، وبرؤيةٍ حملها القائد <b>مسعدي فؤاد</b>، نخطو اليوم أولى خطواتنا نحو صناعة مساحة تُشبه أحلام شباب ولاية البيض. هذه القناة ليست مجرد منصة، بل صوتٌ لجيلٍ يؤمن أن التغيير لا يُنتظر… بل يُصنع.</p>
-                    <p>لقد اجتمعنا كعائلة صغيرة، نحمل شغفًا أكبر من الظروف، وإرادةً لا تعرف التراجع، لنكون صورةً تليق بعظمة جبل كسال، وروحًا تعكس طموحات شباب يؤمنون أن المستحيل مجرد بداية.</p>
-                    <p>رحلتنا بدأت من الصفر، في وقت كان الصمت فيه سيد الموقف، لكننا علمنا أن الأحلام الصادقة دائمًا تجد طريقها نحو القمة. جئنا لنزلزل الركود الإعلامي، ونكتب تاريخ الـ 22 بلدية بمدادٍ من ذهب.</p>
-                </div>
-                <div class="author-box">
-                    <div class="author-name">بأطراف الكاتب: خالد كامل</div>
-                    <div style="font-family: 'Amiri'; opacity: 0.5;">إصدار مايو 2026</div>
-                </div>
-            </section>
-
-            <section class="ai-section">
-                <div class="form-card">
-                    <h3 class="form-title">بوابة النخبة الإعلامية</h3>
-                    <form id="proForm" action="https://formspree.io/f/mgodnzlw" method="POST">
-                        <div class="input-group">
-                            <label>الاسم الكامل (الهوية الرسمية)</label>
-                            <input type="text" name="name" id="in-name" class="input-ctrl" placeholder="أدخل اسمك الثلاثي..." required>
-                        </div>
-                        <div class="input-group">
-                            <label>البلدية (من بلديات البيض الـ 22)</label>
-                            <select name="municipality" id="in-mun" class="input-ctrl">
-                                <option>البيض</option><option>بوقطب</option><option>الأبيض سيدي الشيخ</option>
-                                <option>الرقاصة</option><option>بريزينة</option><option>الغاسول</option>
-                                <option>بوسمغون</option><option>شلالة</option><option>استيتن</option>
-                                <option>سيدي طيفور</option><option>سيدي عمر</option><option>بوعلام</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label>التخصص الإبداعي</label>
-                            <select name="specialty" id="in-role" class="input-ctrl">
-                                <option>تحرير صحفي وأدبي</option>
-                                <option>صناعة محتوى مرئي</option>
-                                <option>تقديم إذاعي وبودكاست</option>
-                                <option>ذكاء اصطناعي وتصميم</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label>رقم التواصل (WhatsApp)</label>
-                            <input type="tel" name="phone" class="input-ctrl" placeholder="+213..." required>
-                        </div>
-                        <button type="submit" class="submit-btn">تفعيل العضوية الرقمية</button>
-                    </form>
-                </div>
-
-                <div id="id-display">
-                    <div class="pass-card" id="finalID">
-                        <div class="pass-header">PRESS & MEDIA PASS</div>
-                        <div class="pass-photo-area">
-                            <i class="fas fa-microchip"></i>
-                            <div style="position:absolute; bottom:5px; font-size:0.6rem; color:var(--neon);">ENCRYPTED ID</div>
-                        </div>
-                        <div class="pass-info">
-                            <h4 id="c-name">الاسم الكريم</h4>
-                            <p>التخصص: <span id="c-role">---</span></p>
-                            <p>البلدية: <span id="c-mun">---</span></p>
-                            <p>الولاية: <span>البيض (الجزائر)</span></p>
-                        </div>
-                        <div class="pass-footer">
-                            <img src="https://i.ibb.co/LdxYVq9h/1000075789.jpg">
-                            <div style="text-align:right"><b>مسعدي فؤاد</b><br><small>المدير العام للمشروع</small></div>
-                        </div>
-                    </div>
-                    <button onclick="downloadID()" style="width:100%; padding:15px; margin-top:20px; cursor:pointer; background:none; border:1px solid var(--neon); color:#fff; border-radius:10px;">حفظ البطاقة كصورة PNG</button>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/share/18akdvumfQ/" class="social-link"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/213797761701" class="social-link"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p style="margin-top: 30px; opacity: 0.5;">KESSAL MEDIA &copy; 2026 | القمة الإعلامية لولاية البيض</p>
-        <p style="color: var(--neon); font-weight: 900; margin-top: 10px;">تم التطوير بواسطة: خالد (AI Expert)</p>
-    </footer>
-
-<script>
-    // --- كود الخلفية المتحركة (الجزيئات) ---
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Particle {
-        constructor() {
-            this.reset();
-        }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.opacity = Math.random() * 0.5;
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-        draw() {
-            ctx.fillStyle = `rgba(0, 242, 255, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    for (let i = 0; i < 100; i++) particles.push(new Particle());
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        requestAnimationFrame(animate);
-    }
-    animate();
-
-    // --- كود الاستمارة وتوليد البطاقة ---
-    document.getElementById('proForm').onsubmit = function(e) {
-        // تحديث البطاقة
-        document.getElementById('c-name').innerText = document.getElementById('in-name').value;
-        document.getElementById('c-role').innerText = document.getElementById('in-role').value;
-        document.getElementById('c-mun').innerText = document.getElementById('in-mun').value;
+    <div class="app-container">
         
-        // إظهار البطاقة بتأثير
-        document.getElementById('id-display').style.display = 'block';
-        
-        // تأثير الاحتفال (القصاصات الملونة)
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#00f2ff', '#ffffff', '#00d2ff']
-        });
-    };
+        <header>
+            <img src="لوجو بنج.png" alt="شعار كسال ميديا" class="main-logo" onerror="this.src='https://i.ibb.co/LdxYVq9h/1000075789.jpg'">
+            <div class="header-info">
+                <h1>KESSAL MEDIA</h1>
+                <p style="color: var(--neon-purple); letter-spacing: 2px;">EL BAYADH • ALGERIA</p>
+            </div>
+        </header>
 
-    function downloadID() {
-        html2canvas(document.querySelector("#finalID")).then(canvas => {
-            let link = document.createElement('a');
-            link.download = `Kessal_Media_${document.getElementById('in-name').value}.png`;
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    }
-</script>
-</body>
-</html>
+        <section class="vision-section">
+            <div class="leader-intro">
+                <div class="leader-avatar"><i class="fas fa-user-shield"></i></div>
+                <h3 style="color: var(--neon-gold);">رؤية القائد مسعدي فؤاد</h3>
+            </div>
+            <p id="vision-text" style="font-size: 1.3rem; font-weight: bold;"></p>
+        </section>
+
+        <section class="article-section">
+            <h2>نبض القلم - خالد كامل</h2>
+            <div class="article-content">
+                <p>كسال ميديا: من فكرة في ذهن القائد إلى واقع يزلزل الركود الإعلامي. لم تكن البداية سهلة، لكن إرادة شباب ولاية البيض جعلت من المستحيل جسراً للعبور نحو الحقيقة والتغيير.</p>
+                <p>نحن اليوم لا نبني منصة، بل نبني تاريخاً جديداً يعكس عظمة جبل كسال وشموخ جيلٍ لا يرضى بأقل من القمة.</p>
+            </div>
+        </section>
+
+        <div class="form-container">
+            <h3>انضم إلى ثورة الإعلام</h3>
+            <form id="joinForm">
+                <div class="input-group">
+                    <label>الاسم واللقب</label>
+                    <input type="text" id="in-name" class="custom-input" placeholder="اكتب اسمك هنا..." required>
+                </div>
+                <div class="input-group">
+                    <label>الدور الإبداعي</label>
+                    <select id="in-role" class="custom-input">
+                        <option>تحرير صحفي وأدبي</option>
+                        <option>تصوير فوتوغرافي</option>
+                        <option>مونتاج وإخراج</option>
+                        <option>صناعة محتوى AI</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>البلدية (الـ 22)</label>
+                    <select id="in-mun" class="custom-input">
+                        <option>البيض</option><option>بوقطب</option><option>الأبيض سيدي الشيخ</option>
+                        <option>بريزينة</option><option>الغاسول</option><option>الرقاصة</option>
+                        <option>شلالة</option><option>بوسمغون</option><option>بوعلام</option>
+                        <option>استيتن</option><option>سيدي طيفور</option><option>الكاف لحمر</option>
+                        <option>سيدي عمر</option><option>تيرسين</option><option>الخيثر</option>
+                        <option>عين العراك</option><option>المحرة</option><option>الشقيق</option>
+                        <option>ارباوات</option><option>تلعظم</option><option>المصيد</option>
+                        <option>سيدي سليمان</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>رقم WhatsApp</label>
+                    <input type="tel" id="in-tel" class="custom-input" placeholder="+213..." required>
+                </div>
+                <button type="submit" class="btn-submit">تفعيل العضوية الرقمية</button>
+            </form>
+        </div>
+
+        <div id="card-preview">
+            <div class="id-card" id="finalCard">
+
