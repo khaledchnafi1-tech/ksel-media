@@ -3,337 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KESSAL MEDIA | منصة الابتكار العالمية</title>
+    <title>KESSAL MEDIA | THE GRAND EMPIRE 2026</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@500;900&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Cairo:wght@300;700;900&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
-        /* المتغيرات اللونية للمستقبل */
         :root {
-            --ai-cyan: #00f3ff;
-            --ai-magenta: #ff00ea;
-            --royal-gold: #facc15;
-            --dark-core: #030712;
-            --glass-bg: rgba(10, 15, 30, 0.65);
-            --glass-border: rgba(0, 243, 255, 0.15);
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff0055;
+            --royal-gold: #ffcc00;
+            --dark-void: #020205;
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(0, 243, 255, 0.2);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+
         body { 
-            background-color: var(--dark-core); 
-            color: #e2e8f0; 
-            font-family: 'Cairo', sans-serif;
+            background: var(--dark-void); 
+            color: #fff; 
+            font-family: 'Cairo', sans-serif; 
             overflow-x: hidden;
+            perspective: 1500px;
         }
 
-        /* شبكة الذكاء الاصطناعي في الخلفية */
-        #neural-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        /* محرك الخلفية الديناميكي */
+        #nebula-canvas { position: fixed; top: 0; left: 0; z-index: -1; filter: blur(2px); }
+
+        /* شريط التحميل (Loader) */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center;
+            transition: 1s ease;
         }
+        .scanner { width: 300px; height: 2px; background: var(--neon-blue); box-shadow: 0 0 20px var(--neon-blue); animation: scanLine 2s infinite; }
+        @keyframes scanLine { 0% { transform: translateY(-50px); } 100% { transform: translateY(50px); } }
 
-        /* حاوية المشروع الفخمة */
-        .global-container { max-width: 1600px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
+        .app-container { max-width: 1600px; margin: 0 auto; padding: 40px; position: relative; z-index: 10; }
 
-        /* تأثيرات الإضاءة المتحركة (Glow Orbs) */
-        .glow-orb {
-            position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; animation: floatOrb 10s infinite alternate ease-in-out; z-index: -1;
-        }
-        .orb-1 { top: 10%; right: 10%; width: 400px; height: 400px; background: var(--ai-cyan); }
-        .orb-2 { bottom: 20%; left: 10%; width: 500px; height: 500px; background: var(--ai-magenta); animation-delay: -5s; }
-
-        @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 50px) scale(1.2); } }
-
-        /* الهيدر المتقدم */
-        .cyber-header {
+        /* الهيدر الأسطوري */
+        .header-box {
             display: flex; justify-content: space-between; align-items: center;
-            background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
-            padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 60px; animation: slideDown 1s ease-out;
+            padding: 40px; border: 1px solid var(--border); border-radius: 30px;
+            background: var(--glass); backdrop-filter: blur(30px); margin-bottom: 60px;
+            position: relative; overflow: hidden;
         }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
-
-        .brand-zone { display: flex; align-items: center; gap: 25px; }
-        .logo-img { 
-            width: 100px; height: 100px; object-fit: cover; border-radius: 20px; 
-            border: 2px solid var(--ai-cyan); box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
-            animation: pulseGlow 2s infinite alternate;
+        .header-box::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,243,255,0.05), transparent);
+            animation: sweep 5s infinite;
         }
-        @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(0, 243, 255, 0.2); } to { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
-        
-        .brand-text h1 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #fff; text-shadow: 0 0 10px var(--ai-cyan); letter-spacing: 2px; }
-        .brand-text p { color: var(--ai-cyan); font-weight: 700; letter-spacing: 4px; font-size: 0.9rem; }
+        @keyframes sweep { 100% { left: 150%; } }
 
-        /* الألواح الزجاجية (الرؤية والمقال) */
-        .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        @media (max-width: 1024px) { .grid-layout { grid-template-columns: 1fr; } }
-
-        .glass-panel {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            backdrop-filter: blur(25px); border: 1px solid var(--glass-border); border-radius: 30px;
-            padding: 50px; position: relative; overflow: hidden; transition: 0.4s;
+        .brand-identity { display: flex; align-items: center; gap: 30px; }
+        .logo-frame {
+            width: 130px; height: 130px; border: 4px solid var(--neon-blue);
+            border-radius: 25px; padding: 10px; background: #000;
+            box-shadow: 0 0 40px rgba(0,243,255,0.4); transform: rotate(-3deg);
         }
-        .glass-panel:hover { border-color: var(--ai-cyan); box-shadow: 0 15px 40px rgba(0, 243, 255, 0.1); transform: translateY(-5px); }
-        
-        .panel-title { font-family: 'Aref Ruqaa', serif; font-size: 2.8rem; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
-        .vision-t { color: var(--royal-gold); text-shadow: 0 0 15px rgba(250, 204, 21, 0.3); }
-        .article-t { color: var(--ai-cyan); text-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
-        
-        .panel-content { font-size: 1.6rem; line-height: 2; text-align: justify; color: #cbd5e1; }
+        .logo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
 
-        /* محرك الاستمارة الذكي */
-        .form-engine { background: var(--glass-bg); padding: 50px; border-radius: 30px; border: 1px solid rgba(255, 0, 234, 0.3); margin-bottom: 60px; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
-        
-        .input-group { position: relative; }
-        .input-group label { display: block; margin-bottom: 10px; color: var(--ai-magenta); font-weight: bold; font-family: 'Orbitron', 'Cairo'; }
-        .pro-input {
-            width: 100%; padding: 20px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px; color: #fff; font-size: 1.2rem; transition: 0.4s; font-family: 'Cairo';
+        .title-text h1 { font-family: 'Orbitron'; font-size: 3.5rem; letter-spacing: 5px; text-shadow: 0 0 20px var(--neon-blue); }
+        .title-text p { font-size: 1rem; color: var(--royal-gold); font-weight: 900; letter-spacing: 12px; }
+
+        /* الأقسام الجمالية */
+        .main-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; }
+        @media (max-width: 1200px) { .main-grid { grid-template-columns: 1fr; } }
+
+        .glass-card {
+            background: var(--glass); border: 1px solid var(--border);
+            border-radius: 40px; padding: 60px; position: relative;
+            transition: 0.5s; backdrop-filter: blur(15px);
         }
-        .pro-input:focus { border-color: var(--ai-magenta); box-shadow: 0 0 25px rgba(255, 0, 234, 0.3); outline: none; background: rgba(0,0,0,0.8); }
+        .glass-card:hover { border-color: var(--neon-blue); box-shadow: 0 20px 80px rgba(0, 243, 255, 0.1); }
 
-        .btn-core {
-            grid-column: 1 / -1; width: 100%; padding: 25px; margin-top: 20px;
-            background: linear-gradient(90deg, var(--ai-magenta), var(--ai-cyan));
-            border: none; border-radius: 15px; color: #fff; font-size: 2rem; font-weight: 900;
-            cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
-            box-shadow: 0 10px 30px rgba(255, 0, 234, 0.3);
+        .section-title { font-family: 'Reem Kufi'; font-size: 3rem; color: var(--royal-gold); margin-bottom: 30px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; right: 0; width: 60%; height: 5px; background: var(--royal-gold); }
+
+        .text-body { font-size: 1.7rem; line-height: 2.3; text-align: justify; color: #d1d5db; font-weight: 300; }
+
+        /* نظام إرسال البيانات المتقدم */
+        .form-engine { background: rgba(0,0,0,0.7); border: 2px solid var(--neon-pink); padding: 50px; border-radius: 40px; margin-top: 40px; }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+        @media (max-width: 768px) { .input-row { grid-template-columns: 1fr; } }
+
+        .cyber-field {
+            background: #000; border: 1px solid #333; padding: 22px;
+            border-radius: 15px; color: #fff; font-size: 1.2rem; font-family: 'Cairo';
+            transition: 0.4s; width: 100%;
         }
-        .btn-core:hover { letter-spacing: 5px; box-shadow: 0 10px 50px rgba(0, 243, 255, 0.6); transform: scale(1.02); }
+        .cyber-field:focus { border-color: var(--neon-pink); outline: none; box-shadow: 0 0 25px rgba(255,0,85,0.3); }
 
-        /* البطاقة الهولوغرامية */
-        #hologram-result { display: none; text-align: center; margin-top: 60px; }
-        .hologram-card {
-            width: 450px; height: 650px; margin: 0 auto; padding: 40px; position: relative;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-            backdrop-filter: blur(30px); border-radius: 40px; border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 30px rgba(250, 204, 21, 0.2);
-            transform-style: preserve-3d; transition: transform 0.5s ease;
+        .btn-action {
+            width: 100%; padding: 25px; background: linear-gradient(45deg, var(--neon-pink), #9000ff);
+            border: none; border-radius: 20px; color: #fff; font-size: 1.8rem; font-weight: 900;
+            font-family: 'Orbitron'; cursor: pointer; transition: 0.5s; position: relative; overflow: hidden;
+            box-shadow: 0 10px 40px rgba(255,0,85,0.4);
         }
-        .hologram-card:hover { transform: translateY(-10px) rotateY(10deg) rotateX(5deg); }
-        .card-glare { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.2) 25%, transparent 30%); z-index: 10; border-radius: 40px; pointer-events: none; }
-        
-        .card-header { font-family: 'Orbitron'; font-size: 1.8rem; color: var(--royal-gold); margin-bottom: 30px; letter-spacing: 3px; border-bottom: 1px solid rgba(250, 204, 21, 0.3); padding-bottom: 10px; }
-        .card-avatar { width: 180px; height: 180px; margin: 0 auto 30px; border-radius: 50%; border: 4px solid var(--ai-cyan); box-shadow: 0 0 30px var(--ai-cyan); display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); }
-        
-        /* تذييل التواصل */
-        footer { border-top: 1px solid var(--glass-border); padding: 50px 0; text-align: center; margin-top: 80px; position: relative; }
-        .social-hub { display: flex; justify-content: center; gap: 50px; margin-bottom: 30px; }
-        .social-link { font-size: 3.5rem; color: #fff; transition: 0.4s; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
-        .social-link:hover { transform: translateY(-10px) scale(1.2); }
-        .fb:hover { color: #1877f2; text-shadow: 0 0 30px #1877f2; }
-        .wa:hover { color: #25d366; text-shadow: 0 0 30px #25d366; }
+        .btn-action:hover { letter-spacing: 5px; transform: translateY(-5px); }
+        .btn-action i { margin-right: 15px; }
 
-    </style>
-</head>
-<body>
-
-    <canvas id="neural-canvas"></canvas>
-
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-
-    <div class="global-container">
-        
-        <header class="cyber-header">
-            <div class="brand-zone">
-                <img src="لوجو بنج.png" alt="KESSAL MEDIA" class="logo-img" onerror="this.src='https://i.ibb.co/LdxYVq9h/1000075789.jpg'">
-                <div class="brand-text">
-                    <h1>KESSAL MEDIA</h1>
-                    <p>ALGERIAN YOUTH MEDIA REVOLUTION</p>
-                </div>
-            </div>
-            <div style="text-align: left; font-family: 'Orbitron';">
-                <span style="color: var(--ai-magenta); font-size: 0.9rem;">SYS.DATE</span><br>
-                <span style="font-size: 1.5rem; color: #fff; font-weight: 900;">MAY 2026</span>
-            </div>
-        </header>
-
-        <div class="grid-layout">
-            <div class="glass-panel">
-                <h2 class="panel-title vision-t"><i class="fas fa-crown"></i> رؤية القائد مسعدي فؤاد</h2>
-                <p class="panel-content">
-                    بإيمانٍ بدأ كفكرة، وبرؤيةٍ حملها القائد <b>مسعدي فؤاد</b>، نخطو اليوم أولى خطواتنا نحو صناعة مساحة تُشبه أحلام شباب ولاية البيض. هذه القناة ليست مجرد منصة، بل صوتٌ لجيلٍ يؤمن أن التغيير لا يُنتظر… بل يُصنع.
-                </p>
-            </div>
-            
-            <div class="glass-panel" style="border-right: 5px solid var(--ai-cyan);">
-                <h2 class="panel-title article-t"><i class="fas fa-feather-alt"></i> نبض القلم - خالد كامل</h2>
-                <p class="panel-content">
-                    اجتمعنا كعائلة صغيرة، نحمل شغفًا أكبر من الظروف، وإرادةً لا تعرف التراجع، لنكون صورةً تليق بعظمة جبل كسال، وروحًا تعكس طموحات شباب يؤمنون أن المستحيل مجرد بداية. رحلتنا بدأت من الصفر، لكننا نعلم أن الأحلام الصادقة دائمًا تجد طريقها نحو القمة. ✨
-                </p>
-            </div>
-        </div>
-
-        <div class="form-engine">
-            <h2 class="panel-title" style="color: #fff; text-align: center; justify-content: center; margin-bottom: 40px; font-family: 'Cairo';"><i class="fas fa-fingerprint"></i> توثيق الهوية للإمبراطورية</h2>
-            <form id="globalForm" class="form-grid">
-                <div class="input-group">
-                    <label>الاسم الصحفي / الإبداعي</label>
-                    <input type="text" id="v-name" class="pro-input" placeholder="مثال: خالد كامل" required>
-                </div>
-                <div class="input-group">
-                    <label>مركز الانطلاق (الـ 22 بلدية)</label>
-                    <select id="v-mun" class="pro-input">
-                        <option disabled selected>حدد القاعدة النقطية...</option>
-                        <option>البيض</option><option>بوقطب</option><option>الأبيض سيدي الشيخ</option>
-                        <option>بريزينة</option><option>الغاسول</option><option>الرقاصة</option>
-                        <option>شلالة</option><option>بوسمغون</option><option>بوعلام</option>
-                        <option>استيتن</option><option>سيدي طيفور</option><option>سيدي عمر</option>
-                        <option>سيدي سليمان</option><option>ارباوات</option><option>تيرسين</option>
-                        <option>الخيثر</option><option>الكاف لحمر</option><option>المحرة</option>
-                        <option>عين العراك</option><option>الشقيق</option><option>تلعظم</option><option>المصيد</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>الاختصاص الميداني</label>
-                    <select id="v-role" class="pro-input">
-                        <option>التحرير والإخراج الأدبي</option>
-                        <option>الصناعة السينمائية والتصوير</option>
-                        <option>إدارة الذكاء الاصطناعي (AI)</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>شفرة الاتصال (WhatsApp)</label>
-                    <input type="tel" class="pro-input" placeholder="+213..." required>
-                </div>
-                <button type="submit" class="btn-core">توليد الهوية الرقمية <i class="fas fa-bolt"></i></button>
-            </form>
-        </div>
-
-        <div id="hologram-result">
-            <div class="hologram-card" id="printCard">
-                <div class="card-glare"></div>
-                <div class="card-header">KESSAL GLOBAL ID</div>
-                <div class="card-avatar"><i class="fas fa-user-astronaut fa-6x" style="color: var(--ai-cyan); opacity: 0.8;"></i></div>
-                <h3 id="res-name" style="font-family: 'Aref Ruqaa'; font-size: 3.5rem; color: #fff; margin-bottom: 10px;">خالد كامل</h3>
-                <p id="res-role" style="font-size: 1.5rem; color: var(--ai-magenta); font-weight: bold; letter-spacing: 1px;">DIRECTOR</p>
-                <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <p style="font-size: 1.4rem; color: var(--royal-gold);">القاعدة: <span id="res-mun" style="color: #fff;">البيض</span></p>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
-                        <img src="لوجو بنج.png" style="width: 50px; border-radius: 10px; border: 1px solid var(--ai-cyan);" onerror="this.src='https://i.ibb.co/LdxYVq9h/1000075789.jpg'">
-                        <span style="font-family: 'Orbitron'; font-size: 0.8rem; color: gray;">AUTH: FOUAD M.</span>
-                    </div>
-                </div>
-            </div>
-            <button onclick="downloadHologram()" style="margin-top: 40px; padding: 20px 50px; background: transparent; border: 2px solid var(--ai-cyan); color: var(--ai-cyan); font-family: 'Orbitron'; font-size: 1.2rem; cursor: pointer; border-radius: 15px; transition: 0.3s;">DOWNLOAD SECURE ASSET .PNG</button>
-        </div>
-
-        <footer>
-            <h2 style="font-family: 'Orbitron'; color: var(--glass-border); font-size: 2rem; margin-bottom: 40px; letter-spacing: 5px;">ESTABLISH CONNECTION</h2>
-            <div class="social-hub">
-                <a href="https://www.facebook.com/share/18akdvumfQ/" class="social-link fb"><i class="fab fa-facebook"></i></a>
-                <a href="https://wa.me/213797761701" class="social-link wa"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <p style="font-family: 'Orbitron'; color: gray; letter-spacing: 2px;">© 2026 KESSAL MEDIA AI LAB. ENGINEERED BY KHALID.</p>
-        </footer>
-
-    </div>
-
-<script>
-    // 1. كود الذكاء الاصطناعي للخلفية (Neural Network Animation)
-    const canvas = document.getElementById('neural-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let particlesArray = [];
-    const colors = ['#00f3ff', '#ff00ea', '#101520'];
-
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = (Math.random() * 1) - 0.5;
-            this.speedY = (Math.random() * 1) - 0.5;
-            this.color = colors[Math.floor(Math.random() * colors.length)];
+        /* منطقة النجاح وزر البطاقة */
+        #success-interface { display: none; margin-top: 30px; text-align: center; animation: fadeInUp 0.8s; }
+        .btn-vip {
+            padding: 20px 60px; background: transparent; border: 2px solid var(--neon-blue);
+            color: var(--neon-blue); border-radius: 50px; font-weight: 900; cursor: pointer;
+            font-size: 1.4rem; transition: 0.4s;
         }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        .btn-vip:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 50px var(--neon-blue); }
+
+        /* البطاقة الملكية (Holographic Masterpiece) */
+        #id-vault { display: none; margin-top: 80px; }
+        .card-frame {
+            width: 480px; height: 680px; margin: 0 auto; background: #000;
+            border: 12px double var(--royal-gold); border-radius: 60px; position: relative;
+            padding: 50px; overflow: hidden; box-shadow: 0 0 100px rgba(255, 204, 0, 0.2);
+            transform-style: preserve-3d; transition: transform 0.1s;
         }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+        .card-texture { position: absolute; top:0; left:0; width:100%; height:100%; opacity: 0.05; background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); }
+        
+        .card-content { border: 1px solid rgba(255, 204, 0, 0.2); height: 100%; border-radius: 35px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 5; }
+        .card-header-text { font-family: 'Orbitron'; font-size: 1.5rem; color: var(--royal-gold); margin-top: 30px; letter-spacing: 5px; }
+        
+        .avatar-zone { 
+            width: 180px; height: 180px; border: 4px solid var(--neon-blue); border-radius: 50%;
+            margin: 40px auto; display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 243, 255, 0.05); box-shadow: 0 0 30px var(--neon-blue);
         }
-    }
 
-    function init() {
-        particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 12000;
-        for (let i = 0; i < numberOfParticles; i++) { particlesArray.push(new Particle()); }
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
-            // رسم خطوط التواصل (الشبكة العصبية)
-            for (let j = i; j < particlesArray.length; j++) {
-                const dx = particlesArray[i].x - particlesArray[j].x;
-                const dy = particlesArray[i].y - particlesArray[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < 100) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 243, 255, ${0.1 - distance/1000})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(animate);
-    }
-    init(); animate();
-    window.addEventListener('resize', function(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
-
-    // 2. معالجة الاستمارة والاحتفالية العالمية
-    document.getElementById('globalForm').onsubmit = function(e) {
-        e.preventDefault();
-        
-        // نقل البيانات للبطاقة
-        document.getElementById('res-name').innerText = document.getElementById('v-name').value;
-        document.getElementById('res-mun').innerText = document.getElementById('v-mun').value;
-        document.getElementById('res-role').innerText = document.getElementById('v-role').value;
-        
-        // إظهار البطاقة
-        const resultSection = document.getElementById('hologram-result');
-        resultSection.style.display = 'block';
-        
-        // انفجار لوني فاخر
-        var duration = 3 * 1000;
-        var end = Date.now() + duration;
-        (function frame() {
-            confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#00f3ff', '#ff00ea', '#facc15'] });
-            confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#00f3ff', '#ff00ea', '#facc15'] });
-            if (Date.now() < end) { requestAnimationFrame(frame); }
-        }());
-
-        // تمرير سلس للنتيجة
-        window.scrollTo({ top: resultSection.offsetTop, behavior: 'smooth' });
-    };
-
-    // 3. تحميل البطاقة كصورة
-    function downloadHologram() {
-        html2canvas(document.querySelector("#printCard"), { backgroundColor: "#030712", scale: 2 }).then(canvas => {
-            let link = document.createElement('a');
-            link.download = 'Kessal_Global_ID_2026.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    }
-</script>
-</body>
-</html>
+        .name-display { font-family: 'Reem Kufi'; font-size: 3.2rem; color: #fff; text-align: center; margin-bottom
