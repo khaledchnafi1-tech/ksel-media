@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
-        :root { --navy: #0a192f; --gold: #c5a059; --ink: #1a1a1a; --white: #ffffff; --gray: #f1f5f9; }
+        :root { --navy: #0a192f; --gold: #c5a059; --ink: #1a1a1a; --white: #ffffff; --gray: #f1f5f9; --success: #10b981; --error: #ef4444; }
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Cairo', sans-serif; background-color: var(--gray); color: var(--navy); line-height: 1.8; }
 
@@ -24,6 +24,7 @@
 
         .hero { height: 40vh; background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url('kessal.jpg'); background-size: cover; background-position: bottom; display: flex; align-items: center; justify-content: center; color: white; text-align: center; border-bottom: 5px solid var(--gold); }
 
+        /* المقال التاريخي الأصلي - ممنوع اللمس */
         .history-section { padding: 60px 10%; background: white; }
         .history-card { max-width: 1000px; margin: 0 auto; background: #fffdf7; padding: 45px; border-radius: 15px; border: 1px solid #e5e7eb; box-shadow: 0 5px 20px rgba(0,0,0,0.02); }
         .history-card h2 { font-family: 'Changa'; color: var(--navy); font-size: 2.2rem; margin-bottom: 30px; text-align: center; border-bottom: 3px solid var(--gold); display: block; padding-bottom: 10px; }
@@ -61,24 +62,25 @@
         .details-list p strong { font-family: 'Cairo'; font-size: 0.8rem; color: #777; display: block; }
         .signature { margin-top: 45px; text-align: left; font-family: 'Aref Ruqaa'; font-size: 1.4rem; color: var(--gold); transform: rotate(-5deg); }
         
-        .download-btn { background: #10b981; color: white; padding: 18px 50px; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1.1rem; }
+        .download-btn { background: var(--success); color: white; padding: 18px 50px; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1.1rem; }
 
-        /* --- إضافات نظام الاختبار والشهادة الفاخرة --- */
-        .quiz-section { padding: 80px 5%; background: white; text-align: center; border-top: 5px solid var(--gold); }
-        .quiz-card { max-width: 700px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid var(--gold); }
-        .quiz-card h4 { font-family: 'Changa'; color: var(--navy); font-size: 1.5rem; margin-bottom: 20px; }
-        .option-btn { width: 100%; padding: 15px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; background: white; cursor: pointer; transition: 0.3s; font-family: 'Cairo'; font-weight: bold; text-align: right; }
-        .option-btn:hover { background: var(--gold); color: white; }
-        
-        .certificate-luxury {
-            width: 800px; height: 560px; background: #fffdf5; margin: 40px auto;
-            border: 15px double var(--gold); position: relative; padding: 50px;
-            display: none; box-shadow: 0 0 50px rgba(0,0,0,0.2);
-            font-family: 'Amiri', serif; background-image: radial-gradient(circle, rgba(197,160,89,0.05) 10%, transparent 10.01%); background-size: 20px 20px;
+        /* --- نظام الاختبار المطور --- */
+        .quiz-container { padding: 80px 5%; background: #fff; text-align: center; border-top: 8px solid var(--gold); }
+        .quiz-box { max-width: 800px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 30px; border: 1px solid var(--gold); box-shadow: 0 15px 45px rgba(0,0,0,0.05); }
+        .q-progress { height: 10px; background: #eee; border-radius: 5px; margin-bottom: 30px; overflow: hidden; }
+        .q-bar { height: 100%; background: var(--gold); width: 0%; transition: 0.5s; }
+        .option-item { width: 100%; padding: 18px; margin: 12px 0; border: 2px solid #f1f5f9; border-radius: 15px; background: white; cursor: pointer; font-family: 'Cairo'; font-weight: 700; text-align: right; transition: 0.3s; font-size: 1.1rem; }
+        .option-item:hover { border-color: var(--gold); background: #fffdf5; }
+        .option-item.correct { background: var(--success) !important; color: white; border-color: var(--success); }
+        .option-item.wrong { background: var(--error) !important; color: white; border-color: var(--error); }
+
+        .luxury-cert-box { 
+            display: none; width: 900px; height: 630px; background: #fffcf0; margin: 50px auto; padding: 60px;
+            border: 20px double var(--gold); position: relative; box-shadow: 0 0 60px rgba(0,0,0,0.15);
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
         }
-        .cert-title { font-family: 'Aref Ruqaa'; font-size: 3rem; color: var(--navy); margin-bottom: 10px; }
-        .cert-name { font-family: 'Aref Ruqaa'; font-size: 3.5rem; color: var(--gold); margin: 20px 0; }
-        /* ----------------------------------------- */
+        .cert-inner { border: 2px solid var(--gold); height: 100%; padding: 40px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+        /* --------------------------- */
 
         footer { background: #020617; color: #94a3b8; padding: 60px 5%; text-align: center; }
         .social-icons { margin-bottom: 25px; }
@@ -96,13 +98,13 @@
             <ul>
                 <li><a href="#">الرئيسية</a></li>
                 <li><a href="#join-us">إنضم إلينا</a></li>
-                <li><a href="#quiz-area">اختبار الكفاءة</a></li>
+                <li><a href="#quiz-section">الاختبار والشهادة</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h2 style="font-family: 'Changa'; font-size: 3rem; text-shadow: 0 4px 15px rgba(0,0,0,0.5);">كسال ميديا</h2>
+        <h2 style="font-family: 'Changa'; font-size: 3.5rem; text-shadow: 0 4px 15px rgba(0,0,0,0.6);">كسال ميديا</h2>
     </section>
 
     <section class="history-section">
@@ -110,6 +112,10 @@
             <h2>ثبات الجبل وأمانة التاريخ</h2>
             <p><strong>لماذا كسال ميديا؟</strong> إن اختيارنا لهذا الاسم هو استلهام من عظمة جبل كسال الذي احتضن ثوارنا الأبطال، ليكون إعلامنا ثابتاً مثله في وجه كل التحديات. </p>
             <p>تحركت كتيبتان لجيش التحرير يقودهما ديداني أحمد المدعو لزرق وقطاف أحمد من "الخنيقات" شرق بلــدية الغاسول نحـــو منطقة العين الجديدة قرب الطريق الرابط بين البيض وبوعلام حيث يتواجد جيش بلونيس المعادي للثورة ولما وصل جيش التحرير إلى المكان المسمى العين الجديدة كان جيش بلونيس قد انسحب شرقا إلى ضواحي أفلو فتنقلت الكتيبتان إلى جبل أكسال للتمركز فيه بضعة أيام في انتظار أوامر لاحقة.</p>
+            <p>وكانت قرية استيتن قد أخلاها الفرنسيون من سكانها في جويلية 1957 بهدف منع جيش التحرير من الاتصال بالسكان وحرمــانه من قـــواعده الشعبيـــة في التمــوين والتزود ببعض الاحتياجات الأخرى وظل الجيش الفرنسي يراقب القرية ظانا أن جيش التحـــرير يستخدمـــها ليلا للــــراحة أو المبيت وفي مساء يوم 17 أفريل 1958 نزل بعض المسبلين من الجبل في مهمة فرأوا قافلة من جيش العدو قد عسكرت في القرية فعادوا مسرعين إلى حيث تتمركز الكتيبتان وأبلغوا قيادة المجاهدين بالأمر.</p>
+            <p>تحركت الكتيبة التي يقودها قطاف أحمد بسرعة فائقة وحاصــــرت العســاكر الفرنسية التي كانت ملتفة حول بعضها تحضر عشاءها في ساحة القرية وباغتتهم بإطلاق النار وأسفر الهجوم عن عدد من القتلى والجرى في صفوف القوات الفرنسية التي فر ما تبقى من جنودها بعتادهم وأخذت تقصف بالدبابات من بعيد مكان تواجد عناصر الكتيبة المهاجمة , وإثر هذا الهجوم عادت الكتيبة مع حلول الليل إلى الجبل.</p>
+            <p>فاجتمعت قيادة المجاهدين لدراسة الموقف وتم الاتفاق على البقاء في الجبل والاستعداد لأي معركة قد يفرضها العدو وعينوا مكانا يتوسط الجبل يعرف بكاف زعطوط ليتمركز فيه جيش التحرير تأهبا لمعركة الغد لأنهم تأكدوا أن القوات الفرنسية سوف تأتي غدا إلى الجبل بكل قواتها للقتال انتقاما لقتلاها في قرية استيتن والقضاء على المجاهدين.</p>
+            <p>وحوالي الساعة السادسة صباحا بدأوا يقصفون مواقع تواجد جيش التحرير بمدافع الهاون التي نصبوها في قرية الحوض , كما تدخلت الطائرات المقنبلة لترمي بحممها وحمولتها من القنابل.</p>
         </div>
     </section>
 
@@ -124,7 +130,7 @@
                     </div>
                     <div class="input-group">
                         <label>التخصص الإبداعي</label>
-                        <input type="text" id="inRole" name="التخصص" class="form-control" required>
+                        <input type="text" id="inRole" name="التخصص" class="form-control" placeholder="مثال: مصور، كاتب.." required>
                     </div>
                     <div class="input-group">
                         <label>المستوى الدراسي</label>
@@ -141,6 +147,7 @@
                             <option>البيض</option><option>بوقطب</option><option>الأبيض سيدي الشيخ</option>
                             <option>بريزينة</option><option>الغاسول</option><option>الرقاصة</option>
                             <option>شلالة</option><option>بوسمغون</option><option>بوعلام</option>
+                            <option>استيتن</option><option>سيدي طيفور</option><option>سيدي عمر</option>
                         </select>
                     </div>
                 </div>
@@ -155,4 +162,7 @@
     <section class="preview-section" id="previewArea">
         <div class="id-card-artistic" id="myCard">
             <div class="card-header-art">كسال ميديا</div>
-            <h2 id
+            <h2 id="outName" class="member-name">...</h2>
+            <p id="outRole" class="member-role">...</p>
+            <div class="details-list">
+                <p><strong>بلدية الإقامة:</strong>
