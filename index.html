@@ -3,237 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة كسال ميديا | العضوية الرسمية</title>
-    
+    <title>كسال ميديا | Kssal Media</title>
+    <!-- استدعاء خط Cairo الفخم والمناسب للإعلام -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- استدعاء Tailwind CSS مباشرة -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- استدعاء مكتبة الأيقونات الشهيرة FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;900&family=Changa:wght@500;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
     <style>
-        :root { --navy: #0a192f; --gold: #c5a059; --ink: #1a1a1a; --white: #ffffff; --gray: #f1f5f9; }
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Cairo', sans-serif; background-color: var(--gray); color: var(--navy); line-height: 1.8; }
-
-        header { padding: 15px 5%; background: var(--white); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .logo-area { display: flex; align-items: center; gap: 15px; }
-        .logo-area h1 { font-family: 'Changa'; font-size: 1.6rem; color: var(--navy); }
-        
-        /* القائمة العلوية */
-        nav ul { display: flex; list-style: none; gap: 20px; }
-        nav ul li a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 1rem; transition: 0.3s; }
-        nav ul li a:hover { color: var(--gold); }
-
-        .hero { height: 40vh; background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url('kessal.jpg'); background-size: cover; background-position: bottom; display: flex; align-items: center; justify-content: center; color: white; text-align: center; border-bottom: 5px solid var(--gold); }
-
-        .history-section { padding: 60px 10%; background: white; }
-        .history-card { max-width: 1000px; margin: 0 auto; background: #fffdf7; padding: 45px; border-radius: 15px; border: 1px solid #e5e7eb; box-shadow: 0 5px 20px rgba(0,0,0,0.02); }
-        .history-card h2 { font-family: 'Changa'; color: var(--navy); font-size: 2.2rem; margin-bottom: 30px; text-align: center; border-bottom: 3px solid var(--gold); display: block; padding-bottom: 10px; }
-        .history-card p { font-family: 'Amiri', serif; font-size: 1.35rem; text-align: justify; margin-bottom: 20px; color: #374151; line-height: 2.1; }
-
-        .registration-section { padding: 70px 5%; background: var(--navy); }
-        .form-container { max-width: 850px; margin: 0 auto; background: white; padding: 45px; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
-        .form-container h3 { text-align: center; margin-bottom: 35px; font-family: 'Changa'; font-size: 1.8rem; color: var(--navy); }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.9rem; color: #64748b; }
-        .form-control { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 12px; font-family: 'Cairo'; font-size: 1rem; }
-        .full-width { grid-column: span 2; }
-        
-        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .btn-action { padding: 20px; border: none; border-radius: 15px; font-weight: 900; font-size: 1.2rem; cursor: pointer; transition: 0.4s; }
-        .btn-submit { background: var(--navy); color: white; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; }
-        .btn-generate { background: var(--gold); color: var(--navy); }
-
-        .preview-section { padding: 80px 5%; background: #f8fafc; display: none; text-align: center; }
-        .id-card-artistic {
-            width: 400px; height: 620px; background: white; margin: 0 auto 35px;
-            border-radius: 12px; position: relative; padding: 40px; color: var(--ink);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.25); border: 1px solid #d1b894;
-            background-image: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.85)), url('kessal.jpg');
-            background-size: cover; background-position: 50% 85%;
-            font-family: 'Amiri', serif; overflow: hidden;
-        }
-
-        .card-header-art { border-bottom: 2px solid var(--gold); padding-bottom: 12px; margin-bottom: 25px; font-family: 'Aref Ruqaa'; font-weight: bold; text-align: center; font-size: 1.5rem; color: var(--navy); }
-        .member-name { font-family: 'Aref Ruqaa', serif; font-size: 2.8rem; margin: 15px 0 0; color: var(--navy); line-height: 1.2; }
-        .member-role { font-family: 'Aref Ruqaa', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 35px; }
-        .details-list { text-align: right; border-right: 4px solid var(--gold); padding-right: 18px; margin-top: 30px; }
-        .details-list p { margin: 15px 0; font-size: 1.25rem; }
-        .details-list p strong { font-family: 'Cairo'; font-size: 0.8rem; color: #777; display: block; }
-        .signature { margin-top: 45px; text-align: left; font-family: 'Aref Ruqaa'; font-size: 1.4rem; color: var(--gold); transform: rotate(-5deg); }
-        
-        .download-btn { background: #10b981; color: white; padding: 18px 50px; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; font-size: 1.1rem; }
-
-        footer { background: #020617; color: #94a3b8; padding: 60px 5%; text-align: center; }
-        .social-icons { margin-bottom: 25px; }
-        .social-icons a { color: var(--gold); font-size: 2.8rem; margin: 0 20px; transition: 0.3s; display: inline-block; }
+        body { font-family: 'Cairo', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-gray-950 text-white selection:bg-red-600 selection:text-white">
 
-    <header>
-        <div class="logo-area">
-            <img src="logo.png" width="55" onerror="this.style.display='none'">
-            <h1>كسال ميديا</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#join-us">إنضم إلينا</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h2 style="font-family: 'Changa'; font-size: 3rem; text-shadow: 0 4px 15px rgba(0,0,0,0.5);">كسال ميديا</h2>
-    </section>
-
-    <section class="history-section">
-        <div class="history-card">
-            <h2>ثبات الجبل وأمانة التاريخ</h2>
-            <p><strong>لماذا كسال ميديا؟</strong> إن اختيارنا لهذا الاسم هو استلهام من عظمة جبل كسال الذي احتضن ثوارنا الأبطال، ليكون إعلامنا ثابتاً مثله في وجه كل التحديات. </p>
-            <p>تحركت كتيبتان لجيش التحرير يقودهما ديداني أحمد المدعو لزرق وقطاف أحمد من "الخنيقات" شرق بلــدية الغاسول نحـــو منطقة العين الجديدة قرب الطريق الرابط بين البيض وبوعلام حيث يتواجد جيش بلونيس المعادي للثورة ولما وصل جيش التحرير إلى المكان المسمى العين الجديدة كان جيش بلونيس قد انسحب شرقا إلى ضواحي أفلو فتنقلت الكتيبتان إلى جبل أكسال للتمركز فيه بضعة أيام في انتظار أوامر لاحقة.</p>
-            <p>وكانت قرية استيتن قد أخلاها الفرنسيون من سكانها في جويلية 1957 بهدف منع جيش التحرير من الاتصال بالسكان وحرمــانه من قـــواعده الشعبيـــة في التمــوين والتزود ببعض الاحتياجات الأخرى وظل الجيش الفرنسي يراقب القرية ظانا أن جيش التحـــرير يستخدمـــها ليلا للــــراحة أو المبيت وفي مساء يوم 17 أفريل 1958 نزل بعض المسبلين من الجبل في مهمة فرأوا قافلة من جيش العدو قد عسكرت في القرية فعادوا مسرعين إلى حيث تتمركز الكتيبتان وأبلغوا قيادة المجاهدين بالأمر.</p>
-            <p>تحركت الكتيبة التي يقودها قطاف أحمد بسرعة فائقة وحاصــــرت العســاكر الفرنسية التي كانت ملتفة حول بعضها تحضر عشاءها في ساحة القرية وباغتتهم بإطلاق النار وأسفر الهجوم عن عدد من القتلى والجرى في صفوف القوات الفرنسية التي فر ما تبقى من جنودها بعتادهم وأخذت تقصف بالدبابات من بعيد مكان تواجد عناصر الكتيبة المهاجمة , وإثر هذا الهجوم عادت الكتيبة مع حلول الليل إلى الجبل.</p>
-            <p>فاجتمعت قيادة المجاهدين لدراسة الموقف وتم الاتفاق على البقاء في الجبل والاستعداد لأي معركة قد يفرضها العدو وعينوا مكانا يتوسط الجبل يعرف بكاف زعطوط ليتمركز فيه جيش التحرير تأهبا لمعركة الغد لأنهم تأكدوا أن القوات الفرنسية سوف تأتي غدا إلى الجبل بكل قواتها للقتال انتقاما لقتلاها في قرية استيتن والقضاء على المجاهدين وكانت قوات جيش التحرير عشية المعركة تتألف من كتيبتين مسلح أفرادها برشاشات ثقيلة من نوع أ م ج ي 42/44 وبنادق حربية أخرى , أما الفرنسيون فقد حشدوا إلى ساحة المعركة أعدادا هائلة من الجنود والمعدات خلال الليل وحتى الصـــباح وشرعوا في محـــاصرة الجبل في ساعة مبكرة.</p>
-            <p>وحوالي الساعة السادسة صباحا بدأوا يقصفون مواقع تواجد جيش التحرير بمدافع الهاون التي نصبوها في قرية الحوض , كما تدخلت الطائرات المقنبلة لترمي بحممها وحمولتها من القنابل.</p>
-        </div>
-    </section>
-
-    <section class="registration-section" id="join-us">
-        <div class="form-container">
-            <h3>استمارة العضوية الرسمية</h3>
-            <form id="idForm" action="https://formspree.io/f/mgodnzlw" method="POST">
-                <div class="form-grid">
-                    <div class="input-group full-width">
-                        <label>الاسم واللقب الكامل</label>
-                        <input type="text" id="inName" name="الاسم_واللقب" class="form-control" placeholder="اكتب اسمك هنا" required>
-                    </div>
-                    <div class="input-group">
-                        <label>التخصص الإبداعي</label>
-                        <input type="text" id="inRole" name="التخصص" class="form-control" required>
-                    </div>
-                    <div class="input-group">
-                        <label>المستوى الدراسي</label>
-                        <input type="text" id="inLevel" name="المستوى_الدراسي" class="form-control" required>
-                    </div>
-                    <div class="input-group">
-                        <label>رقم الهاتف</label>
-                        <input type="tel" id="inPhone" name="رقم_الهاتف" class="form-control" required>
-                    </div>
-                    <div class="input-group">
-                        <label>بلدية الإقامة (ولاية البيض)</label>
-                        <select id="inMun" name="البلدية" class="form-control" required>
-                            <option value="" disabled selected>اختر بلدية</option>
-                            <option>البيض</option><option>بوقطب</option><option>الأبيض سيدي الشيخ</option>
-                            <option>بريزينة</option><option>الغاسول</option><option>الرقاصة</option>
-                            <option>شلالة</option><option>بوسمغون</option><option>بوعلام</option>
-                            <option>استيتن</option><option>سيدي طيفور</option><option>سيدي عمر</option>
-                            <option>سيدي سليمان</option><option>ارباوات</option><option>تيرسين</option>
-                            <option>الخيثر</option><option>الكاف لحمر</option><option>المحرة</option>
-                            <option>عين العراك</option><option>الشقيق</option><option>تلعظم</option><option>المصيد</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button type="submit" class="btn-action btn-submit">إرسال البيانات</button>
-                    <button type="button" onclick="generate()" class="btn-action btn-generate">توليد البطاقة</button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <section class="preview-section" id="previewArea">
-        <div class="id-card-artistic" id="myCard">
-            <div class="card-header-art">كسال ميديا</div>
-            <h2 id="outName" class="member-name">خالد محمد</h2>
-            <p id="outRole" class="member-role">مبدع كسال</p>
-            <div class="details-list">
-                <p><strong>بلدية الإقامة:</strong> <span id="outMun">...</span></p>
-                <p><strong>المستوى الدراسي:</strong> <span id="outLevel">...</span></p>
-                <p><strong>هاتف التواصل:</strong> <span id="outPhone">...</span></p>
+    <!-- النافذة العلوية (Glassmorphism Navbar) -->
+    <nav class="fixed w-full z-50 top-0 backdrop-blur-lg bg-gray-950/70 border-b border-gray-900">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <!-- هنا يظهر اسم القناة أو يمكنك استبداله لاحقاً بـ <img src="logo.png"> -->
+                <h1 class="text-2xl font-black bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent tracking-wide">
+                    كسال ميديا
+                </h1>
             </div>
-            <div class="signature">ثبات الجبل.. <br> منصة كسال ميديا</div>
-        </div>
-        <button onclick="download()" class="download-btn">تحميل البطاقة PNG</button>
-    </section>
-
-    <footer>
-        <div class="social-icons" style="margin-bottom: 25px;">
-            <a href="https://www.facebook.com/share/18akdvumfQ/" target="_blank" title="فيسبوك"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/213797761701" target="_blank" title="واتساب"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:+213797761701" title="اتصال هاتفي"><i class="fas fa-phone-alt" style="color: var(--gold); font-size: 2.8rem; margin: 0 20px;"></i></a>
-        </div>
-        <h4 style="color:white; margin-bottom:10px;">كسال ميديا.. ثبات الجبل وأمانة التاريخ</h4>
-        <p>إشراف: الأستاذ مسعدي فؤاد</p>
-        <p style="margin-top:10px; color: var(--gold); font-weight: bold;">للتواصل المباشر: 0797761701</p>
-        <p style="margin-top:20px; font-size:0.8rem; opacity:0.6;">ولاية البيض © 2026</p>
-    </footer>
-
-    <div id="khaled-assistant-chat" style="position: fixed; bottom: 25px; left: 25px; width: 330px; font-family: 'Cairo', sans-serif; direction: rtl; z-index: 10001;">
-        <div id="chat-toggle" style="background: #0a192f; color: #c5a059; padding: 15px; border-radius: 50px; cursor: pointer; text-align: center; font-weight: bold; border: 2px solid #c5a059; box-shadow: 0 4px 20px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <i class="fas fa-microphone-alt"></i> المساعد خالد
-        </div>
-
-        <div id="chat-window-main" style="display: none; background: #fff; border: 2px solid #0a192f; border-radius: 15px; flex-direction: column; height: 400px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-            <div style="background: #0a192f; color: #c5a059; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #c5a059;">
-                منصة كسال ميديا | المساعد خالد
+            <div class="hidden md:flex space-x-8 space-x-reverse text-sm font-medium">
+                <a href="#" class="hover:text-red-500 transition-colors">الرئيسية</a>
+                <a href="#news" class="hover:text-red-500 transition-colors">آخر الأخبار</a>
+                <a href="#live" class="hover:text-red-500 transition-colors">البث المباشر</a>
+                <a href="#ai" class="hover:text-red-500 transition-colors">خدمات AI</a>
+                <a href="#about" class="hover:text-red-500 transition-colors">من نحن</a>
             </div>
-            <div id="chat-msg-area" style="flex: 1; padding: 15px; overflow-y: auto; background: #f8fafc;">
-                <div style="background: #fff; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-right: 5px solid #0a192f; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    مرحباً بك يا بن العم، أنا خالد مساعدك الذكي. راني هنا باش نسهلك التسجيل ونعطيك معلومات على المنصة.
-                </div>
-            </div>
-            <div style="padding: 10px; background: #f1f5f9; display: flex; flex-direction: column; gap: 5px;">
-                <button onclick="khReply('كيفاش نسجل؟', 'عمر برك المعلومات في الاستمارة، ومن بعد اضغط على إرسال البيانات ثم توليد البطاقة.')" style="background: white; border: 1px solid #0a192f; padding: 8px; border-radius: 5px; cursor: pointer; font-size: 0.85rem;">كيفاش نسجل؟</button>
-                <button onclick="khReply('شكون يشرف على المنصة؟', 'المنصة تحت إشراف الأستاذ مسعدي فؤاد، وهي منبر لكل المبدعين في ولاية البيض.')" style="background: white; border: 1px solid #0a192f; padding: 8px; border-radius: 5px; cursor: pointer; font-size: 0.85rem;">شكون يشرف على المنصة؟</button>
-            </div>
+            <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold transition-all duration-300 transform hover:scale-105 shadow-lg shadow-red-600/20">
+                تواصل معنا
+            </button>
         </div>
+    </nav>
+
+    <!-- شريط الأخبار العاجلة المتحرك -->
+    <div class="mt-20 bg-red-600 text-white text-sm py-2 overflow-hidden flex items-center shadow-lg relative z-10">
+        <span class="font-black px-5 bg-red-800 h-full flex items-center z-20 whitespace-nowrap shadow-md">عاجل</span>
+        <marquee class="font-bold" direction="right" scrollamount="6">كسال ميديا تطلق منصتها الرقمية الجديدة لتقديم تجربة إعلامية رائدة تواكب المستقبل وتغطي كافة الأحداث المحلية والثقافية...</marquee>
     </div>
 
-    <script>
-        function khReply(q, a) {
-            const area = document.getElementById('chat-msg-area');
-            area.innerHTML += `<div style="background: #c5a059; color: #0a192f; padding: 8px; border-radius: 8px; margin-bottom: 10px; text-align: left;">${q}</div>`;
-            setTimeout(() => {
-                area.innerHTML += `<div style="background: #fff; padding: 8px; border-radius: 8px; margin-bottom: 10px; border-right: 5px solid #0a192f;">${a}</div>`;
-                area.scrollTop = area.scrollHeight;
-                const utter = new SpeechSynthesisUtterance(a);
-                utter.lang = 'ar-SA';
-                window.speechSynthesis.speak(utter);
-            }, 500);
-        }
-
-        document.getElementById('chat-toggle').onclick = function() {
-            const win = document.getElementById('chat-window-main');
-            win.style.display = win.style.display === 'none' ? 'flex' : 'none';
-        };
-
-        function generate() {
-            const name = document.getElementById('inName').value;
-            if(!name) return alert("من فضلك أكمل البيانات أولاً!");
-            
-            document.getElementById('outName').innerText = name;
-            document.getElementById('outRole').innerText = document.getElementById('inRole').value;
-            document.getElementById('outPhone').innerText = document.getElementById('inPhone').value;
-            document.getElementById('outLevel').innerText = document.getElementById('inLevel').value;
-            document.getElementById('outMun').innerText = document.getElementById('inMun').value;
-            
-            document.getElementById('previewArea').style.display = 'block';
-            window.scrollTo({top: document.getElementById('previewArea').offsetTop - 30, behavior:'smooth'});
-        }
+    <!-- الواجهة الرئيسية (Hero Section) -->
+    <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/70 to-transparent z-10"></div>
+        <!-- خلفية تعبيرية - يمكنك استبدال الرابط بصورة من تغطياتك لاحقاً -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-30 transform scale-105 transition-transform duration-10000"></div>
         
-        function download() {
-            html2canvas(document.querySelector("#myCard"), { scale: 3 }).then(canvas => {
-                let link = document.createElement('a');
-                link.download = 'Kessal_Media_Card.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        }
-    </script>
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-7xl font-black leading-tight mb-6 tracking-tight drop-shadow-xl">
+                نواكب الحدث... <br> ونـصـنـع <span class="text-red-500 bg-gradient-to-r from-red-500 to-red-400 bg-clip-text">إعلام المستقبل</span>
+            </h2>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 font-medium">المنصة الإعلامية الرقمية الأولى لتغطية الأخبار المحلية، الثقافية، والأنشطة الشبابية برؤية عصرية.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                <a href="#live" class="flex items-center justify-center gap-3 bg-red-600 hover:bg-red-700 px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl shadow-red-600/30">
+                    <i class="fas fa-play text-sm"></i> شاهد الآن
+                </a>
+                <a href="#news" class="flex items-center justify-center gap-3 backdrop-blur-md bg-white/10 hover:bg-white/20 border border-white/10 px-8 py-3.5 rounded-full font-bold transition-all transform hover:scale-105">
+                    آخر الأخبار <i class="fas fa-arrow-left text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <script src="quiz-engine.js"></script>
+    <!-- قسم آخر الأخبار (Latest News) -->
+    <section id="news" class="py-24 container mx-auto px-6">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <span class="text-red-500 text-xs font-bold tracking-widest uppercase block mb-2">// التغطيات الحية</span>
+                <h3 class="text-3xl md:text-4xl font-black">آخر الأخبار والأحداث</h3>
+                <div class="h-1 w-20 bg-red-600 rounded-full mt-4"></div>
+            </div>
+            <a href="#" class="text-gray-400 hover:text-white font-bold transition-colors flex items-center gap-2 group text-sm">عرض كل الأخبار <i class="fas fa-arrow-left text-xs transform group-hover:-translate-x-1 transition-transform"></i></a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- كارت خبر 1 -->
+            <div class="group rounded-2xl overflow-hidden bg-gray-900/50 border border-gray-900 hover:border-gray-800 transition-all duration-300 hover:-translate-y-2 shadow-xl">
+                <div class="h-52 bg-gray-800 overflow-hidden relative">
+                    <span class="absolute top-4 right-4 bg-red-600 text-xs font-black px-4 py-1.5 rounded-full z-10 shadow-md">أخبار محلية</span>
+                    <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1546421845-6471bdcf3edf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                </div>
+                <div class="p-6">
+                    <span class="text-gray-500 text-xs font-semibold"><i class="far fa-clock ml-1"></i> منذ ساعتين</span>
+                    <h4 class="text-xl font-bold mt-3 mb-3 group-hover:text-red-400 transition-colors line-clamp-2 leading-snug">
+                        تغطية خاصة لإنطلاق المسابقات الإعلامية والثقافية بالمنطقة
+                    </h4>
+                    <p class="text-gray-400 text-sm line-clamp-2 leading-relaxed">
+                        شهدت قاعات دار الثقافة حضوراً مميزاً لنخبة من الإعلاميين والشباب المبدعين لتغطية الحدث السنوي البارز...
+                    </p>
+                </div>
+            </div>
+
+            <!-- كارت خبر 2 -->
+            <div class="group rounded-2xl overflow-hidden bg-gray-900/50 border border-gray-900 hover:border-gray-800 transition-all duration-300 hover:-translate-y-2 shadow-xl">
+                <div class="h-52 bg-gray-800 overflow-hidden relative">
+                    <span class="absolute top-4 right-4 bg-red-600 text-xs font-black px-4 py-1.5 rounded-full z-10 shadow-md">ثقافة وفنون</span>
+                    <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                </div>
+                <div class="p-6">
+                    <span class="text-gray-500 text-xs font-semibold"><i class="far fa-clock ml-1"></i> اليوم</span>
+                    <h4 class="text-xl font-bold mt-3 mb-3 group-hover:text-red-400 transition-colors line-clamp-2 leading-snug">
+                        ندوات فكرية تسلط الضوء على التراث التاريخي والأندلسي للمنطقة
+                    </h4>
+                    <p class="text-gray-400 text-sm line-clamp-2 leading-relaxed">
+                        برامج وأنشطة متنوعة تهدف لإحياء الموروث الثقافي الأصيل وتعريف الجيل الصاعد بأمجاد وتاريخ الأجداد...
+                    </p>
+                </div>
+            </div>
+
+            <!-- كارت خبر 3 -->
+            <div class="group rounded-2xl overflow-hidden bg-gray-900/50 border border-gray-900 hover:border-gray-800 transition-all duration-300 hover:-translate-y-2 shadow-xl">
+                <div class="h-52 bg-gray-800 overflow-hidden relative">
+                    <span class="absolute top-4 right-4 bg-red-600 text-xs font-black px-4 py-1.5 rounded-full z-10 shadow-md">إعلام رقمي</span>
+                    <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                </div>
+                <div class="p-6">
+                    <span class="text-gray-500 text-xs font-semibold"><i class="far fa-clock ml-1"></i> يوم أمس</span>
+                    <h4 class="text-xl font-bold mt-3 mb-3 group-hover:text-red-400 transition-colors line-clamp-2 leading-snug">
+                        إطلاق سلسلة بودكاست "فسحة" بنسختها الرقمية الجديدة
+                    </h4>
+                    <p class="text-gray-400 text-sm line-clamp-2 leading-relaxed">
+                        برنامج حواري شبابي يناقش قضايا مجتمعية، تعليم اللغات، والأدب العربي الفصيح بأسلوب تفاعلي جذاب مخصص للمنصات...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم البث المباشر (Live Stream) -->
+    <section id="live" class="py-24 bg-gray-900/40 border-y border-gray-900 backdrop-blur-sm">
+        <div class="container mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 bg-red-950/50 text-red-500 border border-red-900/50 px-4 py-2 rounded-full mb-6 shadow-inner">
+                <i class="fas fa-circle text-[10px] animate-pulse"></i>
+                <span class="font-black text-xs tracking-wider">LIVE STREAMING</span>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-black mb-12">ستوديو البث المباشر</h3>
+            
+            <!-- نافذة الفيديو الزجاجية الفخمة -->
+            <div class="max-w-4xl mx-auto aspect-video rounded-3xl bg-gray-950 border border-gray-800 shadow-2xl overflow-hidden relative flex items-center justify-center group cursor-pointer">
+                <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div class="bg-red-600 text-white w-20 h-20 rounded-full flex items-center justify-center shadow-2xl shadow-red-600/50 group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-play text-2xl mr-1"></i>
+                    </div>
+                </div>
+                <!-- صورة خلفية شاشة البث قبل التشغيل -->
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center -z-10 opacity-60"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم مميزات الذكاء الاصطناعي (AI Features) -->
+    <section id="ai" class="py-24 container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-20">
+            <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-red-400 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-red-600/20">
+                <i class="fas fa-microchip text-2xl text-white"></i>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-black mb-4">تقنيات الذكاء الاصطناعي</h3>
+            <p class="text-gray-400 font-medium">ندمج حلول الـ AI الذكية لنمنح جمهور "كسال ميديا" تجربة تصفح تفاعلية ومخصصة بالكامل.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- ميزة 1 -->
+            <div class="backdrop-blur-lg bg-white/[0.02] border border-white/5 hover:border-white/10 p-8 rounded-2xl text-center transition-all duration-300 hover:bg-white/[0.04]">
+                <div class="text-red-500 text-3xl mb-4"><i class="fas fa-bolt"></i></div>
+                <h4 class="text-xl font-bold mb-3">التلخيص الذكي بنقرة واحدة</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">احصل على زبدة وموجز الخبر الطويل في سطرين سريعين لتوفير وقتك ومتابعة الأحداث أولاً بأول.</p>
+            </div>
+            <!-- ميزة 2 -->
+            <div class="backdrop-blur-lg bg-white/[0.02] border border-white/5 hover:border-white/10 p-8 rounded-2xl text-center transition-all duration-300 hover:bg-white/[0.04]">
+                <div class="text-red-500 text-3xl mb-4"><i class="fas fa-volume-up"></i></div>
+                <h4 class="text-xl font-bold mb-3">تحويل المقالات الإخبارية لصوت</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">تسمح لك المنصة بالاستماع للتقارير والتحليلات السياسية أو الرياضية بصوت بشري نقي وطبيعي.</p>
+            </div>
+            <!-- ميزة 3 -->
+            <div class="backdrop-blur-lg bg-white/[0.02] border border-white/5 hover:border-white/10 p-8 rounded-2xl text-center transition-all duration-300 hover:bg-white/[0.04]">
+                <div class="text-red-500 text-3xl mb-4"><i class="fas fa-comments"></i></div>
+                <h4 class="text-xl font-bold mb-3">المساعد الإخباري الذكي (Chat)</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">دردش مع الذكاء الاصطناعي الخاص بالموقع لتسأله عن خلفيات أي خبر محلي أو دولي والحصول على إجابات فورية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم من نحن (About Section) -->
+    <section id="about" class="py-24 bg-gray-900/20 border-t border-gray-900">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-red-500 text-xs font-bold tracking-widest uppercase block mb-2">// الهوية والرسالة</span>
+                <h3 class="text-3xl md:text-4xl font-black mb-6">من هي منصة كسال ميديا؟</h3>
+                <p class="text-gray-400 leading-relaxed mb-6 font-medium">
+                    "كسال ميديا" هي قناة ومنصة رقمية محلية انطلقت برؤية شبابية طموحة لمواكبة صناعة الإعلام الحديث. نركز على دمج الإنتاج السمعي البصري، البودكاست التعليمي واللغوي، والتقارير الميدانية لتقديم محتوى إعلامي رفيع المستوى يخدم المجتمع والشباب.
+                </p>
+                <div class="border-r-4 border-red-600 pr-4 my-6 italic text-gray-300 font-bold">
+                    "نواكب الحدث بكل أمانة.. ونصنع إعلام المستقبل بأدوات اليوم"
+                </div>
+            </div>
+            <div class="rounded-3xl overflow-hidden shadow-2xl border border-gray-800 relative aspect-video bg-gray-900">
+                <!-- يمكنك هنا وضع صورة لفريق العمل أو مقر القناة -->
+                <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-70"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل (Footer) -->
+    <footer class="bg-gray-950 pt-24 pb-12 border-t border-gray-900">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-1 md:col-span-2">
+                <h2 class="text-2xl font-black mb-4 text-white tracking-wide">كسال ميديا</h2>
+                <p class="text-gray-400 leading-relaxed max-w-sm mb-6 font-medium">
+                    منصة إعلامية رقمية شاملة تهتم بنقل الخبر وتقديم برامج هادفة تعبر عن تطلعات وطموحات الشباب الإبداعي.
+                </p>
+                <!-- أيقونات مواقع التواصل الاجتماعي بتأثيرات متحركة -->
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 bg-gray-900/80 rounded-full flex items-center justify-center hover:bg-red-600 transition-all text-gray-400 hover:text-white shadow-md"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 bg-gray-900/80 rounded-full flex items-center justify-center hover:bg-red-600 transition-all text-gray-400 hover:text-white shadow-md"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 bg-gray-900/80 rounded-full flex items-center justify-center hover:bg-red-600 transition-all text-gray-400 hover:text-white shadow-md"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="w-10 h-10 bg-gray-900/80 rounded-full flex items-center justify-center hover:bg-red-600 transition-all text-gray-400 hover:text-white shadow-md"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-bold text-lg mb-6 text-white">روابط سريعة</h4>
+                <ul class="space-y-3 text-gray-400 text-sm font-medium">
+                    <li><a href="#" class="hover:text-red-500 transition-colors">الرئيسية</a></li>
+                    <li><a href="#news" class="hover:text-red-500 transition-colors">آخر الأخبار</a></li>
+                    <li><a href="#live" class="hover:text-red-500 transition-colors">البث المباشر</a></li>
+                    <li><a href="#about" class="hover:text-red-500 transition-colors">من نحن</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-lg mb-6 text-white">اتصل بنا</h4>
+                <ul class="space-y-3 text-gray-400 text-sm font-medium">
+                    <li><i class="fas fa-envelope ml-2 text-red-500"></i> contact@kssalmedia.com</li>
+                    <li><i class="fas fa-phone ml-2 text-red-500"></i> +213 XX XX XX XX</li>
+                    <li><i class="fas fa-map-marker-alt ml-2 text-red-500"></i> ولاية البيض، الجزائر</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center text-gray-600 text-sm border-t border-gray-900 pt-8 font-medium">
+            &copy; 2026 كسال ميديا | تصميم إعلامي رقمي حديث. جميع الحقوق محفوظة.
+        </div>
+    </footer>
 
 </body>
 </html>
